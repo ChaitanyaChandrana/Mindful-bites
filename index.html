@@ -108,7 +108,7 @@ input[type=number],input[type=search]{border:1px solid var(--line);background:va
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:150px;position:relative}
 .week .d{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;border:0;background:none;padding:0}
 .week .b{width:100%;max-width:30px;border-radius:7px 7px 3px 3px;background:var(--sunk);min-height:3px}
-.week .b.s{background:var(--safe)} .week .b.l{background:var(--limit)} .week .b.a{background:var(--avoid)}
+.week .b.s{background:#8FD3AE} .week .b.l{background:#43A674} .week .b.a{background:#15603D}
 .week .lab{font-size:11px;color:var(--muted);font-weight:700}
 .week .d[aria-current=true] .lab{color:var(--fg)}
 .week .val{font-size:10.5px;color:var(--muted)}
@@ -121,11 +121,11 @@ input[type=number],input[type=search]{border:1px solid var(--line);background:va
 .bar .top b{font-weight:700}
 .track{height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:5px}
 .fill{height:100%;border-radius:99px}
-.fill.s{background:var(--safe)} .fill.l{background:var(--limit)} .fill.a{background:var(--avoid)} .fill.n{background:color-mix(in srgb,var(--fg) 38%,transparent)}
+.fill.s{background:#8FD3AE} .fill.l{background:#43A674} .fill.a{background:#15603D} .fill.n{background:color-mix(in srgb,var(--fg) 38%,transparent)}
 .daybars{display:flex;flex-direction:column;gap:13px}
 .dm{display:grid;grid-template-columns:1fr auto;row-gap:6px;align-items:baseline}.dm .mn{font-weight:600;font-size:14px}.dm .mv{font-size:13px;color:var(--muted)}.dm.over .mv{color:var(--avoid);font-weight:700}
-.dm .tr{grid-column:1 / -1;height:4px;border-radius:4px;background:var(--sunk);overflow:hidden}.dm .tr i{display:block;height:100%;border-radius:4px}
-.dm .tr i.s{background:var(--safe)}.dm .tr i.l{background:var(--limit)}.dm .tr i.a{background:var(--avoid)}.dm .tr i.n{background:color-mix(in srgb,var(--fg) 38%,transparent)}
+.dm .tr{grid-column:1 / -1;height:6px;border-radius:6px;background:var(--sunk);overflow:hidden;display:flex}.dm .tr i.pv{opacity:.45;background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.55) 4px 8px)}.pvt{font-weight:700;color:var(--accent)}.dm.pvover .mv{color:var(--avoid)}.dm .tr i{display:block;height:100%;flex:none}
+.dm .tr i.s{background:#8FD3AE}.dm .tr i.l{background:#43A674}.dm .tr i.a{background:#15603D}.dm .tr i.n{background:color-mix(in srgb,var(--fg) 38%,transparent)}
 .hero{gap:14px;padding:18px 20px}.hero .daynav h2{font-size:22px}.hero .daynav button{width:32px;height:32px}
 
 .meal-head{display:flex;align-items:center;gap:8px;justify-content:space-between}
@@ -135,7 +135,7 @@ input[type=number],input[type=search]{border:1px solid var(--line);background:va
 .qtop{display:flex;align-items:center;gap:14px}.qplant{width:92px;height:106px;flex:none}
 .qbig{font:400 28px/1.1 var(--display);letter-spacing:-.01em}.qbig small{font:600 14px var(--body);color:var(--muted);margin-left:4px}
 .qsub{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.4}
-.qdots{display:flex;gap:6px;margin-top:10px}.qdots i{width:22px;height:8px;border-radius:5px;background:var(--sunk)}.qdots i.on{background:var(--safe)}.qdots i.t{background:var(--limit-bg);outline:1.5px solid var(--limit)}
+.qdots{display:flex;gap:6px;margin-top:10px}.qdots i{width:22px;height:8px;border-radius:5px;background:var(--sunk)}.qdots i.on{background:var(--safe)}.qdots i.t{background:#DDF3E8;outline:1.5px solid #43A674}
 .qdots i.star{background:var(--r-pr)}.qbonus{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);background:var(--sunk);border-radius:12px;padding:9px 12px}.qbonus.ok{background:var(--limit-bg);color:var(--limit)}.qstar{color:var(--muted);opacity:.6;font-size:15px}.qbonus.ok .qstar{color:var(--r-pr);opacity:1}
 .qchips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .qchip{border-radius:12px;background:var(--sunk);padding:8px 2px;text-align:center;font-size:11.5px;font-weight:700;color:var(--muted);line-height:1.2}
@@ -234,7 +234,7 @@ nav.tabs button[aria-selected=true]{color:var(--accent);background:var(--sunk)}
 .eff.s{background:var(--safe-bg);color:var(--safe)}.eff.n{background:var(--sunk);color:var(--muted)}.eff.l{background:var(--limit-bg);color:var(--limit)}.eff.a{background:var(--avoid-bg);color:var(--avoid)}
 .effcr{color:var(--limit);font-weight:700}
 .chk{display:flex;align-items:center;gap:10px;font-size:14px}.chk .m{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none}.chk .m.y{background:var(--safe-bg);color:var(--safe)}.chk .m.x{background:var(--avoid-bg);color:var(--avoid)}.chk .m.o{background:var(--sunk);color:var(--muted)}
-.gdots{display:flex;gap:6px}.gdots i{flex:1;height:8px;border-radius:4px;background:var(--sunk)}.gdots i.s{background:var(--safe)}.gdots i.l{background:var(--limit)}.gdots i.a{background:var(--avoid)}
+.gdots{display:flex;gap:6px}.gdots i{flex:1;height:8px;border-radius:4px;background:var(--sunk)}.gdots i.s{background:#8FD3AE}.gdots i.l{background:#43A674}.gdots i.a{background:#15603D}
 .mrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.mrow .nm{flex:1;min-width:130px}.mrow .nm b{display:block;font-size:14px}.mrow .nm span{font-size:12px;color:var(--muted)}
 .mchip{border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px}
 .mgrp{display:flex;gap:10px;align-items:flex-start}.mgrp .mt{width:84px;flex:none;padding-top:8px;font-size:12px;font-weight:700;color:var(--muted)}.mchips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
@@ -274,6 +274,11 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
   <section id="tab-today" class="col">
     <div id="kAlert" class="alert" hidden></div>
     <div class="card quest" id="quest"></div>
+    <details class="card rows" id="hero" open><summary class="sumrow"><h3 style="margin:0">Today's targets</h3><span class="note num" id="heroSum" style="margin-left:auto"></span></summary><div class="herobody">
+      <div class="daynav"><button id="dPrev" aria-label="Previous day">‹</button><div style="text-align:center"><div class="eyebrow" id="dEyebrow">Today</div><h2 id="dTitle">—</h2></div><button id="dNext" aria-label="Next day">›</button></div>
+      <div class="daybars" id="dayBars"></div>
+      <div id="dayMsg" class="daymsg"></div>
+    </div></details>
     <div class="card" id="logger">
       <span id="slotNow" hidden></span>
       <div class="addrow">
@@ -289,13 +294,9 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div id="lnoai" class="note" hidden>Reading photos needs Claude, which isn't available in this view. Describe the meal in words instead.</div>
       <div id="draft" hidden></div>
     </div>
-    <div class="card rows"><details id="medCard"></details></div>
-    <details class="card rows" id="hero"><summary class="sumrow"><h3 style="margin:0">Today's targets</h3><span class="note num" id="heroSum" style="margin-left:auto"></span></summary><div class="herobody">
-      <div class="daynav"><button id="dPrev" aria-label="Previous day">‹</button><div style="text-align:center"><div class="eyebrow" id="dEyebrow">Today</div><h2 id="dTitle">—</h2></div><button id="dNext" aria-label="Next day">›</button></div>
-      <div class="daybars" id="dayBars"></div>
-      <div id="dayMsg" class="daymsg"></div>
-    </div></details>
     <div class="card" id="entries"></div>
+    <div class="card rows"><details id="medCard"></details></div>
+    
     <details class="card fold" id="more">
       <summary><h3>More</h3></summary>
       <div id="quickWrap" hidden><div class="note" style="margin-bottom:6px">Eat it again</div><div class="cats" id="quick"></div></div>
@@ -401,7 +402,7 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div class="callout"><b>Never:</b> star fruit, coconut water, low-sodium or "lite" salt (potassium chloride), fruit juice, banana, mango, dry fruits, and packaged food with "phosphate" or E338–E343 / E450–E452 on the label.</div>
       <div class="callout"><b>Double-boil vegetables and dal:</b> cut small, boil in plenty of water, drain, boil again in fresh water, then do the tadka. Pressure-cooking and steaming don't remove potassium. Soaking alone barely does.</div>
     </details>
-    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 46 · Oct 23</div></div>
+    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 51 · Oct 23</div></div>
     <p class="note">For education only, not a prescription. Potassium can change quickly at eGFR 13, so recheck labs as your nephrologist advises. Numbers are approximate Indian food values (IFCT 2017 style).</p>
   </section>
 </main>
@@ -747,6 +748,28 @@ function sugHTML(hits){return hits.length?hits.map(f=>{const r=rate(f,1);return 
 // ---------- TODAY ----------
 const RINGS=[['k','Potassium','mg','--r-k'],['p','Phosphorus','mg','--r-p'],['na','Sodium','mg','--r-na'],['pr','Protein','g','--r-pr']];
 const openE=new Set();
+
+// Bars for the day, with a preview of the meal being checked ("what could be")
+function renderDayBars(){
+  const box=$('#dayBars');if(!box)return;
+  const isToday=viewDay===todayKey(),t=eatenTotals(viewDay),T2=S.t,lo=T2.prLo??DEFAULT_T.prLo,fiT=T2.fi??DEFAULT_T.fi;
+  const dr=(()=>{try{return draft}catch(e){return null}})();
+  const pv=(isToday&&dr&&dr.items&&dr.items.length)?sumItems(dr.items):null;
+  const A=k=>pv?pv[k]:0;
+  const w=x=>Math.max(0,Math.min(100,x*100));
+  const bar=(label,cur,add,target,cls,text,over,pvOver)=>{
+    const c=w(cur/target),a=Math.min(w(add/target),100-c);
+    return `<div class="dm ${over?'over':''} ${pvOver?'pvover':''}"><span class="mn">${label}<\/span><span class="mv num">${text}<\/span><div class="tr"><i class="${cls}" style="width:${Math.round(c)}%"><\/i>${add>0?`<i class="${cls} pv" style="width:${Math.round(a)}%"><\/i>`:''}<\/div><\/div>`};
+  const pre=(v,a,fmt)=>a>0?` <span class="pvt">+${fmt(a)}<\/span>`:'';
+  const lim=(label,k,val,add,target,unit)=>{const tot=val+add,pc=tot/target,cls=pc>1?'a':pc>0.85?'l':'s';
+    return bar(label,val,add,target,cls,`${Math.round(tot).toLocaleString()} / ${target.toLocaleString()} ${unit}${add>0?` <span class="pvt">(+${Math.round(add)})<\/span>`:''}`,val>target,tot>target&&val<=target)};
+  const goal=(label,val,add,target,unit,dec)=>{const tot=val+add,pc=tot/target,cls=pc>=1?'s':isToday?'n':'l';const f=x=>dec?x.toFixed(x<10?1:0):Math.round(x).toLocaleString();
+    return bar(label,val,add,target,cls,`${f(tot)} / ${target.toLocaleString()} ${unit}${pc>=1?' ✓':''}${add>0?` <span class="pvt">(+${f(add)})<\/span>`:''}`,false,false)};
+  const rng=(label,val,add,lo2,hi,unit)=>{const tot=val+add,cls=tot>hi?'a':tot>=lo2?'s':isToday?'n':'l';
+    return bar(label,val,add,hi,cls,`${Math.round(tot)} / ${lo2}–${hi} ${unit}${tot>=lo2&&tot<=hi?' ✓':''}${add>0?` <span class="pvt">(+${Math.round(add)})<\/span>`:''}`,val>hi,tot>hi&&val<=hi)};
+  box.innerHTML=lim('Potassium','k',t.k,A('k'),T2.k,'mg')+lim('Phosphorus','p',t.p,A('p'),T2.p,'mg')+lim('Sodium','na',t.na+T2.med,A('na'),T2.na,'mg')+rng('Protein',t.pr,A('pr'),lo,T2.pr,'g')+goal('Fiber',t.fi,A('fi'),fiT,'g',true)+goal('Calories',t.kcal,A('kcal'),T2.kcal,'kcal');
+  const hs=$('#heroSum');if(hs){const ov=box.querySelectorAll('.dm.over').length,po=box.querySelectorAll('.dm.pvover').length;hs.textContent=ov?ov+' over limit':po?'Would go over':pv?'Preview':'On track'}
+}
 function renderToday(){
   const T=S.t, t=eatenTotals(viewDay), isToday=viewDay===todayKey();
   const vals={k:t.k,p:t.p,na:t.na+T.med,pr:t.pr}; const tg={k:T.k,p:T.p,na:T.na,pr:T.pr};
@@ -755,13 +778,7 @@ function renderToday(){
   $('#dTitle').textContent=date.toLocaleDateString(undefined,{month:'long',day:'numeric'});
   $('#dNext').disabled=isToday;
   // bars: same style for every measure
-  { const T2=S.t,lo=T2.prLo??DEFAULT_T.prLo,fiT=T2.fi??DEFAULT_T.fi;
-    const dayBar=(label,val,text,cls,pct)=>`<div class="dm ${cls==='a'?'over':''}"><span class="mn">${label}<\/span><span class="mv num">${text}<\/span><div class="tr"><i class="${cls}" style="width:${Math.max(0,Math.min(100,Math.round(pct*100)))}%"><\/i><\/div><\/div>`;
-    const lim=(label,val,target,unit,sub)=>{const pc=target>0?val/target:0;const cls=pc>1?'a':pc>0.85?'l':'s';return dayBar(label,val,`${Math.round(val).toLocaleString()} / ${target.toLocaleString()} ${unit}`,cls,pc,pc>1?`${Math.round(val-target).toLocaleString()} ${unit} over`:sub)};
-    const goal=(label,val,target,unit,dec)=>{const pc=target>0?val/target:0;const cls=pc>=1?'s':isToday?'n':'l';return dayBar(label,val,`${dec?val.toFixed(val<10?1:0):Math.round(val).toLocaleString()} / ${target.toLocaleString()} ${unit}${pc>=1?' ✓':''}`,cls,pc)};
-    const rng=(label,val,lo2,hi,unit)=>{const cls=val>hi?'a':val>=lo2?'s':isToday?'n':'l';return dayBar(label,val,`${Math.round(val)} / ${lo2}–${hi} ${unit}${val>=lo2&&val<=hi?' ✓':''}`,cls,hi>0?val/hi:0,val>hi?`${Math.round(val-hi)} ${unit} over`:'')};
-    $('#dayBars').innerHTML=lim('Potassium',t.k,T2.k,'mg')+lim('Phosphorus',t.p,T2.p,'mg')+lim('Sodium',t.na+T2.med,T2.na,'mg')+rng('Protein',t.pr,lo,T2.pr,'g')+goal('Fiber',t.fi,fiT,'g',true)+goal('Calories',t.kcal,T2.kcal,'kcal')}
-  {const ov=document.querySelectorAll('#dayBars .dm.over').length;$('#heroSum').textContent=ov?ov+' over limit':'On track'}
+  renderDayBars();
   // message
   const L=S.log[viewDay]||[];
   const msgs=[];
@@ -824,11 +841,11 @@ function addPhotos(files){for(const f of files){if(lPhotos.length>=5)break;let u
 $('#lcam').addEventListener('change',e=>{addPhotos(e.target.files||[]);e.target.value=''});
 $('#lpick').addEventListener('change',e=>{addPhotos(e.target.files||[]);e.target.value=''});
 $('#thumbs').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;lPhotos.splice(+b.dataset.rm,1);renderThumbs()});
-function resetLogger(){lPhotos=[];draft=null;renderThumbs();$('#ldesc').value='';$('#draft').hidden=true;$('#draft').innerHTML='';$('#lstatus').textContent='';$('#lnoai').hidden=true;lctl&&lctl.abort()}
+function resetLogger(){lPhotos=[];draft=null;try{renderDayBars()}catch(e){}renderThumbs();$('#ldesc').value='';$('#draft').hidden=true;$('#draft').innerHTML='';$('#lstatus').textContent='';$('#lnoai').hidden=true;lctl&&lctl.abort()}
 $('#lclear').addEventListener('click',resetLogger);
 function shrink(file){return new Promise(res=>{try{const img=new Image();img.onload=()=>{try{const s=120,c=document.createElement('canvas');const r=Math.max(s/img.width,s/img.height);c.width=s;c.height=s;const g=c.getContext('2d');g.drawImage(img,(s-img.width*r)/2,(s-img.height*r)/2,img.width*r,img.height*r);res(c.toDataURL('image/jpeg',0.6))}catch(e){res(null)}};img.onerror=()=>res(null);img.src=URL.createObjectURL(file)}catch(e){res(null)}})}
 function renderDraft(){
-  const box=$('#draft'); if(!draft){box.hidden=true;return}
+  const box=$('#draft'); try{renderDayBars()}catch(e){} if(!draft){box.hidden=true;return}
   const t=sumItems(draft.items); let lv=draft.verdict||'s'; draft.items.forEach(it=>{const f=getF(it);if(f)lv=worst(lv,rate(f,it.q).lv)});
   const e=eatenTotals(todayKey()),T=S.t;
   box.innerHTML=`<div class="draft">
