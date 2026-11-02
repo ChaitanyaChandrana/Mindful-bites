@@ -1,17 +1,14 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Mindful Bites</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
-<script>window.MB_AI="/.netlify/functions/ask"</script>
 <style>
 [hidden]{display:none!important}
 /* Layout: a deep curry-leaf header band, then one narrow column; the day is drawn as a thali of concentric rings; fixed bottom tabs */
 :root{
-  --bg:#F0F6F2; --surface:#FFFFFF; --sunk:#E3EEE7; --fg:#1F2F29; --muted:#5C6F66; --line:#DBE8E0;
-  --band:#CBE6D8; --band-fg:#1F2F29; --band-muted:#4D6B5E;
+  --bg:#FBF5EE; --surface:#FFFFFF; --sunk:#F3EBE0; --fg:#1F2A2E; --muted:#66706F; --line:#EBE1D4;
+  --band:#DCD8F4; --band-fg:#25233F; --band-muted:#5E5A88;
   --accent:#2F7F6E; --accent-fg:#FFFFFF;
   --r-k:#C9708F; --r-p:#4FA9A4; --r-na:#6F90DC; --r-pr:#E0A24F;
   --safe:#2E8B62; --safe-bg:#DDF3E8; --limit:#8A6410; --limit-bg:#FBF0CF; --avoid:#B6443E; --avoid-bg:#FCE4E1;
@@ -126,7 +123,27 @@ input[type=number],input[type=search]{border:1px solid var(--line);background:va
 .dm{display:grid;grid-template-columns:1fr auto;row-gap:6px;align-items:baseline}.dm .mn{font-weight:600;font-size:14px}.dm .mv{font-size:13px;color:var(--muted)}.dm.over .mv{color:var(--avoid);font-weight:700}
 .dm .tr{grid-column:1 / -1;height:6px;border-radius:6px;background:var(--sunk);overflow:hidden;display:flex}.dm .tr i.pv{opacity:.45;background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.55) 4px 8px)}.pvt{font-weight:700;color:var(--accent)}.dm.pvover .mv{color:var(--avoid)}.dm .tr i{display:block;height:100%;flex:none}
 .dm .tr i.s{background:#8FD3AE}.dm .tr i.l{background:#43A674}.dm .tr i.a{background:#15603D}.dm .tr i.n{background:color-mix(in srgb,var(--fg) 38%,transparent)}
+.dm.over .tr i,.dm.pvover .tr i{background-color:var(--avoid)}
 .hero{gap:14px;padding:18px 20px}.hero .daynav h2{font-size:22px}.hero .daynav button{width:32px;height:32px}
+/* Markers: one tile each, two per row. The thin bar is the daily limit; the meal's impact is the hatched part. */
+.kpcard{gap:14px;padding:18px 20px}.kpcard .daynav h2{font-size:22px}.kpcard .daynav button{width:32px;height:32px}
+#kpBlocks,.mkwrap{display:flex;flex-direction:column;gap:12px}
+.mkwrap{border-top:1px solid var(--line);padding-top:12px}
+.mkl{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mk{display:flex;flex-direction:column;gap:5px;padding:10px 12px;background:var(--bg);border-radius:14px;min-width:0}
+.mk.over{background:var(--avoid-bg)}
+.mk-n{font-size:11.5px;font-weight:700;color:var(--muted)}
+.mk-v{font-size:12px;color:var(--muted);line-height:1.15}.mk-v b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.05;color:var(--fg)}
+.mk-v.ok,.mk-v.ok b{color:var(--safe)}.mk-v.low,.mk-v.low b{color:var(--limit)}.mk-v.over,.mk-v.over b{color:var(--avoid)}
+.mk-bar{position:relative;height:6px;border-radius:99px;background:var(--sunk);overflow:hidden;display:flex}
+.mk-bar i{display:block;height:100%;flex:none}
+.mk-bar i.s{background:#8FD3AE}.mk-bar i.l{background:#43A674}.mk-bar i.a{background:#15603D}.mk-bar i.n{background:color-mix(in srgb,var(--fg) 38%,transparent)}
+.mk-bar i.pv{opacity:.5;background-image:repeating-linear-gradient(45deg,transparent 0 3px,rgba(255,255,255,.6) 3px 6px)}
+.mk-bar.over i{background-color:var(--avoid)}
+.mk-tick{position:absolute;top:0;bottom:0;width:2px;background:var(--fg);opacity:.5}
+.mk-f{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1px 8px;font-size:11.5px;color:var(--muted)}
+.mk-add{font-weight:700;color:var(--accent)}.mk-add.bad{color:var(--avoid)}
+.kprec{font-size:14px}.kprec .eyebrow{margin-bottom:3px}
 
 .meal-head{display:flex;align-items:center;gap:8px;justify-content:space-between}
 .lnkbtn{border:0;background:none;padding:4px 0 0;font-size:12.5px;font-weight:600;color:var(--accent,#2f7a4d);cursor:pointer}
@@ -258,6 +275,59 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
 .entry[open]>summary{margin-bottom:8px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:700;font-size:13px;z-index:6}
 @media (prefers-reduced-motion:no-preference){.fill,.ring{transition:stroke-dasharray .4s ease,width .3s ease}}
+
+/* v57: compact top, 4x2 markers, meal rows */
+:root:not([data-theme="dark"]) .quest{background:linear-gradient(160deg,#fff 30%,#FCE8DA 230%)}
+:root:not([data-theme="dark"]) .meals{background:linear-gradient(180deg,#fff,#F4F1FC 260%)}
+.quest{padding:14px 16px;gap:10px}
+.qs{display:grid;grid-template-columns:44px 1fr 1fr 1fr;gap:10px;align-items:center}
+.qs .qplant{width:44px;height:52px}
+.qstat{display:flex;flex-direction:column;min-width:0;gap:1px}
+.qk{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.qn{font:400 28px/1 var(--display)}.qn small{font:600 13px var(--body);color:var(--muted);margin-left:1px}
+.qu{font-size:11.5px;color:var(--muted)}
+.quest .qdots{margin-top:0;gap:5px}.quest .qdots i{flex:1;width:auto;height:6px}
+.qmis{font-size:13.5px;line-height:1.35}.qmis .qmk{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:6px}
+.qchips{gap:5px}.qmore{border-top:1px solid var(--line);padding-top:8px}.qmore>summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--muted);list-style:none}.qmore>summary::-webkit-details-marker{display:none}
+.qmore[open]>summary{margin-bottom:10px}.qmore>*+*{margin-top:10px}
+.kpcard{padding:14px;gap:10px}
+.mkl{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mk{padding:8px 6px;gap:4px;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mk.sel{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.mk-n{font-size:9.5px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-v{display:flex;flex-direction:column;gap:1px;min-width:0}
+.mk-v b{font-size:19px;line-height:1.05;white-space:nowrap}
+.mk-v b.w{font:700 13px/1.45 var(--body)}
+.mk-u{font-size:10px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-bar{height:5px}
+.mk-s{font-size:10px;font-weight:700;color:var(--accent);white-space:nowrap}.mk-s.bad{color:var(--avoid)}
+.mk-det{text-align:center;min-height:16px}
+.meals{padding:10px;gap:10px}
+.mtabs{display:flex;gap:6px}
+.mtab{flex:1;min-width:0;border:0;border-radius:12px;background:var(--bg);color:var(--fg);padding:9px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font:inherit;-webkit-tap-highlight-color:transparent}
+.mtn{font-size:11.5px;font-weight:700;white-space:nowrap}.mtm{font-size:10.5px;color:var(--muted)}
+.mtab.has .mtm{color:var(--safe);font-weight:700}
+.mtab{border-bottom:3px solid var(--mc,transparent)}
+.mcmp{display:flex;flex-direction:column;gap:7px;background:var(--bg);border-radius:14px;padding:10px 12px}
+.mcr{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:8px}
+.mcn{font-size:11.5px;font-weight:700;color:var(--muted)}
+.mcb{display:flex;height:12px;border-radius:99px;background:var(--sunk);overflow:hidden;gap:1px}
+.mcb.over{box-shadow:0 0 0 1.5px var(--avoid)}
+.mseg{display:block;height:100%;flex:none;cursor:pointer}.mseg.dim{opacity:.4}.mseg.base{background:color-mix(in srgb,var(--fg) 25%,transparent);cursor:default}
+.mcv{font-size:12px;font-weight:700;min-width:78px;text-align:right;white-space:nowrap}.mcv small{font-weight:500;color:var(--muted);font-size:10.5px}.mcv.bad{color:var(--avoid)}
+.mcnote{margin-top:2px;font-size:11px}
+.mtab.on{background:var(--accent);color:var(--accent-fg)}.mtab.on .mtm{color:inherit;opacity:.85}
+.mpanel{padding:4px 6px 6px;display:flex;flex-direction:column;gap:10px}
+.mh{display:flex;align-items:center;gap:8px}
+.mt{flex:1;min-width:0}.mt b{display:block;font-size:17px;font-family:var(--display);font-weight:400}.ms{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.macts{display:grid!important;grid-template-columns:1fr 1.6fr;gap:8px}.macts[hidden]{display:none!important}
+.mcam,.madd{height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;border:0;padding:0 12px}
+.mcam{background:var(--sunk);color:var(--fg)}.mcam svg{width:20px;height:20px}
+#kpBlocks.card{padding:14px 16px}.kpcard{padding:10px 14px}
+.madd{white-space:nowrap}
+.ml:empty,.mm:empty{display:none}.ml{display:flex;flex-direction:column;gap:10px}
+.ml .entry+.entry{border-top:1px solid var(--line);padding-top:10px}
+.logger{display:flex;flex-direction:column;gap:12px}
 </style>
 
 <header class="band gut">
@@ -274,19 +344,25 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
   <section id="tab-today" class="col">
     <div id="kAlert" class="alert" hidden></div>
     <div class="card quest" id="quest"></div>
-    <details class="card rows" id="hero" open><summary class="sumrow"><h3 style="margin:0">Today's targets</h3><span class="note num" id="heroSum" style="margin-left:auto"></span></summary><div class="herobody">
+    <div class="card kpcard" id="kpCard">
       <div class="daynav"><button id="dPrev" aria-label="Previous day">‹</button><div style="text-align:center"><div class="eyebrow" id="dEyebrow">Today</div><h2 id="dTitle">—</h2></div><button id="dNext" aria-label="Next day">›</button></div>
-      <div class="daybars" id="dayBars"></div>
-      <div id="dayMsg" class="daymsg"></div>
-    </div></details>
-    <div class="card" id="logger">
-      <span id="slotNow" hidden></span>
-      <div class="addrow">
+    </div>
+    <div class="card meals" id="mrows">
+      <div class="mtabs"><button class="mtab" data-tab="breakfast"><span class="mtn">Breakfast</span><span class="mtm"></span></button><button class="mtab" data-tab="mid"><span class="mtn">Mid-morning</span><span class="mtm"></span></button><button class="mtab" data-tab="lunch"><span class="mtn">Lunch</span><span class="mtm"></span></button><button class="mtab" data-tab="dinner"><span class="mtn">Dinner</span><span class="mtm"></span></button><button class="mtab" data-tab="snack" hidden><span class="mtn">Other</span><span class="mtm"></span></button></div>
+      <div class="mcmp" id="mcmp"></div>
+      <div class="mpanel"><div class="mh"><div class="mt"><b class="mtitle"></b><span class="ms"></span></div></div><div class="macts mh"><button class="btn mcam" data-mact="cam" aria-label="Take a photo of this meal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Photo</span></button><button class="btn primary madd" data-mact="add">Check meal</button></div><div class="ml"></div><div class="mm"></div></div>
+    </div>
+    <div class="card" id="kpBlocks"></div>
+    <div id="lfiles" hidden>
+        <input id="lpick" class="hidden-file" type="file" accept="image/*" multiple>
+        <input id="lcam" class="hidden-file" type="file" accept="image/*" capture="environment">
+    </div>
+    <div id="lpark" hidden>
+    <div class="logger" id="logger" hidden>
+            <div class="addrow">
         <textarea id="ldesc" rows="1" placeholder="What did you eat?"></textarea>
         <label class="iconbtn" for="lcam" aria-label="Take a photo" title="Take a photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></label>
         <label class="iconbtn alt" for="lpick" aria-label="Choose from photos" title="Choose from photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></label>
-        <input id="lpick" class="hidden-file" type="file" accept="image/*" multiple>
-        <input id="lcam" class="hidden-file" type="file" accept="image/*" capture="environment">
       </div>
       <div class="pastezone" id="lpaste" hidden contenteditable="true" role="textbox" aria-label="Paste a photo here" data-ph=""></div>
       <div class="thumbs" id="thumbs" hidden></div>
@@ -294,10 +370,23 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div id="lnoai" class="note" hidden>Reading photos needs Claude, which isn't available in this view. Describe the meal in words instead.</div>
       <div id="draft" hidden></div>
     </div>
-    <div class="card" id="entries"></div>
+    </div>
+    <details class="card rows" id="menuCard"><summary class="sumrow"><h3 style="margin:0">Eating out? Scan a menu</h3></summary><div class="herobody" style="display:flex;flex-direction:column;gap:12px">
+      <div class="note">Photograph the menu. You get what to order, what to ask the kitchen for, and what to skip, based on today's totals.</div>
+      <div class="addrow">
+        <input id="mnote" type="text" class="grow" placeholder="Cuisine or notes (optional)" maxlength="120" style="flex:1;min-width:0">
+        <label class="iconbtn" for="mcam" aria-label="Photograph the menu" title="Photograph the menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></label>
+        <label class="iconbtn alt" for="mpick" aria-label="Choose menu photos" title="Choose menu photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></label>
+        <input id="mpick" class="hidden-file" type="file" accept="image/*" multiple>
+        <input id="mcam" class="hidden-file" type="file" accept="image/*" capture="environment">
+      </div>
+      <div class="thumbs" id="mthumbs" hidden></div>
+      <div class="row"><button id="mgo" class="btn primary">Find what I can order</button><button id="mclear" class="btn ghost">Clear</button><span id="mstatus" class="note grow"></span></div>
+      <div id="mout"></div>
+    </div></details>
     <div class="card rows"><details id="medCard"></details></div>
     
-    <details class="card fold" id="more">
+    <details class="card fold" id="more" hidden>
       <summary><h3>More</h3></summary>
       <div id="quickWrap" hidden><div class="note" style="margin-bottom:6px">Eat it again</div><div class="cats" id="quick"></div></div>
       <div><div class="row" style="justify-content:space-between"><h3>Last 7 days · potassium</h3><span class="note">Tap a day</span></div>
@@ -402,7 +491,7 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div class="callout"><b>Never:</b> star fruit, coconut water, low-sodium or "lite" salt (potassium chloride), fruit juice, banana, mango, dry fruits, and packaged food with "phosphate" or E338–E343 / E450–E452 on the label.</div>
       <div class="callout"><b>Double-boil vegetables and dal:</b> cut small, boil in plenty of water, drain, boil again in fresh water, then do the tadka. Pressure-cooking and steaming don't remove potassium. Soaking alone barely does.</div>
     </details>
-    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 51 · Oct 23</div></div>
+    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 62 · Nov 1</div></div>
     <p class="note">For education only, not a prescription. Potassium can change quickly at eGFR 13, so recheck labs as your nephrologist advises. Numbers are approximate Indian food values (IFCT 2017 style).</p>
   </section>
 </main>
@@ -710,12 +799,13 @@ function kidneyEffect(f,q){
   return {lv,label:L[0],cls:L[1],pral:pr,cr,
     crTxt:cr===2?'likely to raise your creatinine reading for about 4–6 hours':cr===1?'may nudge your creatinine reading for a few hours':''}
 }
-function effHTML(f,q){const e=kidneyEffect(f,q);return `<div class="meta"><span class="eff ${e.cls}">${e.label}<\/span> acid ${e.pral>0?'+':''}${e.pral.toFixed(1)} mEq${e.crTxt?` · <span class="effcr">↑ ${esc(e.crTxt)}<\/span>`:''}<\/div>`}
+function effHTML(f,q){const e=kidneyEffect(f,q);return `<div class="meta"><span class="eff ${e.cls}">${e.label}</span> acid ${e.pral>0?'+':''}${e.pral.toFixed(1)} mEq${e.crTxt?` · <span class="effcr">↑ ${esc(e.crTxt)}</span>`:''}</div>`}
 function sumPral(items){return (items||[]).reduce((a,it)=>{const f=getF(it);return f?a+pralOf(f,it.q):a},0)}
 function mealEffHTML(items,pral0){const pr=sumPral(items);const crHit=items.some(it=>{const f=getF(it);return f&&kidneyEffect(f,it.q).cr>0});const after=(pral0||0)+pr;
-  return `<div class="note num"><b>Kidney effect:<\/b> this meal ${pr>0?'adds':'changes'} ${pr>0?'+':''}${pr.toFixed(1)} mEq acid load; the day would reach ${after>0?'+':''}${after.toFixed(0)} of +${PRAL_MAX} (lower is better).${crHit?' It has cooked meat or fish, which can raise your creatinine reading for a few hours. If a blood test is coming, skip it the day before.':''}<\/div>`}
+  return `<div class="note num"><b>Kidney effect:</b> this meal ${pr>0?'adds':'changes'} ${pr>0?'+':''}${pr.toFixed(1)} mEq acid load; the day would reach ${after>0?'+':''}${after.toFixed(0)} of +${PRAL_MAX} (lower is better).${crHit?' It has cooked meat or fish, which can raise your creatinine reading for a few hours. If a blood test is coming, skip it the day before.':''}</div>`}
+function medNa(day){const T=S.t,m=(S.meds||[]).find(x=>x.id==='m2');if(!m)return T.med;const per=Math.max(1,m.per||1),c=Math.min(per,((S.medlog||{})[day]||{})[m.id]||0);return T.med*c/per}
 function dayEffect(k){const L=(S.log[k]||[]);const items=L.flatMap(e=>e.items||[]);const t=sumItems(items);
-  return {n:L.length,pral:sumPral(items),pr:t.pr,k:t.k,na:t.na+S.t.med}}
+  return {n:L.length,pral:sumPral(items),pr:t.pr,k:t.k,na:t.na+medNa(k)}}
 const PRAL_MAX=10;
 function dayChecks(k){const d=dayEffect(k),T=S.t,h=(S.habits&&S.habits[k])||{};
   const c=[['Acid load low',d.pral<=PRAL_MAX,`${d.pral>0?'+':''}${d.pral.toFixed(0)} of +${PRAL_MAX} mEq`],['Protein in range',d.pr<=T.pr,`${Math.round(d.pr)} g (aim ${T.prLo??DEFAULT_T.prLo}–${T.pr})`],['Sodium in range',d.na<=T.na,`${Math.round(d.na).toLocaleString()} of ${T.na.toLocaleString()} mg`],['Potassium in range',d.k<=T.k,`${Math.round(d.k).toLocaleString()} of ${T.k.toLocaleString()} mg`]];
@@ -743,74 +833,193 @@ function logMeal(entry){const L=dayLog(todayKey());L.push({name:entry.name,slot:
 function searchFoods(q){q=q.trim().toLowerCase();if(q.length<2)return[];const hits=FOODS.filter(f=>f.name.toLowerCase().includes(q)||f.alias.some(a=>a.includes(q)));
   if(q.length>=4){const fq=fixSpelling(q);const best=matchText(fq).filter(x=>x.f).map(x=>x.f);best.reverse().forEach(f=>{if(!hits.includes(f))hits.unshift(f)})}
   return hits.slice(0,8)}
-function sugHTML(hits){return hits.length?hits.map(f=>{const r=rate(f,1);return `<button data-add="${f.id}"><span class="dot ${r.lv}"><\/span><span class="grow">${esc(f.name)} <span class="note">· ${esc(f.serving)}<\/span><\/span><span class="eff ${kidneyEffect(f,1).cls}">${kidneyEffect(f,1).label}<\/span> <span class="pill ${r.lv}">${LABEL[r.lv]}<\/span><\/button>`}).join(''):'<div class="note" style="padding:8px">Not in the list. Describe it on Today to estimate it.<\/div>'}
+function sugHTML(hits){return hits.length?hits.map(f=>{const r=rate(f,1);return `<button data-add="${f.id}"><span class="dot ${r.lv}"></span><span class="grow">${esc(f.name)} <span class="note">· ${esc(f.serving)}</span></span><span class="eff ${kidneyEffect(f,1).cls}">${kidneyEffect(f,1).label}</span> <span class="pill ${r.lv}">${LABEL[r.lv]}</span></button>`}).join(''):'<div class="note" style="padding:8px">Not in the list. Describe it on Today to estimate it.</div>'}
 
 // ---------- TODAY ----------
 const RINGS=[['k','Potassium','mg','--r-k'],['p','Phosphorus','mg','--r-p'],['na','Sodium','mg','--r-na'],['pr','Protein','g','--r-pr']];
 const openE=new Set();
 
-// Bars for the day, with a preview of the meal being checked ("what could be")
-function renderDayBars(){
-  const box=$('#dayBars');if(!box)return;
-  const isToday=viewDay===todayKey(),t=eatenTotals(viewDay),T2=S.t,lo=T2.prLo??DEFAULT_T.prLo,fiT=T2.fi??DEFAULT_T.fi;
+// ---------- Markers: one row each, daily limit + this meal's impact ----------
+const fmtMg=n=>Math.round(n).toLocaleString();
+const fmtOv=n=>Math.max(1,Math.round(n)).toLocaleString();
+const SAFE_K='rice, lauki, cabbage, egg whites or apple';
+const CR_HOURS={1:3,2:6};
+const crLevel=items=>(items||[]).reduce((m,it)=>{const f=getF(it);return f?Math.max(m,kidneyEffect(f,it.q).cr):m},0);
+const fmtT=d=>d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+const sgn=n=>(n>0.05?'+':n<-0.05?'−':'')+Math.abs(n).toFixed(1);
+function mealFacts(items){const t=sumItems(items);return{k:t.k,p:t.p,na:t.na,pr:t.pr,fi:t.fi,kcal:t.kcal,pral:sumPral(items),cr:crLevel(items)}}
+// Creatinine reading: cooked meat and fish raise the blood-test reading for a few hours (levels from kidneyEffect: 1 may nudge, 2 likely raises).
+function crState(day){
+  const hits=(S.log[day]||[]).map(e=>({e,lv:crLevel(e.items)})).filter(x=>x.lv>0);
+  if(!hits.length)return{lv:0,n:0};
+  if(day!==todayKey())return{lv:Math.max(...hits.map(x=>x.lv)),n:hits.length,past:true};
+  const now=Date.now();let lv=0,end=0,last=null;
+  hits.forEach(x=>{const t0=x.e.t?Date.parse(x.e.t):NaN;if(!isFinite(t0))return;if(!last||t0>last)last=t0;const e2=t0+CR_HOURS[x.lv]*36e5;if(e2>now){lv=Math.max(lv,x.lv);end=Math.max(end,e2)}});
+  return{lv,n:hits.length,end,last}}
+function mkRows(day,add){
+  const T=S.t,t=eatenTotals(day),A=add||{k:0,p:0,na:0,pr:0,fi:0,kcal:0,pral:0,cr:0},today=day===todayKey(),eff=dayEffect(day);
+  return [
+    {kind:'limit',name:'Potassium',unit:'mg',used:t.k,add:A.k,lim:T.k},
+    {kind:'limit',name:'Phosphorus',unit:'mg',used:t.p,add:A.p,lim:T.p},
+    {kind:'limit',name:'Sodium',unit:'mg',used:t.na+medNa(day),add:A.na,lim:T.na,note:`incl. ${fmtMg(medNa(day))} from bicarbonate ticked in Medicines`},
+    {kind:'acid',name:'Acid load',unit:'mEq',used:eff.pral,add:A.pral,lim:PRAL_MAX},
+    {kind:'cr',name:'Creatinine',day,add:A.cr},
+    {kind:'range',name:'Protein',unit:'g',used:t.pr,add:A.pr,lo:T.prLo??DEFAULT_T.prLo,lim:T.pr,today},
+    {kind:'goal',name:'Fiber',unit:'g',used:t.fi,add:A.fi,lim:T.fi??DEFAULT_T.fi,dec:true,today},
+    {kind:'goal',name:'Calories',unit:'kcal',used:t.kcal,add:A.kcal,lim:T.kcal,today}]}
+function mkRow(r,i){
+  const w=x=>Math.round(Math.max(0,Math.min(100,x*100))*10)/10;
+  const f=n=>r.dec?(+n).toFixed(n<10?1:0):fmtMg(n);
+  let big='',unit='',word=false,cls='ok',fill=0,pv=0,fcls='s',tick='',foot='',addTxt='',over=false,bad=false;
+  if(r.kind==='limit'){
+    const tot=r.used+r.add,pc=tot/r.lim,left=r.lim-tot;over=tot>r.lim;bad=over&&r.used<=r.lim;
+    fill=w(r.used/r.lim);pv=Math.min(w(r.add/r.lim),100-fill);fcls=pc>1?'a':pc>0.85?'l':'s';cls=over?'over':pc>0.85?'low':'ok';
+    big=over?fmtOv(-left):f(left);unit=over?`${r.unit} over`:`${r.unit} left`;
+    foot=`${f(r.used)} / ${f(r.lim)}`;
+    if(r.add>0)addTxt=`+${f(r.add)} this meal`;
+  }else if(r.kind==='acid'){
+    const tot=r.used+r.add,pc=tot/r.lim;over=tot>r.lim;bad=over&&r.used<=r.lim;
+    fill=w(Math.max(0,r.used)/r.lim);pv=r.add>0?Math.min(w(r.add/r.lim),100-fill):0;fcls=over?'a':pc>0.85?'l':'s';cls=over?'over':pc>0.85?'low':'ok';
+    big=tot<-0.05?'Eases':over?fmtOv(tot-r.lim):String(Math.round(r.lim-tot));unit=tot<-0.05?'acid load':over?'mEq over':'mEq room';
+    foot=`${sgn(r.used)} / +${r.lim}`;
+    if(Math.abs(r.add)>=0.05)addTxt=`${sgn(r.add)} this meal`;
+  }else if(r.kind==='cr'){
+    const st=crState(r.day),now=st.lv,after=Math.max(now,r.add);
+    fill=now*50;pv=(after-now)*50;fcls=after===2?'a':after===1?'l':'s';over=after===2;bad=after===2&&now<2;cls=after===2?'over':after===1?'low':'ok';
+    big=['None','Nudge','Raised'][after];word=true;unit=st.past?(st.n?`${st.n} meat/fish`:'no meat'):now>0?`til ${fmtT(new Date(st.end))}`:st.n&&st.last?'settled':'no meat';
+    foot=st.past?(st.n?`${st.n} meat or fish meal${st.n>1?'s':''}`:'No meat or fish')
+      :now>0?`Until ${fmtT(new Date(st.end))}`
+      :st.n&&st.last?'Settled':'No meat or fish';
+    addTxt=r.add===2?'Meal: raises 4–6 h':r.add===1?'Meal: may nudge':'';
+  }else if(r.kind==='range'){
+    const tot=r.used+r.add;over=tot>r.lim;bad=over&&r.used<=r.lim;
+    fill=w(r.used/r.lim);pv=Math.min(w(r.add/r.lim),100-fill);tick=`<span class="mk-tick" style="left:${w(r.lo/r.lim)}%"></span>`;
+    fcls=over?'a':tot>=r.lo?'s':r.today?'n':'l';cls=over?'over':tot>=r.lo?'ok':'mute';
+    big=over?fmtOv(tot-r.lim):tot>=r.lo?f(r.lim-tot):f(r.lo-tot);unit=over?'g over':tot>=r.lo?'g room':'g to min';
+    foot=`${f(r.used)} g · aim ${r.lo}–${r.lim}`;
+    if(r.add>0)addTxt=`+${f(r.add)} this meal`;
+  }else{
+    const tot=r.used+r.add,pc=tot/r.lim;
+    fill=w(r.used/r.lim);pv=Math.min(w(r.add/r.lim),100-fill);fcls=pc>=1?'s':r.today?'n':'l';cls=pc>=1?'ok':'mute';
+    big=pc>=1?'Done ✓':f(r.lim-tot);unit=pc>=1?'reached':`${r.unit} to go`;word=pc>=1;
+    foot=`${f(r.used)} / ${f(r.lim)}`;
+    if(r.add>0)addTxt=`+${f(r.add)} this meal`;
+  }
+  const sh=addTxt?(addTxt.match(/^[+−][\d.,]+/)||[r.kind==='cr'?(r.add===2?'raises':'nudge'):''])[0]:'';
+  const det=`${r.name} · ${foot}${(r.kind==='limit'||r.kind==='goal'||r.kind==='acid')?' '+r.unit:''}${r.note?' ('+r.note+')':''}${addTxt?' · '+addTxt:''}`;
+  return {det,html:`<div class="mk ${over?'over':''}${i===mkSel?' sel':''}" role="button" tabindex="0" data-mk="${i}" data-det="${esc(det)}"><div class="mk-n">${r.name}</div><div class="mk-v ${cls}"><b${word?' class="w"':''}>${big}</b><span class="mk-u">${unit}</span></div><div class="mk-bar ${over?'over':''}"><i class="${fcls}" style="width:${fill}%"></i>${pv>0?`<i class="${fcls} pv" style="width:${pv}%"></i>`:''}${tick}</div>${sh?`<div class="mk-s ${bad?'bad':''}">${sh}</div>`:''}</div>`}}
+let mkSel=0;
+function mkGrid(day,add){const rs=mkRows(day,add).map((r,i)=>mkRow(r,i));return `<div class="mkl">${rs.map(x=>x.html).join('')}</div><div class="note mk-det">${esc((rs[mkSel]||rs[0]).det)}</div>`}
+document.addEventListener('click',e=>{const t=e.target.closest('.mk[data-mk]');if(!t)return;mkSel=+t.dataset.mk;
+  document.querySelectorAll('.mkl').forEach(g=>{g.querySelectorAll('.mk').forEach(x=>x.classList.toggle('sel',+x.dataset.mk===mkSel));const d=g.nextElementSibling;const sel=g.querySelector('.mk.sel');if(d&&d.classList.contains('mk-det')&&sel)d.textContent=sel.dataset.det})});
+function mkAdvice(day,add,meals){
+  const T=S.t,t=eatenTotals(day),isToday=day===todayKey(),eff=dayEffect(day),out=[];
+  const st=(used,a,lim)=>({lim,left:lim-used-a,over:used+a>lim});
+  const k=st(t.k,add?add.k:0,T.k),p=st(t.p,add?add.p:0,T.p),na=st(t.na+medNa(day),add?add.na:0,T.na);
+  const hi=T.pr,lo=T.prLo??DEFAULT_T.prLo,pr=t.pr+(add?add.pr:0),acid=eff.pral+(add?add.pral:0),cr=crState(day);
+  if(add){
+    if(k.over){const half=t.k+add.k/2<=T.k;out.push(`This meal puts potassium over today's limit by ${fmtOv(-k.left)} mg. ${half?`Half the portion would fit, leaving ${fmtMg(T.k-t.k-add.k/2)} mg.`:`Better to skip it or choose ${SAFE_K}.`}`)}
+    if(p.over)out.push(`Phosphorus would go over by ${fmtOv(-p.left)} mg. Have a smaller portion, and take sevelamer with the meal as prescribed.`);
+    if(na.over)out.push(`Sodium would go over by ${fmtOv(-na.left)} mg. Ask for less salt, or skip it.`);
+    if(pr>hi)out.push(`Protein would go ${fmtOv(pr-hi)} g over your top of ${hi} g. Have a smaller portion.`);
+    if(acid>PRAL_MAX)out.push(`Acid load would reach +${acid.toFixed(0)} of +${PRAL_MAX} mEq. Go lighter on meat, fish and cheese.`);
+    if(!out.length){
+      out.push(k.left<T.k*0.15||p.left<T.p*0.15
+        ?`It fits, but leaves only ${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus for the rest of today. Keep later meals to Safe foods.`
+        :`It fits your limits. You would still have ${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus left for the rest of today.`)}
+    if(add.cr===2)out.push('Cooked meat or fish here is likely to raise your creatinine reading for 4–6 hours. If a blood test is coming, skip it the day before.');
+    else if(add.cr===1)out.push('This may nudge your creatinine reading for a few hours.');
+    return out.join(' ')}
+  if(!isToday){
+    if(!meals)return 'Nothing was logged this day.';
+    const over=[k.over&&'potassium',p.over&&'phosphorus',na.over&&'sodium',pr>hi&&'protein',acid>PRAL_MAX&&'acid load'].filter(Boolean);
+    return over.length?`Over on ${over.join(', ')}. Everything else was within limits.`:'Within every limit this day.'}
+  if(!meals)return `Nothing eaten yet. Spread today across three meals: about ${fmtMg(T.k/3)} mg potassium and ${fmtMg(T.p/3)} mg phosphorus each.`;
+  if(k.over)out.push(`Potassium is over by ${fmtOv(-k.left)} mg. For the rest of today stick to ${SAFE_K}, and skip dal, greens, tomato and potato.`);
+  if(p.over)out.push(`Phosphorus is over by ${fmtOv(-p.left)} mg. Take sevelamer with your meals as prescribed, and skip dairy, paneer, nuts and packaged food for the rest of today.`);
+  if(na.over)out.push('Sodium is over, counting your bicarbonate tablets. Skip pickles, papad and packaged food.');
+  if(pr>hi)out.push(`Protein is ${fmtOv(pr-hi)} g over your top of ${hi} g. Go lighter on dal, paneer or chicken.`);
+  if(acid>PRAL_MAX)out.push(`Acid load is over +${PRAL_MAX} mEq. Go lighter on meat, fish and cheese for the rest of today.`);
+  if(!out.length){
+    if(k.left<T.k*0.15||p.left<T.p*0.15)out.push(`Little room left: ${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus. Keep to Safe foods like ${SAFE_K}.`);
+    else{const rem=Math.max(1,3-meals);
+      out.push(meals>=3?`${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus left. That is room for a small snack or a light dinner. Pick Safe foods.`
+        :rem===1?`${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus left. That is what one more meal can use.`
+        :`${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus left. For ${rem} more meals that is about ${fmtMg(k.left/rem)} mg potassium and ${fmtMg(p.left/rem)} mg phosphorus each.`)}}
+  if(cr.lv>0&&cr.end)out.push(`Cooked meat or fish earlier raised your creatinine reading until ${fmtT(new Date(cr.end))}. A blood test before then would read higher.`);
+  const hr=new Date().getHours();
+  if(hr>=18&&t.pr<lo*0.7)out.push(`Protein is only ${fmtMg(t.pr)} g so far. Egg whites, dal or fish at dinner would help.`);
+  if(hr>=17&&t.kcal<T.kcal*0.75)out.push(`${fmtMg(T.kcal-t.kcal)} kcal still to go. Rice, sabudana, suji halwa or ghee fill this without potassium.`);
+  return out.join(' ')}
+function mkMealHTML(items){
+  const add=mealFacts(items),day=todayKey();
+  return `<div class="mkwrap">${mkGrid(day,add)}<div class="note">Hatched: this meal. Left amounts are after it.</div><div class="callout kprec"><div class="eyebrow">Recommendation</div>${esc(mkAdvice(day,add,(S.log[day]||[]).length))}</div></div>`}
+function leftAfterTxt(mk,mp){
+  const e=eatenTotals(todayKey()),T=S.t,one=(n,used,add,lim)=>{const l=lim-used-add;return l<0?`${n} over by ${fmtMg(-l)} mg`:`${n} ${fmtMg(l)} mg left`};
+  return `After it: ${one('potassium',e.k,mk,T.k)} · ${one('phosphorus',e.p,mp,T.p)}`}
+function renderKP(){
+  const box=$('#kpBlocks');if(!box)return;
+  const isToday=viewDay===todayKey(),meals=(S.log[viewDay]||[]).length;
   const dr=(()=>{try{return draft}catch(e){return null}})();
-  const pv=(isToday&&dr&&dr.items&&dr.items.length)?sumItems(dr.items):null;
-  const A=k=>pv?pv[k]:0;
-  const w=x=>Math.max(0,Math.min(100,x*100));
-  const bar=(label,cur,add,target,cls,text,over,pvOver)=>{
-    const c=w(cur/target),a=Math.min(w(add/target),100-c);
-    return `<div class="dm ${over?'over':''} ${pvOver?'pvover':''}"><span class="mn">${label}<\/span><span class="mv num">${text}<\/span><div class="tr"><i class="${cls}" style="width:${Math.round(c)}%"><\/i>${add>0?`<i class="${cls} pv" style="width:${Math.round(a)}%"><\/i>`:''}<\/div><\/div>`};
-  const pre=(v,a,fmt)=>a>0?` <span class="pvt">+${fmt(a)}<\/span>`:'';
-  const lim=(label,k,val,add,target,unit)=>{const tot=val+add,pc=tot/target,cls=pc>1?'a':pc>0.85?'l':'s';
-    return bar(label,val,add,target,cls,`${Math.round(tot).toLocaleString()} / ${target.toLocaleString()} ${unit}${add>0?` <span class="pvt">(+${Math.round(add)})<\/span>`:''}`,val>target,tot>target&&val<=target)};
-  const goal=(label,val,add,target,unit,dec)=>{const tot=val+add,pc=tot/target,cls=pc>=1?'s':isToday?'n':'l';const f=x=>dec?x.toFixed(x<10?1:0):Math.round(x).toLocaleString();
-    return bar(label,val,add,target,cls,`${f(tot)} / ${target.toLocaleString()} ${unit}${pc>=1?' ✓':''}${add>0?` <span class="pvt">(+${f(add)})<\/span>`:''}`,false,false)};
-  const rng=(label,val,add,lo2,hi,unit)=>{const tot=val+add,cls=tot>hi?'a':tot>=lo2?'s':isToday?'n':'l';
-    return bar(label,val,add,hi,cls,`${Math.round(tot)} / ${lo2}–${hi} ${unit}${tot>=lo2&&tot<=hi?' ✓':''}${add>0?` <span class="pvt">(+${Math.round(add)})<\/span>`:''}`,val>hi,tot>hi&&val<=hi)};
-  box.innerHTML=lim('Potassium','k',t.k,A('k'),T2.k,'mg')+lim('Phosphorus','p',t.p,A('p'),T2.p,'mg')+lim('Sodium','na',t.na+T2.med,A('na'),T2.na,'mg')+rng('Protein',t.pr,A('pr'),lo,T2.pr,'g')+goal('Fiber',t.fi,A('fi'),fiT,'g',true)+goal('Calories',t.kcal,A('kcal'),T2.kcal,'kcal');
-  const hs=$('#heroSum');if(hs){const ov=box.querySelectorAll('.dm.over').length,po=box.querySelectorAll('.dm.pvover').length;hs.textContent=ov?ov+' over limit':po?'Would go over':pv?'Preview':'On track'}
+  const add=(isToday&&dr&&dr.items&&dr.items.length)?mealFacts(dr.items):null;
+  box.innerHTML=`<div class="callout kprec"><div class="eyebrow">Recommendation</div>${esc(mkAdvice(viewDay,add,meals))}</div>`}
+function entryHTML(en,ei){let h='';const st=sumItems(en.items);let lv='s';en.items.forEach(it=>{const f=getF(it);if(f)lv=worst(lv,rate(f,it.q).lv)});
+      const tm=en.t?new Date(en.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'';
+      const isFav=S.favs.some(f=>f.name===en.name);
+      h+=`<details class="entry" data-ek="${esc(en.t||'')}" ${openE.has(en.t||'')?'open':''}><summary><div style="min-width:0"><div class="t">${esc(en.name)}</div><div class="note">${tm}${tm?' · ':''}${SLOTNAME[en.slot]||''} · K ${Math.round(st.k)} mg</div></div><span class="pill ${lv}" style="margin-left:auto">${LABEL[lv]}</span></summary>`+
+      (en.ph&&en.ph.length?`<div class="entry-ph">${en.ph.map(u=>`<img src="${u}" alt="">`).join('')}</div>`:'')+
+      en.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);
+        return `<div class="item"><span class="dot ${r.lv}" title="${LABEL[r.lv]}"></span><div style="min-width:0"><div class="name">${esc(f.name)}</div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g</div></div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-eact="dec" data-e="${ei}" data-i="${i}" aria-label="Less">−</button><span class="q num">${fmtQ(it.q)}</span><button data-eact="inc" data-e="${ei}" data-i="${i}" aria-label="More">+</button></div><button class="x" data-eact="del" data-e="${ei}" data-i="${i}" aria-label="Remove">×</button></div></div>`}).join('')+
+      `<div class="note num">K ${Math.round(st.k)} · P ${Math.round(st.p)} · Na ${Math.round(st.na)} mg · ${st.pr.toFixed(1)} g protein · ${st.fi.toFixed(1)} g fiber · ${Math.round(st.kcal)} kcal</div><div class="row" style="justify-content:flex-end;gap:6px"><button class="btn ghost sm star ${isFav?'on':''}" data-eact="fav" data-e="${ei}">${isFav?'★ Saved':'☆ Save as favourite'}</button><button class="btn ghost sm" data-eact="delmeal" data-e="${ei}" style="color:var(--avoid)">Remove meal</button></div></details>`;return h}
+const MCOL={breakfast:'var(--r-k)',mid:'var(--r-p)',lunch:'var(--r-na)',dinner:'var(--r-pr)',snack:'var(--muted)'};
+const MTABS=["breakfast","mid","lunch","dinner","snack"],MTNAME={breakfast:'Breakfast',mid:'Mid-morning',lunch:'Lunch',dinner:'Dinner',snack:'Other meals'};
+let mTab=null;
+function mealsUI(){
+  if(!mTab){const x=MSLOT(slotNow());mTab=x==='snack'?'dinner':x}
+  const isToday=viewDay===todayKey(),L=S.log[viewDay]||[],bySlot={};
+  L.forEach((en,ei)=>{const k=MSLOT(en.slot);(bySlot[k]||(bySlot[k]=[])).push([en,ei])});
+  const arrOf=sl=>(bySlot[sl]||[]).sort((x,y)=>String(x[0].t).localeCompare(String(y[0].t)));
+  document.querySelectorAll('#mrows .mtab').forEach(b=>{
+    const sl=b.dataset.tab,arr=arrOf(sl),st=sumItems(arr.flatMap(x=>x[0].items||[]));
+    b.style.setProperty('--mc',MCOL[sl]);b.classList.toggle('on',sl===mTab);b.classList.toggle('has',!!arr.length);
+    b.querySelector('.mtm').textContent=arr.length?`${Math.round(st.k)} K`:'—';
+    b.hidden=sl==='snack'&&!arr.length&&mTab!=='snack';});
+  // comparison: how each meal uses the day's limits
+  {const T=S.t,tot={};MTABS.forEach(sl=>tot[sl]=sumItems(arrOf(sl).flatMap(x=>x[0].items||[])));
+   MTABS.forEach(sl=>{const its=arrOf(sl).flatMap(x=>x[0].items||[]);tot[sl].pral=sumPral(its);tot[sl].cr=crLevel(its)});
+   const fiT=T.fi??DEFAULT_T.fi;
+   const rows=[['Potassium','k',T.k,'mg',0],['Phosphorus','p',T.p,'mg',0],['Sodium','na',T.na,'mg',medNa(viewDay)],['Acid load','pral',PRAL_MAX,'mEq',0],['Creatinine','cr',0,'',0],['Protein','pr',T.pr,'g',0],['Fiber','fi',fiT,'g',0],['Calories','kcal',T.kcal,'kcal',0]];
+   $('#mcmp').innerHTML=rows.map(([nm,key,lim,u,base])=>{
+     if(key==='cr'){const mx=Math.max(0,...MTABS.map(sl=>tot[sl].cr));
+       const segs=MTABS.map(sl=>tot[sl].cr>0?`<i class="mseg ${sl===mTab?'':'dim'}" data-tab="${sl}" style="width:${100/MTABS.length}%;background:${MCOL[sl]}" title="${MTNAME[sl]}: ${tot[sl].cr===2?'likely raises':'may nudge'} creatinine"></i>`:`<i style="width:${100/MTABS.length}%"></i>`).join('');
+       return `<div class="mcr"><span class="mcn">${nm}</span><div class="mcb crb${mx===2?' over':''}">${segs}</div><span class="mcv${mx===2?' bad':''}">${['None','May nudge','Likely raised'][mx]}</span></div>`}
+     const sum=Math.max(0,MTABS.reduce((a,sl)=>a+tot[sl][key],0)+base),over=sum>lim,scale=over?sum:lim;
+     const segs=(base?`<i class="mseg base" style="width:${base/scale*100}%" title="Bicarbonate tablets ${Math.round(base)} mg"></i>`:'')+
+       MTABS.filter(sl=>tot[sl][key]>0).map(sl=>`<i class="mseg ${sl===mTab?'':'dim'}" data-tab="${sl}" style="width:${tot[sl][key]/scale*100}%;background:${MCOL[sl]}" title="${MTNAME[sl]}: ${Math.round(tot[sl][key]*10)/10} ${u}"></i>`).join('');
+     const fmt=n=>key==='pral'||key==='fi'?(Math.round(n*10)/10).toString():Math.round(n).toLocaleString();
+     return `<div class="mcr"><span class="mcn">${nm}</span><div class="mcb${over?' over':''}">${segs}</div><span class="mcv num${over?' bad':''}">${fmt(sum)}<small>/${fmt(lim)}</small></span></div>`}).join('')+
+     `<div class="note mcnote">Each colour is a meal; tap one to open it. Bars fill your daily limit. Grey in Sodium = bicarbonate doses you ticked in Medicines (${fmtMg(medNa(viewDay))} mg so far; each dose adds ${fmtMg(T.med/Math.max(1,((S.meds||[]).find(x=>x.id==='m2')||{}).per||1))} mg). Creatinine can't be measured from food: it flags cooked meat or fish, which can raise the blood-test reading for 3–6 hours.</div>`}
+  const arr=arrOf(mTab),st=sumItems(arr.flatMap(x=>x[0].items||[])),p=$('#mrows .mpanel');
+  p.querySelector('.mtitle').textContent=MTNAME[mTab];
+  p.querySelector('.ms').textContent=arr.length?`${arr.length} meal${arr.length>1?'s':''} · K ${Math.round(st.k)} · P ${Math.round(st.p)} mg`:(isToday?'Nothing logged yet':'Nothing logged');
+  p.querySelector('.ml').innerHTML=arr.map(([en,ei])=>entryHTML(en,ei)).join('');
+  p.querySelectorAll('.macts').forEach(x=>x.hidden=!isToday);
+  p.querySelector('.madd').textContent=loggerSlot&&loggerSlot===mTab?'Close':'Check meal';
 }
 function renderToday(){
   const T=S.t, t=eatenTotals(viewDay), isToday=viewDay===todayKey();
-  const vals={k:t.k,p:t.p,na:t.na+T.med,pr:t.pr}; const tg={k:T.k,p:T.p,na:T.na,pr:T.pr};
+  const vals={k:t.k,p:t.p,na:t.na+medNa(viewDay),pr:t.pr}; const tg={k:T.k,p:T.p,na:T.na,pr:T.pr};
   const [y,m,d]=viewDay.split('-').map(Number); const date=new Date(y,m-1,d);
   $('#dEyebrow').textContent=isToday?'Today':(viewDay===shift(todayKey(),-1)?'Yesterday':date.toLocaleDateString(undefined,{weekday:'long'}));
   $('#dTitle').textContent=date.toLocaleDateString(undefined,{month:'long',day:'numeric'});
   $('#dNext').disabled=isToday;
-  // bars: same style for every measure
-  renderDayBars();
-  // message
+  // every marker: used, left, recommendation
+  renderKP();
   const L=S.log[viewDay]||[];
-  const msgs=[];
-  if(!L.length) msgs.push(isToday?'Nothing logged yet. Take a photo or describe your meal below.':'Nothing was logged this day.');
-  else{
-    if(vals.k>tg.k) msgs.push(`Potassium is over by ${Math.round(vals.k-tg.k)} mg. Keep the rest of the day to Safe foods.`);
-    else if(vals.k>tg.k*0.85) msgs.push(`Only ${Math.round(tg.k-vals.k)} mg potassium left. Stick to rice, lauki, egg whites, apple.`);
-    if(vals.p>tg.p) msgs.push(`Phosphorus is over. Take sevelamer with your meals as prescribed.`);
-    if(vals.na>tg.na) msgs.push(`Sodium is over, counting your bicarbonate tablets.`);
-    if(vals.pr>tg.pr*1.1) msgs.push(`Protein is ${Math.round(vals.pr-tg.pr)} g over your top of ${tg.pr} g. Go lighter on dal, paneer or chicken.`);
-    else if(isToday&&new Date().getHours()>=18&&vals.pr<(T.prLo??DEFAULT_T.prLo)*0.7) msgs.push(`Protein is only ${Math.round(vals.pr)} g so far. Egg whites, dal or fish at dinner would help.`);
-    { const lo=T.prLo??DEFAULT_T.prLo,ds=[1,2,3].map(n=>shift(viewDay,-n)).filter(k=>(S.log[k]||[]).length);if(ds.length>=3){const avg=ds.reduce((a,k)=>a+eatenTotals(k).pr,0)/ds.length;if(avg<lo*0.85)msgs.push(`Protein has averaged ${Math.round(avg)} g over the last 3 days, under your ${lo} g minimum. Ask your dietitian whether to raise it, especially with your workouts.`)} }
-    if(isToday&&new Date().getHours()>=17&&t.kcal<T.kcal*0.75) msgs.push(`${Math.round(T.kcal-t.kcal)} kcal still to go. Rice, sabudana, suji halwa or ghee fill this without potassium.`);
-    if(!msgs.length) msgs.push('On track. Everything so far fits your limits.');
-  }
-  $('#dayMsg').textContent=msgs.join(' ');
   try{renderQuest()}catch(err){}
   // entries
-  if(!L.length){$('#entries').innerHTML=`<h3>Eaten ${isToday?'today':'this day'}<\/h3><div class="empty">Each meal you add shows here with its photos, what's in it, and how much it used.<\/div>`}
-  else{
-    const order=L.map((e,i)=>[e,i]).sort((x,y)=>String(x[0].t).localeCompare(String(y[0].t)));
-    let h=`<div class="row" style="justify-content:space-between"><h3>Eaten ${isToday?'today':'this day'}<\/h3><span class="note num">${L.length} meal${L.length>1?'s':''}<\/span><\/div>`;
-    order.forEach(([en,ei])=>{const st=sumItems(en.items);let lv='s';en.items.forEach(it=>{const f=getF(it);if(f)lv=worst(lv,rate(f,it.q).lv)});
-      const tm=en.t?new Date(en.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'';
-      const isFav=S.favs.some(f=>f.name===en.name);
-      h+=`<details class="entry" data-ek="${esc(en.t||'')}" ${openE.has(en.t||'')?'open':''}><summary><div style="min-width:0"><div class="t">${esc(en.name)}<\/div><div class="note">${tm}${tm?' · ':''}${SLOTNAME[en.slot]||''} · K ${Math.round(st.k)} mg<\/div><\/div><span class="pill ${lv}" style="margin-left:auto">${LABEL[lv]}<\/span><\/summary>`+
-      (en.ph&&en.ph.length?`<div class="entry-ph">${en.ph.map(u=>`<img src="${u}" alt="">`).join('')}<\/div>`:'')+
-      en.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);
-        return `<div class="item"><span class="dot ${r.lv}" title="${LABEL[r.lv]}"><\/span><div style="min-width:0"><div class="name">${esc(f.name)}<\/div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g<\/div><\/div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-eact="dec" data-e="${ei}" data-i="${i}" aria-label="Less">−<\/button><span class="q num">${fmtQ(it.q)}<\/span><button data-eact="inc" data-e="${ei}" data-i="${i}" aria-label="More">+<\/button><\/div><button class="x" data-eact="del" data-e="${ei}" data-i="${i}" aria-label="Remove">×<\/button><\/div><\/div>`}).join('')+
-      `<div class="note num">K ${Math.round(st.k)} · P ${Math.round(st.p)} · Na ${Math.round(st.na)} mg · ${st.pr.toFixed(1)} g protein · ${st.fi.toFixed(1)} g fiber · ${Math.round(st.kcal)} kcal<\/div><div class="row" style="justify-content:flex-end;gap:6px"><button class="btn ghost sm star ${isFav?'on':''}" data-eact="fav" data-e="${ei}">${isFav?'★ Saved':'☆ Save as favourite'}<\/button><button class="btn ghost sm" data-eact="delmeal" data-e="${ei}" style="color:var(--avoid)">Remove meal<\/button><\/div><\/details>`});
-    $('#entries').innerHTML=h;
-  }
+  if(!isToday&&loggerSlot)closeLogger();
+  mealsUI();
   renderWeek(); renderQuick(); renderKAlert(); renderHeader(); renderGoal(); renderMeds();
 }
 function renderWeek(){
@@ -818,14 +1027,14 @@ function renderWeek(){
   for(let i=6;i>=0;i--){const k=shift(end,-i);const t=eatenTotals(k);const has=(S.log[k]||[]).length>0;const pct=t.k/T.k;
     const lv=!has?'':pct<=0.85?'s':pct<=1?'l':'a';const hpx=has?Math.max(4,Math.min(cap,pct)/cap*H):3;
     const [y,m,d]=k.split('-').map(Number);const lab=i===0?'Today':new Date(y,m-1,d).toLocaleDateString(undefined,{weekday:'short'});
-    h+=`<button class="d" data-day="${k}" aria-current="${k===viewDay}" aria-label="${lab}: ${Math.round(t.k)} mg potassium"><span class="val num">${has?Math.round(t.k):''}<\/span><span class="b ${lv}" style="height:${hpx}px"><\/span><span class="lab">${lab}<\/span><\/button>`}
-  const ty=H/cap; h+=`<div class="target" style="bottom:${ty+21}px"><span class="num">${T.k.toLocaleString()} mg<\/span><\/div>`;
+    h+=`<button class="d" data-day="${k}" aria-current="${k===viewDay}" aria-label="${lab}: ${Math.round(t.k)} mg potassium"><span class="val num">${has?Math.round(t.k):''}</span><span class="b ${lv}" style="height:${hpx}px"></span><span class="lab">${lab}</span></button>`}
+  const ty=H/cap; h+=`<div class="target" style="bottom:${ty+21}px"><span class="num">${T.k.toLocaleString()} mg</span></div>`;
   $('#week').innerHTML=h;
 }
 $('#dPrev').onclick=()=>{viewDay=shift(viewDay,-1);renderToday()};
 $('#dNext').onclick=()=>{if(viewDay<todayKey()){viewDay=shift(viewDay,1);renderToday()}};
 $('#week').addEventListener('click',e=>{const b=e.target.closest('[data-day]');if(b){viewDay=b.dataset.day;renderToday()}});
-$('#entries').addEventListener('click',e=>{const b=e.target.closest('[data-eact]');if(!b)return;const L=S.log[viewDay];const en=L&&L[+b.dataset.e];if(!en)return;const act=b.dataset.eact,i=+b.dataset.i;
+$('#mrows').addEventListener('click',e=>{const b=e.target.closest('[data-eact]');if(!b)return;const L=S.log[viewDay];const en=L&&L[+b.dataset.e];if(!en)return;const act=b.dataset.eact,i=+b.dataset.i;
   if(act==='fav'){const i2=S.favs.findIndex(f=>f.name===en.name);if(i2>=0){S.favs.splice(i2,1);toast('Removed from favourites')}else{S.favs.unshift({name:en.name,items:en.items.map(it=>({...it}))});S.favs=S.favs.slice(0,20);toast(`Saved ${en.name} as a favourite`)}save();renderToday();return}
   if(act==='delmeal'){if(!b.dataset.armed){b.dataset.armed='1';b.textContent='Remove?';b.style.width='auto';b.style.fontSize='13px';b.style.fontWeight='700';b.style.color='var(--avoid)';return}L.splice(+b.dataset.e,1)}
   else if(act==='inc')en.items[i].q=Math.round((en.items[i].q+0.5)*2)/2;
@@ -834,31 +1043,46 @@ $('#entries').addEventListener('click',e=>{const b=e.target.closest('[data-eact]
   save();renderToday()});
 
 // ---------- Meal logger (photos and/or description) ----------
-let lPhotos=[], draft=null, lctl=null;
-function renderThumbs(){const box=$('#thumbs');box.hidden=!lPhotos.length;box.innerHTML=lPhotos.map((p,i)=>`<div class="thumb"><img src="${p.url}" alt="Meal photo ${i+1}"><button data-rm="${i}" aria-label="Remove photo">×<\/button><\/div>`).join('')}
+let lPhotos=[], draft=null, lctl=null, loggerSlot=null;
+const MSLOT=x=>['breakfast','mid','lunch','dinner'].includes(x)?x:'snack';
+const curSlot=()=>loggerSlot||slotNow();
+const SLOTPH={breakfast:'What did you have for breakfast?',mid:'What did you have mid-morning?',lunch:'What did you have for lunch?',dinner:'What did you have for dinner?',snack:'What did you have?'};
+function openLogger(slot,keep){
+  if(loggerSlot!==slot&&!keep)resetLogger();
+  loggerSlot=slot;mTab=slot;mealsUI();
+  $('#mrows .mm').appendChild($('#logger'));$('#logger').hidden=false;
+  $('#ldesc').placeholder=SLOTPH[slot]||'What did you eat?';}
+function closeLogger(){
+  resetLogger();$('#lpark').appendChild($('#logger'));$('#logger').hidden=true;loggerSlot=null;mealsUI();}
+$('#mrows').addEventListener('click',e=>{
+  const t=e.target.closest('.mtab,.mseg[data-tab]');if(t){if(loggerSlot&&loggerSlot!==t.dataset.tab)closeLogger();mTab=t.dataset.tab;mealsUI();return}
+  const b=e.target.closest('[data-mact]');if(!b)return;
+  if(b.dataset.mact==='cam'){openLogger(mTab);$('#lcam').click()}
+  else if(loggerSlot===mTab)closeLogger();
+  else{openLogger(mTab);try{$('#ldesc').focus({preventScroll:true})}catch(_){}}});
+function renderThumbs(){const box=$('#thumbs');box.hidden=!lPhotos.length;box.innerHTML=lPhotos.map((p,i)=>`<div class="thumb"><img src="${p.url}" alt="Meal photo ${i+1}"><button data-rm="${i}" aria-label="Remove photo">×</button></div>`).join('')}
 function addPhotos(files){for(const f of files){if(lPhotos.length>=5)break;let url='';try{url=URL.createObjectURL(f)}catch(e){}lPhotos.push({file:f,url})}renderThumbs();$('#lnoai').hidden=!!(sample&&canImg)||!lPhotos.length;
   if(lPhotos.length){if(sample&&canImg){$('#lgo').click()}else{$('#lstatus').textContent=`${lPhotos.length} photo${lPhotos.length>1?'s':''} added. Describe the meal too, then tap Work it out.`}}}
 $('#lcam').addEventListener('change',e=>{addPhotos(e.target.files||[]);e.target.value=''});
 $('#lpick').addEventListener('change',e=>{addPhotos(e.target.files||[]);e.target.value=''});
 $('#thumbs').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;lPhotos.splice(+b.dataset.rm,1);renderThumbs()});
-function resetLogger(){lPhotos=[];draft=null;try{renderDayBars()}catch(e){}renderThumbs();$('#ldesc').value='';$('#draft').hidden=true;$('#draft').innerHTML='';$('#lstatus').textContent='';$('#lnoai').hidden=true;lctl&&lctl.abort()}
+function resetLogger(){lPhotos=[];draft=null;try{renderKP()}catch(e){}renderThumbs();$('#ldesc').value='';$('#draft').hidden=true;$('#draft').innerHTML='';$('#lstatus').textContent='';$('#lnoai').hidden=true;lctl&&lctl.abort()}
 $('#lclear').addEventListener('click',resetLogger);
 function shrink(file){return new Promise(res=>{try{const img=new Image();img.onload=()=>{try{const s=120,c=document.createElement('canvas');const r=Math.max(s/img.width,s/img.height);c.width=s;c.height=s;const g=c.getContext('2d');g.drawImage(img,(s-img.width*r)/2,(s-img.height*r)/2,img.width*r,img.height*r);res(c.toDataURL('image/jpeg',0.6))}catch(e){res(null)}};img.onerror=()=>res(null);img.src=URL.createObjectURL(file)}catch(e){res(null)}})}
 function renderDraft(){
-  const box=$('#draft'); try{renderDayBars()}catch(e){} if(!draft){box.hidden=true;return}
+  const box=$('#draft'); try{renderKP()}catch(e){} if(!draft){box.hidden=true;return}
   const t=sumItems(draft.items); let lv=draft.verdict||'s'; draft.items.forEach(it=>{const f=getF(it);if(f)lv=worst(lv,rate(f,it.q).lv)});
   const e=eatenTotals(todayKey()),T=S.t;
   box.innerHTML=`<div class="draft">
-    <div class="row" style="justify-content:space-between"><span class="eyebrow">Check before logging<\/span><span class="pill ${lv}">${LABEL[lv]}<\/span><\/div>
+    <div class="row" style="justify-content:space-between"><span class="eyebrow">Check before logging</span><span class="pill ${lv}">${LABEL[lv]}</span></div>
     <input type="text" id="dname" value="${esc(draft.name)}" placeholder="Name this meal" maxlength="60">
-    ${draft.advice?`<div class="callout">${esc(draft.advice)}<\/div>`:''}
-    <div>${draft.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);return `<div class="item"><span class="dot ${r.lv}"><\/span><div style="min-width:0"><div class="name">${esc(f.name)}<\/div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g<\/div>${effHTML(f,it.q)}${r.lv!=='s'&&r.why[0]?`<div class="meta">${esc(r.why[0])}<\/div>`:''}<\/div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-dact="dec" data-i="${i}" aria-label="Less">−<\/button><span class="q num">${fmtQ(it.q)}<\/span><button data-dact="inc" data-i="${i}" aria-label="More">+<\/button><\/div><button class="x" data-dact="del" data-i="${i}" aria-label="Remove">×<\/button><\/div><\/div>`}).join('')||'<div class="note">No foods found. Add a description and try again.<\/div>'}<\/div>
-    ${draft.unknown&&draft.unknown.length?`<div class="note">Not recognised: ${esc(draft.unknown.join(', '))}.<\/div>`:''}
-    <div class="note num">This meal: K ${Math.round(t.k)} · P ${Math.round(t.p)} · Na ${Math.round(t.na)} mg · ${t.pr.toFixed(1)} g protein · ${t.fi.toFixed(1)} g fiber · ${Math.round(t.kcal)} kcal. After it, today's potassium is ${Math.round(e.k+t.k).toLocaleString()} of ${T.k.toLocaleString()} mg.<\/div>
-    ${draft.items.length?mealEffHTML(draft.items,dayEffect(todayKey()).pral):''}
-    ${draft.swaps&&draft.swaps.length?`<div><h3 style="margin-bottom:6px">Try instead<\/h3><ul class="plain">${draft.swaps.map(x=>`<li>${esc(x)}<\/li>`).join('')}<\/ul><\/div>`:''}
-    <div class="row"><label class="note" for="dslot">Meal<\/label><select id="dslot">${SLOTS.map(([k,n])=>`<option value="${k}" ${k===draft.slot?'selected':''}>${n}<\/option>`).join('')}<\/select><span class="grow"><\/span><button id="dplan" class="btn ghost sm" ${draft.items.length?'':'disabled'}>Add to plan<\/button><button id="dlog" class="btn primary sm" ${draft.items.length?'':'disabled'}>Log this meal<\/button><\/div>
-  <\/div>`;
+    ${draft.advice?`<div class="callout">${esc(draft.advice)}</div>`:''}
+    <div>${draft.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);return `<div class="item"><span class="dot ${r.lv}"></span><div style="min-width:0"><div class="name">${esc(f.name)}</div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g</div>${effHTML(f,it.q)}${r.lv!=='s'&&r.why[0]?`<div class="meta">${esc(r.why[0])}</div>`:''}</div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-dact="dec" data-i="${i}" aria-label="Less">−</button><span class="q num">${fmtQ(it.q)}</span><button data-dact="inc" data-i="${i}" aria-label="More">+</button></div><button class="x" data-dact="del" data-i="${i}" aria-label="Remove">×</button></div></div>`}).join('')||'<div class="note">No foods found. Add a description and try again.</div>'}</div>
+    ${draft.unknown&&draft.unknown.length?`<div class="note">Not recognised: ${esc(draft.unknown.join(', '))}.</div>`:''}
+    ${draft.items.length?mkMealHTML(draft.items):''}
+    ${draft.swaps&&draft.swaps.length?`<div><h3 style="margin-bottom:6px">Try instead</h3><ul class="plain">${draft.swaps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
+    <div class="row"><label class="note" for="dslot">Meal</label><select id="dslot">${SLOTS.map(([k,n])=>`<option value="${k}" ${k===draft.slot?'selected':''}>${n}</option>`).join('')}</select><span class="grow"></span><button id="dplan" class="btn ghost sm" ${draft.items.length?'':'disabled'}>Add to plan</button><button id="dlog" class="btn primary sm" ${draft.items.length?'':'disabled'}>Log this meal</button></div>
+  </div>`;
   box.hidden=false;
 }
 $('#draft').addEventListener('input',e=>{if(e.target.id==='dname'&&draft)draft.name=e.target.value});
@@ -868,7 +1092,7 @@ $('#draft').addEventListener('click',async e=>{
   if(b.id==='dplan'){S.plan.extras.items.push(...draft.items.map(it=>({...it})));save();renderPlan();b.disabled=true;toast('Added to plan, under Other');return}
   if(b.id==='dlog'){const name=($('#dname').value||'').trim();if(!name){$('#dname').focus();$('#lstatus').textContent='Give this meal a name first.';return}
     b.disabled=true;const ph=(await Promise.all(lPhotos.slice(0,3).map(p=>shrink(p.file)))).filter(Boolean);
-    logMeal({name,slot:draft.slot,items:draft.items,ph});toast(`Logged ${name}`);resetLogger();return}
+    logMeal({name,slot:draft.slot,items:draft.items,ph});toast(`Logged ${name}`);closeLogger();return}
   const i=+b.dataset.i, act=b.dataset.dact; if(!act)return;
   if(act==='inc')draft.items[i].q=Math.round((draft.items[i].q+0.5)*2)/2;
   else if(act==='dec')draft.items[i].q=Math.max(0.5,Math.round((draft.items[i].q-0.5)*2)/2);
@@ -879,7 +1103,7 @@ $('#lgo').addEventListener('click',async()=>{
   const text=$('#ldesc').value.trim(); const st=$('#lstatus');
   if(!text&&!lPhotos.length){st.textContent='Take or add a photo, or describe the meal.';return}
   const keepName=draft&&draft.name&&draft.touched?draft.name:'';
-  if(text){const m=matchText(text);draft={name:text.length<=60?text:text.slice(0,57)+'…',slot:slotNow(),items:m.filter(x=>x.f).map(x=>({id:x.f.id,q:x.q})),unknown:m.filter(x=>x.unknown).map(x=>x.unknown),verdict:hardHit(text)?'a':''};renderDraft()}
+  if(text){const m=matchText(text);draft={name:text.length<=60?text:text.slice(0,57)+'…',slot:curSlot(),items:m.filter(x=>x.f).map(x=>({id:x.f.id,q:x.q})),unknown:m.filter(x=>x.unknown).map(x=>x.unknown),verdict:hardHit(text)?'a':''};renderDraft()}
   const useImg=lPhotos.length&&sample&&canImg;
   if(text&&!lPhotos.length&&draft&&!draft.unknown.length&&draft.items.length){st.textContent='';return}
   if(!sample||(!useImg&&!text)){if(lPhotos.length&&!text){$('#lnoai').hidden=false;st.textContent=''}return}
@@ -891,12 +1115,58 @@ $('#lgo').addEventListener('click',async()=>{
     const j=await sample.json(prompt,opts);
     const items=(Array.isArray(j&&j.items)?j.items:[]).map(claudeItem);
     if(!items.length){st.textContent=draft?'':'No food found. Try a clearer photo or describe it.';return}
-    draft={name:keepName||String(j.dish||'').slice(0,60),slot:(draft&&draft.slot)||slotNow(),items,swaps:(Array.isArray(j.swaps)?j.swaps:[]).slice(0,3).map(String),advice:String(j.advice||''),verdict:(hardHit(text)?'a':''),unknown:[]};
+    draft={name:keepName||String(j.dish||'').slice(0,60),slot:(draft&&draft.slot)||curSlot(),items,swaps:(Array.isArray(j.swaps)?j.swaps:[]).slice(0,3).map(String),advice:String(j.advice||''),verdict:(hardHit(text)?'a':''),unknown:[]};
     renderDraft(); st.textContent='';
   }catch(e){if(e&&e.code==='cancelled')return;st.textContent=errText(e);if(e&&(e.code==='not_granted'||e.code==='sampling_disabled')){sample=null}}
   finally{go.disabled=false}
 });
 $('#draft').addEventListener('keydown',e=>{if(e.target.id==='dname'&&draft)draft.touched=true});
+
+// ---------- MENU SCAN ----------
+let mPhotos=[],mRes=null,mctl=null;
+function renderMThumbs(){const b=$('#mthumbs');b.hidden=!mPhotos.length;b.innerHTML=mPhotos.map((p,i)=>`<div class="thumb"><img src="${p.url}" alt="Menu photo ${i+1}"><button data-mrm="${i}" aria-label="Remove photo">×</button></div>`).join('')}
+function addMPhotos(files){for(const f of files){if(mPhotos.length>=3)break;let url='';try{url=URL.createObjectURL(f)}catch(e){}mPhotos.push({file:f,url})}renderMThumbs();if(mPhotos.length&&sample&&canImg)$('#mgo').click();else if(mPhotos.length)$('#mstatus').textContent='Claude is needed to read menus.'}
+$('#mcam').addEventListener('change',e=>{addMPhotos(e.target.files||[]);e.target.value=''});
+$('#mpick').addEventListener('change',e=>{addMPhotos(e.target.files||[]);e.target.value=''});
+$('#mthumbs').addEventListener('click',e=>{const b=e.target.closest('[data-mrm]');if(!b)return;mPhotos.splice(+b.dataset.mrm,1);renderMThumbs()});
+$('#mclear').addEventListener('click',()=>{mPhotos=[];mRes=null;renderMThumbs();$('#mout').innerHTML='';$('#mstatus').textContent='';$('#mnote').value='';mctl&&mctl.abort()});
+function menuPrompt(note){return `${patientContext()}
+
+Task: The photo(s) show a restaurant or hotel menu (${mPhotos.length>1?mPhotos.length+' pages of one menu':'one menu'}). ${note?`The patient adds: "${note}".`:''}
+Read the dishes on the menu. Choose what he can safely order for ONE meal now, using what he has already eaten today. Restaurant food is usually saltier and richer than home food, so estimate per dish for a normal restaurant portion and be realistic about sodium. Prefer plain, simple dishes (roti, plain rice, idli, dosa, grilled or tandoori items, dal in a small portion, dry sabzis, curd, salad without tomato dressing). Be cautious with creamy or tomato gravies, spinach, potato, coconut, paneer and cheese dishes, fried snacks, soups, pickles, processed meats, and anything with fruit juice or dry fruits.
+Only use dishes that are actually on the menu. Reply with ONLY JSON:
+{"best":[{"dish":"name as on menu","ask":"how to order it, such as no added salt, gravy on the side, half portion","portion":"1 plate","k_mg":200,"p_mg":90,"na_mg":450,"protein_g":12,"fiber_g":3,"kcal":320,"plant":true}],"okay":[same shape, order only with the changes in ask],"skip":[{"dish":"name","why":"short reason"}],"combo":"one sensible full meal from the best list, in one sentence","tip":"one short sentence of advice for eating out"}
+Give 3 to 5 in best, up to 4 in okay, up to 6 in skip. If the photo is not a menu or is unreadable, return empty lists and say so in tip.`}
+function renderMenu(){
+  const box=$('#mout');if(!mRes){box.innerHTML='';return}
+  const e=eatenTotals(todayKey()),T=S.t;
+  const row=(d,cls,lab,i,g)=>{const k=+d.k_mg||0,p=+d.p_mg||0,na=+d.na_mg||0;
+    return `<div class="item"><span class="dot ${cls}"></span><div style="min-width:0"><div class="name">${esc(d.dish)} <span class="note">· ${esc(d.portion||'1 serving')}</span></div>${d.ask?`<div class="meta"><b>Ask:</b> ${esc(d.ask)}</div>`:''}<div class="meta num">K ${Math.round(k)} · P ${Math.round(p)} · Na ${Math.round(na)} mg · ${(+d.protein_g||0).toFixed(0)} g protein · ${Math.round(+d.kcal||0)} kcal</div><div class="meta num">${leftAfterTxt(k,p)}</div><button class="lnkbtn" data-mlog="${g}:${i}">Log this to Today</button></div><span class="pill ${cls}">${lab}</span></div>`};
+  const sec=(t,arr,cls,lab,g)=>arr.length?`<div><h3 style="margin-bottom:6px">${t}</h3>${arr.map((d,i)=>row(d,cls,lab,i,g)).join('')}</div>`:'';
+  box.innerHTML=`${mRes.combo?`<div class="callout"><b>A good plate:</b> ${esc(mRes.combo)}</div>`:''}
+    ${sec('Order these',mRes.best,'s','Order','best')}
+    ${sec('Only with changes',mRes.okay,'l','Ask','okay')}
+    ${mRes.skip.length?`<div><h3 style="margin-bottom:6px">Skip</h3>${mRes.skip.map(d=>`<div class="item"><span class="dot a"></span><div style="min-width:0"><div class="name">${esc(d.dish)}</div>${d.why?`<div class="meta">${esc(d.why)}</div>`:''}</div><span class="pill a">Skip</span></div>`).join('')}</div>`:''}
+    ${!mRes.best.length&&!mRes.okay.length&&!mRes.skip.length?'<div class="note">No dishes found. Try a clearer, closer photo of the menu.</div>':''}
+    ${mRes.tip?`<div class="note">${esc(mRes.tip)}</div>`:''}
+    <div class="note">Restaurant numbers are rough estimates. Sodium is the hardest to judge, so ask for less salt and sauces on the side.</div>`}
+$('#mout').addEventListener('click',ev=>{const b=ev.target.closest('[data-mlog]');if(!b||!mRes)return;const [g,i]=b.dataset.mlog.split(':'),d=(mRes[g]||[])[+i];if(!d)return;
+  logMeal({name:String(d.dish).slice(0,60),items:[claudeItem({name:d.dish,portion:d.portion,k_mg:d.k_mg,p_mg:d.p_mg,na_mg:d.na_mg,protein_g:d.protein_g,fiber_g:d.fiber_g,kcal:d.kcal,plant:d.plant})]});
+  b.disabled=true;toast('Logged '+d.dish)});
+$('#mgo').addEventListener('click',async()=>{
+  const st=$('#mstatus');
+  if(!mPhotos.length){st.textContent='Take or add a photo of the menu first.';return}
+  if(!sample||!canImg){st.textContent='Claude is needed to read menus, and it is not available here.';return}
+  mctl&&mctl.abort();mctl=new AbortController();const go=$('#mgo');go.disabled=true;st.textContent='Reading the menu…';
+  try{
+    const lim=await sample.limits().catch(()=>null);const max=Math.min(3,(lim&&lim.images&&lim.images.maxCount)||3);
+    const j=await sample.json(menuPrompt($('#mnote').value.trim()),{signal:mctl.signal,images:mPhotos.slice(0,max).map(p=>p.file)});
+    const arr=x=>(Array.isArray(x)?x:[]).filter(d=>d&&d.dish).slice(0,6);
+    mRes={best:arr(j&&j.best),okay:arr(j&&j.okay),skip:arr(j&&j.skip),combo:String((j&&j.combo)||''),tip:String((j&&j.tip)||'')};
+    renderMenu();st.textContent=''
+  }catch(e){if(e&&e.code==='cancelled')return;st.textContent=errText(e)}
+  finally{go.disabled=false}
+});
 
 // ---------- Local matcher ----------
 let VOCAB=null;
@@ -980,7 +1250,7 @@ $('#cam').addEventListener('change',onFile);$('#pick').addEventListener('change'
 $('#clear').addEventListener('click',()=>{photo=null;$('#prev').hidden=true;$('#q').value='';$('#result').hidden=true;$('#status').textContent='';$('#cam').value='';$('#pick').value='';ctl&&ctl.abort()});
 $('#go').addEventListener('click',runCheck);
 $('#q').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();runCheck()}});
-function itemRowsHTML(rows){return rows.map(r=>`<div class="item"><span class="dot ${r.lv}"><\/span><div style="min-width:0"><div class="name">${esc(r.name)} <span class="note">· ${esc(r.portion)}<\/span><\/div><div class="meta num">K ${Math.round(r.k)} · P ${Math.round(r.p)} · Na ${Math.round(r.na)} mg · ${(+r.pr).toFixed(1)} g protein<\/div>${effHTML({name:r.name,k:r.k,p:r.p,na:r.na,pr:+r.pr,type:r.type},1)}${r.why.length?`<div class="meta">${esc(r.why.join(' '))}<\/div>`:''}<\/div><span class="pill ${r.lv}">${LABEL[r.lv]}<\/span><\/div>`).join('')}
+function itemRowsHTML(rows){return rows.map(r=>`<div class="item"><span class="dot ${r.lv}"></span><div style="min-width:0"><div class="name">${esc(r.name)} <span class="note">· ${esc(r.portion)}</span></div><div class="meta num">K ${Math.round(r.k)} · P ${Math.round(r.p)} · Na ${Math.round(r.na)} mg · ${(+r.pr).toFixed(1)} g protein</div>${effHTML({name:r.name,k:r.k,p:r.p,na:r.na,pr:+r.pr,type:r.type},1)}${r.why.length?`<div class="meta">${esc(r.why.join(' '))}</div>`:''}</div><span class="pill ${r.lv}">${LABEL[r.lv]}</span></div>`).join('')}
 function rowsToItems(rows){return rows.map(r=>r.ref?{id:r.ref,q:r.q}:{q:1,c:{name:r.name,serving:r.portion,k:r.k,p:r.p,na:r.na,pr:+r.pr,kcal:+r.kcal||0,type:r.type||'p',base:'',note:''}})}
 function renderResult({title,lv,rows,advice,swaps,source,unknown}){
   const t=rows.reduce((a,r)=>({k:a.k+r.k,p:a.p+r.p,na:a.na+r.na,pr:a.pr+ +r.pr}),{k:0,p:0,na:0,pr:0});
@@ -988,15 +1258,14 @@ function renderResult({title,lv,rows,advice,swaps,source,unknown}){
   const after={k:e.k+t.k,p:e.p+t.p};
   const head={s:'Fine to eat',l:'Okay in the portion shown',a:'Better to skip'}[lv];
   $('#result').innerHTML=`<div class="card">
-    <div class="verdict ${lv}"><div class="row" style="justify-content:space-between;align-items:flex-start"><span class="big">${LABEL[lv]}<\/span><span class="note">${esc(source)}<\/span><\/div><div><b>${esc(title)}<\/b> · ${head}<\/div><\/div>
-    ${advice?`<div class="callout">${esc(advice)}<\/div>`:''}
-    <div>${itemRowsHTML(rows)}<\/div>
-    ${unknown&&unknown.length?`<div class="note">Not in the food list: ${esc(unknown.join(', '))}.${sample?' Claude will estimate these.':''}<\/div>`:''}
-    ${rows.length?`<div class="note num">If you eat this, today reaches potassium ${Math.round(after.k).toLocaleString()} of ${T.k.toLocaleString()} mg and phosphorus ${Math.round(after.p)} of ${T.p} mg.<\/div>`:''}
-    ${rows.length?mealEffHTML(rowsToItems(rows),dayEffect(todayKey()).pral):''}
-    ${swaps&&swaps.length?`<div><h3 style="margin-bottom:6px">Try instead<\/h3><ul class="plain">${swaps.map(s=>`<li>${esc(s)}<\/li>`).join('')}<\/ul><\/div>`:''}
-    ${rows.length?`<div class="row"><button id="logIt" class="btn primary sm">I ate this<\/button><button id="planIt" class="btn sm">Add to plan<\/button><\/div>`:''}
-  <\/div>`;
+    <div class="verdict ${lv}"><div class="row" style="justify-content:space-between;align-items:flex-start"><span class="big">${LABEL[lv]}</span><span class="note">${esc(source)}</span></div><div><b>${esc(title)}</b> · ${head}</div></div>
+    ${advice?`<div class="callout">${esc(advice)}</div>`:''}
+    <div>${itemRowsHTML(rows)}</div>
+    ${unknown&&unknown.length?`<div class="note">Not in the food list: ${esc(unknown.join(', '))}.${sample?' Claude will estimate these.':''}</div>`:''}
+    ${rows.length?mkMealHTML(rowsToItems(rows)):''}
+    ${swaps&&swaps.length?`<div><h3 style="margin-bottom:6px">Try instead</h3><ul class="plain">${swaps.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>`:''}
+    ${rows.length?`<div class="row"><button id="logIt" class="btn primary sm">I ate this</button><button id="planIt" class="btn sm">Add to plan</button></div>`:''}
+  </div>`;
   $('#result').hidden=false;
   const a=$('#logIt'); if(a) a.onclick=()=>{logMeal({name:title,items:rowsToItems(rows)});a.disabled=true;toast(`Logged ${title}`)};
   const b=$('#planIt'); if(b) b.onclick=()=>{S.plan.extras.items.push(...rowsToItems(rows));save();renderPlan();b.disabled=true;toast('Added to plan, under Other')};
@@ -1033,11 +1302,11 @@ async function runCheck(){
 }
 
 // ---------- PLAN ----------
-function rangeBarHTML(label,val,lo,hi,unit){const lv=val>hi?'a':val>=lo?'s':'l';const pct=hi>0?val/hi:0;return `<div class="bar"><div class="top num"><b>${label}<\/b><span>${Math.round(val).toLocaleString()} / ${lo}–${hi} ${unit}<\/span><\/div><div class="track"><div class="fill ${lv}" style="width:${Math.min(100,Math.round(pct*100))}%"><\/div><\/div><\/div>`}
+function rangeBarHTML(label,val,lo,hi,unit){const lv=val>hi?'a':val>=lo?'s':'l';const pct=hi>0?val/hi:0;return `<div class="bar"><div class="top num"><b>${label}</b><span>${Math.round(val).toLocaleString()} / ${lo}–${hi} ${unit}</span></div><div class="track"><div class="fill ${lv}" style="width:${Math.min(100,Math.round(pct*100))}%"></div></div></div>`}
 function barHTML(label,val,target,unit,isMin){
   const pct=target>0?val/target:0;
   const lv=isMin?(pct>=0.95?'s':pct>=0.8?'l':'a'):(pct<=0.85?'s':pct<=1?'l':'a');
-  return `<div class="bar"><div class="top num"><b>${label}<\/b><span>${Math.round(val).toLocaleString()} / ${target.toLocaleString()} ${unit}<\/span><\/div><div class="track"><div class="fill ${lv}" style="width:${Math.min(100,Math.round(pct*100))}%"><\/div><\/div><\/div>`;
+  return `<div class="bar"><div class="top num"><b>${label}</b><span>${Math.round(val).toLocaleString()} / ${target.toLocaleString()} ${unit}</span></div><div class="track"><div class="fill ${lv}" style="width:${Math.min(100,Math.round(pct*100))}%"></div></div></div>`;
 }
 function renderBars(){
   const t=planTotals(),T=S.t,naAll=t.na+T.med;
@@ -1051,21 +1320,21 @@ function renderBars(){
   if(t.kcal<T.kcal*0.95) tips.push(`${Math.round(T.kcal-t.kcal)} kcal short. Add rice, sabudana, suji halwa or a tsp of ghee.`);
   $('#hint').textContent=tips.length?tips.join(' '):'This day fits your targets.';
   const over=t.k>T.k||t.p>T.p||naAll>T.na, near=t.pr>T.pr*1.1||t.kcal<T.kcal*0.95;
-  $('#dayVerdict').innerHTML=`<span class="pill ${over?'a':near?'l':'s'}">${over?'Over limit':near?'Adjust':'Fits'}<\/span>`;
+  $('#dayVerdict').innerHTML=`<span class="pill ${over?'a':near?'l':'s'}">${over?'Over limit':near?'Adjust':'Fits'}</span>`;
 }
 function mealHTML(key,name,opts){
   const m=S.plan[key], t=sumItems(m.items);
   const optName=opts?(m.opt>=0?opts[m.opt].name:'Your version'):'Foods added from Check, or here';
   return `<div class="card" data-meal="${key}">
-    <div class="meal-head"><div style="min-width:0"><h2 style="font-size:22px">${name}<\/h2><div class="note">${esc(optName)}<\/div><\/div>
-      ${opts?`<div class="opt"><button data-act="prev" aria-label="Previous suggestion">‹<\/button><span class="num">${m.opt>=0?m.opt+1:'–'}/${opts.length}<\/span><button data-act="next" aria-label="Next suggestion">›<\/button><\/div>`:''}<\/div>
-    <div>${m.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);return `<div class="item"><span class="dot ${r.lv}" title="${LABEL[r.lv]}"><\/span><div style="min-width:0"><div class="name">${esc(f.name)}<\/div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g<\/div>${r.lv!=='s'?`<div class="meta">${esc((r.why[0]||'')+(f.note?' '+f.note:''))}<\/div>`:''}<button class="lnkbtn" data-logi="${i}">Log this to Today<\/button><\/div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-act="dec" data-i="${i}" aria-label="Less">−<\/button><span class="q num">${fmtQ(it.q)}<\/span><button data-act="inc" data-i="${i}" aria-label="More">+<\/button><\/div><button class="x" data-act="del" data-i="${i}" aria-label="Remove">×<\/button><\/div><\/div>`}).join('')||'<div class="note">Nothing here yet.<\/div>'}<\/div>
-    <div class="row" style="justify-content:space-between"><span class="note num">K ${Math.round(t.k)} · P ${Math.round(t.p)} · Na ${Math.round(t.na)} · ${t.pr.toFixed(1)} g · ${Math.round(t.kcal)} kcal<\/span><\/div>
-    ${opts?`<details class="ideas"><summary>${opts.length} ideas for ${name.toLowerCase()}<\/summary>${opts.map((o,i)=>{const q=sumItems(o.items.map(([id,q])=>({id,q})));return `<button class="idea ${m.opt===i?'on':''}" data-pick="${i}"><span>${esc(o.name)}<\/span><span class="note num">K ${Math.round(q.k)} · ${Math.round(q.kcal)} kcal<\/span><\/button>`}).join('')}<\/details>`:''}
-    ${m.items.length&&key!=='extras'?`<button class="btn sm" data-logm="${key}">Log this to Today<\/button>`:''}
+    <div class="meal-head"><div style="min-width:0"><h2 style="font-size:22px">${name}</h2><div class="note">${esc(optName)}</div></div>
+      ${opts?`<div class="opt"><button data-act="prev" aria-label="Previous suggestion">‹</button><span class="num">${m.opt>=0?m.opt+1:'–'}/${opts.length}</span><button data-act="next" aria-label="Next suggestion">›</button></div>`:''}</div>
+    <div>${m.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);return `<div class="item"><span class="dot ${r.lv}" title="${LABEL[r.lv]}"></span><div style="min-width:0"><div class="name">${esc(f.name)}</div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g</div>${r.lv!=='s'?`<div class="meta">${esc((r.why[0]||'')+(f.note?' '+f.note:''))}</div>`:''}<button class="lnkbtn" data-logi="${i}">Log this to Today</button></div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-act="dec" data-i="${i}" aria-label="Less">−</button><span class="q num">${fmtQ(it.q)}</span><button data-act="inc" data-i="${i}" aria-label="More">+</button></div><button class="x" data-act="del" data-i="${i}" aria-label="Remove">×</button></div></div>`}).join('')||'<div class="note">Nothing here yet.</div>'}</div>
+    <div class="row" style="justify-content:space-between"><span class="note num">K ${Math.round(t.k)} · P ${Math.round(t.p)} · Na ${Math.round(t.na)} · ${t.pr.toFixed(1)} g · ${Math.round(t.kcal)} kcal</span></div>
+    ${opts?`<details class="ideas"><summary>${opts.length} ideas for ${name.toLowerCase()}</summary>${opts.map((o,i)=>{const q=sumItems(o.items.map(([id,q])=>({id,q})));return `<button class="idea ${m.opt===i?'on':''}" data-pick="${i}"><span>${esc(o.name)}</span><span class="note num">K ${Math.round(q.k)} · ${Math.round(q.kcal)} kcal</span></button>`}).join('')}</details>`:''}
+    ${m.items.length&&key!=='extras'?`<button class="btn sm" data-logm="${key}">Log this to Today</button>`:''}
     <input type="search" id="add-${key}" placeholder="Add a food: bhindi, curd, idli…" autocomplete="off">
-    <div class="suggest" id="sug-${key}" hidden><\/div>
-  <\/div>`;
+    <div class="suggest" id="sug-${key}" hidden></div>
+  </div>`;
 }
 function renderPlan(){$('#meals').innerHTML=MEALS.map(M=>mealHTML(M.key,M.name,M.opts)).join('')+mealHTML('extras','Other',null);renderBars()}
 $('#meals').addEventListener('click',e=>{
@@ -1083,20 +1352,20 @@ $('#meals').addEventListener('click',e=>{
   else if(act==='del'){m.items.splice(i,1);if(key!=='extras')m.opt=-1}
   save();renderPlan();
 });
-$('#meals').addEventListener('input',e=>{if(!e.target.id.startsWith('add-'))return;const key=e.target.id.slice(4);const box=$('#sug-'+key);const q=e.target.value;if(q.trim().length<2){box.hidden=true;return}const hits=searchFoods(q);box.innerHTML=(hits.length?sugHTML(hits):'')+`<button data-est="${key}"><span class="dot" style="background:var(--accent)"><\/span><span class="grow"><b>Work out “${esc(q.trim())}”<\/b> <span class="note">· estimate and add it<\/span><\/span><\/button>`;box.hidden=false});
+$('#meals').addEventListener('input',e=>{if(!e.target.id.startsWith('add-'))return;const key=e.target.id.slice(4);const box=$('#sug-'+key);const q=e.target.value;if(q.trim().length<2){box.hidden=true;return}const hits=searchFoods(q);box.innerHTML=(hits.length?sugHTML(hits):'')+`<button data-est="${key}"><span class="dot" style="background:var(--accent)"></span><span class="grow"><b>Work out “${esc(q.trim())}”</b> <span class="note">· estimate and add it</span></span></button>`;box.hidden=false});
 async function estimateInto(key,text,btn){
   if(!text)return; const m=S.plan[key]; const box=$('#sug-'+key);
   const mt=matchText(text); const known=mt.filter(x=>x.f), unknown=mt.filter(x=>x.unknown);
   const add=items=>{items.forEach(it=>m.items.push(it));if(key!=='extras')m.opt=-1;save();renderPlan();toast(`Added to ${key==='extras'?'Other':MEALS.find(x=>x.key===key).name}`)};
   if(known.length&&!unknown.length){add(known.map(x=>({id:x.f.id,q:x.q})));return}
-  if(!sample){if(known.length){add(known.map(x=>({id:x.f.id,q:x.q})))}else{box.innerHTML='<div class="note" style="padding:8px">Not in the food list, and Claude isn\'t available here to estimate it. Try a simpler name like "millet porridge".<\/div>'}return}
+  if(!sample){if(known.length){add(known.map(x=>({id:x.f.id,q:x.q})))}else{box.innerHTML='<div class="note" style="padding:8px">Not in the food list, and Claude isn\'t available here to estimate it. Try a simpler name like "millet porridge".</div>'}return}
   btn.disabled=true; btn.querySelector('.note').textContent='· working it out…';
   try{
     const j=await sample.json(checkPrompt(text,false));
     const items=(Array.isArray(j&&j.items)?j.items:[]).map(claudeItem);
-    if(!items.length){box.innerHTML='<div class="note" style="padding:8px">Could not identify a food there. Try describing it differently.<\/div>';return}
+    if(!items.length){box.innerHTML='<div class="note" style="padding:8px">Could not identify a food there. Try describing it differently.</div>';return}
     add(items);
-  }catch(e){if(e&&e.code==='cancelled')return;box.innerHTML=`<div class="note" style="padding:8px">${esc(errText(e))}<\/div>`}
+  }catch(e){if(e&&e.code==='cancelled')return;box.innerHTML=`<div class="note" style="padding:8px">${esc(errText(e))}</div>`}
 }
 let rctl=null;
 $('#review').addEventListener('click',async()=>{
@@ -1113,7 +1382,7 @@ Review this plan for him in under 140 words, plain English, no markdown headers.
   catch(e){if(e.code!=='cancelled')out.textContent=(e.text?e.text+'\n\n':'')+errText(e)}
   finally{btn.disabled=false}
 });
-$('#resetAll').addEventListener('click',()=>{const c=$('#resetConfirm');if(!c.dataset.armed){c.dataset.armed='1';c.innerHTML='<button id="resetYes" class="btn sm">Yes, reset the plan<\/button>';$('#resetYes').onclick=()=>{S.plan=freshPlan();save();renderPlan();c.textContent='';delete c.dataset.armed};return}c.textContent='';delete c.dataset.armed});
+$('#resetAll').addEventListener('click',()=>{const c=$('#resetConfirm');if(!c.dataset.armed){c.dataset.armed='1';c.innerHTML='<button id="resetYes" class="btn sm">Yes, reset the plan</button>';$('#resetYes').onclick=()=>{S.plan=freshPlan();save();renderPlan();c.textContent='';delete c.dataset.armed};return}c.textContent='';delete c.dataset.armed});
 
 // ---------- TARGETS ----------
 const TF=['k','p','na','med','pr','prLo','kcal','fi'];
@@ -1133,14 +1402,14 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('clic
 // ---------- FOODS (sort a list) ----------
 const CATS=[['fruit','Fruits','apple','dryfruit'],['veg','Vegetables','lauki','drumstick'],['grain','Grains & tiffin','rice','biscuit'],['millet','Millets & oats',['milletroti','ragi','jowar','bajra','foxtail','milletporridge','ragiporridge','soakedmillet','littlemillet','kodomillet','barnyard','jowarrice','oats','instantoats']],['nuts','Nuts & seeds',['chia','flax','almond','cashew','walnut','pistachio','peanut','macadamia','peanutbutter','brazilnut','nuts']],['protein','Dal, dairy, eggs, meat','eggwhite','whey'],['other','Drinks, snacks & extras','tea','salt']];
 function catFoods(a,b){if(Array.isArray(a))return a.map(id=>BYID[id]).filter(Boolean);const i=FOODS.findIndex(f=>f.id===a),j=FOODS.findIndex(f=>f.id===b);return FOODS.slice(i,j+1)}
-$('#cats').innerHTML=CATS.map(([k,n])=>`<button class="btn sm" data-cat="${k}">${n}<\/button>`).join('');
+$('#cats').innerHTML=CATS.map(([k,n])=>`<button class="btn sm" data-cat="${k}">${n}</button>`).join('');
 function findOne(term){let best=null,len=0;const t=term.toLowerCase();for(const f of FOODS)for(const a of f.alias){if(a.length>len&&new RegExp('\\b'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b').test(t)){best=f;len=a.length}}return best}
 function foodRow(f){const r=rate(f,1);return{name:f.name,serving:f.serving,k:f.k,lv:r.lv,why:(f.note||r.why[0]||''),eff:kidneyEffect(f,1)}}
 function renderGroups(rows,title){
   const G={s:[],l:[],a:[]};rows.forEach(r=>G[r.lv].push(r));
   const HEAD={s:['Safe','Eat in normal portions'],l:['OK','Small portion only, as shown'],a:['Avoid','Skip while potassium is high']};
-  $('#fout').innerHTML=(title?`<h2>${esc(title)}<\/h2>`:'')+['s','l','a'].filter(k=>G[k].length).map(k=>`<div class="grp ${k}"><div class="grp-h"><span class="t">${HEAD[k][0]}<\/span><span class="note">${G[k].length} · ${HEAD[k][1]}<\/span><\/div>`+
-    G[k].map(r=>`<div class="fi"><span class="n">${esc(r.name)}${r.asked&&!r.name.toLowerCase().includes(r.asked.toLowerCase())?` <span class="note">(${esc(r.asked)})<\/span>`:''}<\/span><span class="k num">K ${Math.round(r.k)} mg<\/span><span class="w">${esc(r.serving)}${r.why?' · '+esc(r.why):''}${r.eff?` · <span class="eff ${r.eff.cls}">${r.eff.label}<\/span>${r.eff.cr?' <span class="effcr">↑ creatinine<\/span>':''}`:''}<\/span><\/div>`).join('')+`<\/div>`).join('');
+  $('#fout').innerHTML=(title?`<h2>${esc(title)}</h2>`:'')+['s','l','a'].filter(k=>G[k].length).map(k=>`<div class="grp ${k}"><div class="grp-h"><span class="t">${HEAD[k][0]}</span><span class="note">${G[k].length} · ${HEAD[k][1]}</span></div>`+
+    G[k].map(r=>`<div class="fi"><span class="n">${esc(r.name)}${r.asked&&!r.name.toLowerCase().includes(r.asked.toLowerCase())?` <span class="note">(${esc(r.asked)})</span>`:''}</span><span class="k num">K ${Math.round(r.k)} mg</span><span class="w">${esc(r.serving)}${r.why?' · '+esc(r.why):''}${r.eff?` · <span class="eff ${r.eff.cls}">${r.eff.label}</span>${r.eff.cr?' <span class="effcr">↑ creatinine</span>':''}`:''}</span></div>`).join('')+`</div>`).join('');
   $('#fout').hidden=false;
 }
 $('#cats').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;const c=CATS.find(x=>x[0]===b.dataset.cat);renderGroups(catFoods(c[2],c[3]).map(foodRow),c[1]);$('#fstatus').textContent='';try{$('#fout').scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}});
@@ -1190,17 +1459,17 @@ function spark(k,pts){
   const y=v=>H-P-(v-lo)/(hi-lo)*(H-2*P), x=i=>pts.length===1?W/2:P+i*(W-2*P)/(pts.length-1);
   const b1=y(Math.min(m[4]!=null?m[4]:hi,hi)), b0=y(Math.max(m[3],lo));
   const last=pts[pts.length-1];
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="${b1}" width="${W}" height="${Math.max(0,b0-b1)}" fill="var(--safe-bg)"/>${pts.length>1?`<polyline points="${pts.map((p,i)=>x(i)+','+y(p.v)).join(' ')}" fill="none" stroke="var(--muted)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`:''}${pts.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="${i===pts.length-1?3.4:2}" fill="${i===pts.length-1?(isOut(k,p.v)?'var(--avoid)':'var(--safe)'):'var(--muted)'}"/>`).join('')}<\/svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="${b1}" width="${W}" height="${Math.max(0,b0-b1)}" fill="var(--safe-bg)"/>${pts.length>1?`<polyline points="${pts.map((p,i)=>x(i)+','+y(p.v)).join(' ')}" fill="none" stroke="var(--muted)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`:''}${pts.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="${i===pts.length-1?3.4:2}" fill="${i===pts.length-1?(isOut(k,p.v)?'var(--avoid)':'var(--safe)'):'var(--muted)'}"/>`).join('')}</svg>`;
 }
 function renderLabs(){
   $('#labGrid').innerHTML=MARKERS.map(([k,n,u])=>{const pts=series(k);if(!pts.length)return'';const l=pts[pts.length-1],pv=pts[pts.length-2];
     const ch=pv?l.v-pv.v:0;const dec=Math.abs(l.v)<20?(Math.abs(l.v)<10?2:1):0;
-    return `<div class="lc ${isOut(k,l.v)?'hi':''}"><div class="note" style="font-weight:700">${n}<\/div><div class="v">${l.v}<\/div><div class="d">${u} · ${fmtD(l.d)}<\/div>${pv?`<div class="ch" style="color:var(--muted)">${ch>0?'↑':ch<0?'↓':'→'} ${parseFloat(Math.abs(ch).toFixed(dec))} since ${fmtD(pv.d)}<\/div>`:''}${spark(k,pts.slice(-8))}<\/div>`}).join('');
+    return `<div class="lc ${isOut(k,l.v)?'hi':''}"><div class="note" style="font-weight:700">${n}</div><div class="v">${l.v}</div><div class="d">${u} · ${fmtD(l.d)}</div>${pv?`<div class="ch" style="color:var(--muted)">${ch>0?'↑':ch<0?'↓':'→'} ${parseFloat(Math.abs(ch).toFixed(dec))} since ${fmtD(pv.d)}</div>`:''}${spark(k,pts.slice(-8))}</div>`}).join('');
   const L=labsSorted().reverse();
-  $('#labTable').innerHTML=`<table class="num"><thead><tr><th>Date<\/th>${MARKERS.map(m=>`<th>${m[1]}<\/th>`).join('')}<th><\/th><\/tr><\/thead><tbody>${L.map(r=>`<tr><td>${fmtD(r.d)} ${r.d.slice(0,4)}<\/td>${MARKERS.map(([k])=>`<td style="${typeof r[k]==='number'&&isOut(k,r[k])?'color:var(--avoid);font-weight:700':''}">${r[k]??''}<\/td>`).join('')}<td><button class="x" data-labdel="${r.d}" aria-label="Delete result">×<\/button><\/td><\/tr>`).join('')}<\/tbody><\/table>`;
+  $('#labTable').innerHTML=`<table class="num"><thead><tr><th>Date</th>${MARKERS.map(m=>`<th>${m[1]}</th>`).join('')}<th></th></tr></thead><tbody>${L.map(r=>`<tr><td>${fmtD(r.d)} ${r.d.slice(0,4)}</td>${MARKERS.map(([k])=>`<td style="${typeof r[k]==='number'&&isOut(k,r[k])?'color:var(--avoid);font-weight:700':''}">${r[k]??''}</td>`).join('')}<td><button class="x" data-labdel="${r.d}" aria-label="Delete result">×</button></td></tr>`).join('')}</tbody></table>`;
 }
 $('#labTable').addEventListener('click',e=>{const b=e.target.closest('[data-labdel]');if(!b)return;if(!b.dataset.armed){b.dataset.armed='1';b.textContent='Delete?';b.style.width='auto';b.style.color='var(--avoid)';b.style.fontSize='12px';return}S.labs=S.labs.filter(x=>x.d!==b.dataset.labdel);save();renderLabs();renderToday()});
-$('#labForm').innerHTML=MARKERS.map(([k,n,u])=>`<label class="f">${n} <span style="font-weight:500">(${u})<\/span><input id="lab_${k}" type="number" step="any" inputmode="decimal"><\/label>`).join('');
+$('#labForm').innerHTML=MARKERS.map(([k,n,u])=>`<label class="f">${n} <span style="font-weight:500">(${u})</span><input id="lab_${k}" type="number" step="any" inputmode="decimal"></label>`).join('');
 $('#labAdd').onclick=()=>{$('#labFormWrap').hidden=false;$('#lab_d').value=todayKey();MARKERS.forEach(([k])=>$('#lab_'+k).value='');$('#labMsg').textContent=''};
 $('#labCancel').onclick=()=>{$('#labFormWrap').hidden=true};
 $('#labSave').onclick=()=>{const d=$('#lab_d').value;if(!/^\d{4}-\d{2}-\d{2}$/.test(d)){$('#labMsg').textContent='Pick the date of the blood test.';return}
@@ -1210,12 +1479,12 @@ $('#labSave').onclick=()=>{const d=$('#lab_d').value;if(!/^\d{4}-\d{2}-\d{2}$/.t
   save();renderLabs();renderToday();$('#labFormWrap').hidden=true;toast('Lab result saved')};
 function renderKAlert(){const el=$('#kAlert');const l=latest('k');if(!l||l.v<6.0){el.hidden=true;return}
   const ago=daysSince(l.d), when=fmtD(l.d), stale=ago>30?` It's been ${ago} days since that test; ask about a recheck.`:'';
-  if(l.v>=6.0){el.className='alert a';el.innerHTML=`<b>Potassium ${l.v} on ${when}.<\/b> At 6.0 or higher, call your nephrologist today, and go to the ER if you feel weakness, palpitations or chest discomfort.`}
-  else if(l.v>5.2){el.className='alert l';el.innerHTML=`<b>Potassium ${l.v} on ${when}<\/b>, above normal. Keep to Safe foods and your ${S.t.k.toLocaleString()} mg daily limit until it's rechecked.${stale}`}
-  else if(l.v>5.0){el.className='alert l';el.innerHTML=`<b>Potassium ${l.v} on ${when}<\/b>, at the top of normal. Keep to your ${S.t.k.toLocaleString()} mg limit.${stale}`}
-  else{el.className='alert s';el.innerHTML=`<b>Potassium ${l.v} on ${when}<\/b>, in range. Ask your nephrologist whether your daily potassium limit can change.${stale}`}
+  if(l.v>=6.0){el.className='alert a';el.innerHTML=`<b>Potassium ${l.v} on ${when}.</b> At 6.0 or higher, call your nephrologist today, and go to the ER if you feel weakness, palpitations or chest discomfort.`}
+  else if(l.v>5.2){el.className='alert l';el.innerHTML=`<b>Potassium ${l.v} on ${when}</b>, above normal. Keep to Safe foods and your ${S.t.k.toLocaleString()} mg daily limit until it's rechecked.${stale}`}
+  else if(l.v>5.0){el.className='alert l';el.innerHTML=`<b>Potassium ${l.v} on ${when}</b>, at the top of normal. Keep to your ${S.t.k.toLocaleString()} mg limit.${stale}`}
+  else{el.className='alert s';el.innerHTML=`<b>Potassium ${l.v} on ${when}</b>, in range. Ask your nephrologist whether your daily potassium limit can change.${stale}`}
   el.hidden=false}
-function renderHeader(){$('#hdrChips').innerHTML=`<span class="chip">CKD 5 · not on dialysis<\/span>`+[['k','K⁺'],['egfr','eGFR'],['phos','Phos']].map(([k,n])=>{const l=latest(k);return l?`<span class="chip">${n} ${isOut(k,l.v)?`<b>${l.v}<\/b>`:l.v}<\/span>`:''}).join('')}
+function renderHeader(){$('#hdrChips').innerHTML=`<span class="chip">CKD 5 · not on dialysis</span>`+[['k','K⁺'],['egfr','eGFR'],['phos','Phos']].map(([k,n])=>{const l=latest(k);return l?`<span class="chip">${n} ${isOut(k,l.v)?`<b>${l.v}</b>`:l.v}</span>`:''}).join('')}
 
 
 // ---------- Goal: eGFR target ----------
@@ -1239,7 +1508,7 @@ function plantSVG(n){
   else if(n>=3){head=`<ellipse cx="60" cy="${top-6}" rx="7" ry="10" fill="var(--r-k)" opacity=".85"/>`}
   else if(n>=1){head=`<circle cx="60" cy="${top-3}" r="5" fill="var(--safe)"/>`}
   const stem=n>0?`<path d="M60 118 V${top}" stroke="var(--safe)" stroke-width="4" stroke-linecap="round"/>`:`<circle cx="60" cy="112" r="4" fill="var(--muted)" opacity=".5"/>`;
-  return `<svg class="qplant" viewBox="0 0 120 140" role="img" aria-label="Plant at stage ${n} of 7">${stem}${g}${head}<path d="M30 118h60l-8 20H38z" fill="var(--r-pr)" opacity=".75"/><rect x="26" y="114" width="68" height="8" rx="4" fill="var(--r-pr)"/><\/svg>`}
+  return `<svg class="qplant" viewBox="0 0 120 140" role="img" aria-label="Plant at stage ${n} of 7">${stem}${g}${head}<path d="M30 118h60l-8 20H38z" fill="var(--r-pr)" opacity=".75"/><rect x="26" y="114" width="68" height="8" rx="4" fill="var(--r-pr)"/></svg>`}
 function confetti(box){if(!box)return;const c=document.createElement('div');c.className='cf';const cols=['--r-k','--r-p','--r-na','--r-pr','--safe'];
   for(let i=0;i<26;i++){const e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.background=`var(${cols[i%5]})`;e.style.animationDelay=Math.random()*.5+'s';c.appendChild(e)}
   box.appendChild(c);setTimeout(()=>c.remove(),2800)}
@@ -1251,18 +1520,20 @@ function renderQuest(){
   const c=dayChecks(tk),L=S.log[tk]||[],meals=L.length;
   const earned=good>=BLOOM_AT&&(!S.rw.last||daysBetween(S.rw.last,tk)>=7);
   const g=S.goal,l=latest('egfr');
-  const head=good>=BLOOM_AT?'In full bloom':good>=3?'Growing strong':good>=1?'Taking root':'Plant your first good day';
-  const sub=good>=BLOOM_AT?`${good} good days this week. Every one of them protects your kidneys.`:
-    good>0?`${BLOOM_AT-good} more good day${BLOOM_AT-good>1?'s':''} this week to bloom.`:'Log 3 meals and keep all four checks on track.';
-  const chip=(lab,ok)=>`<div class="qchip ${meals?(ok?'ok':'no'):''}"><b>${meals?(ok?'✓':'•'):'·'}<\/b>${lab}<\/div>`;
-  const mealsChip=`<div class="qchip ${meals>=GOOD_MEALS?'ok':''}"><b>${Math.min(meals,GOOD_MEALS)}/${GOOD_MEALS}<\/b>meals<\/div>`;
-  const rw=S.rw.text||'',bo=bonusOf(tk),stars=wk.filter(bonusDay).length;
-  el.innerHTML=`<div class="qtop">${plantSVG(good)}<div style="min-width:0"><div class="eyebrow">Goal · hold eGFR at ${g.target}+${l?` · now ${l.v}`:''}<\/div><div class="qbig">${head}<\/div><div class="qsub">${sub}<\/div>
-    <div class="qdots" aria-label="${good} of 7 good days">${wk.map(k=>`<i class="${bonusDay(k)?'on star':goodDay(k)?'on':k===tk&&meals?'t':''}"><\/i>`).join('')}<\/div>${streak>1?`<div class="qsub" style="margin-top:6px"><b>${streak}-day streak<\/b><\/div>`:''}<\/div><\/div>
-    <div class="qchips">${mealsChip}${chip('Acid',c.checks[0][1])}${chip('Protein',c.checks[1][1])}${chip('Sodium',c.checks[2][1])}${chip('Potassium',c.checks[3][1])}<\/div>
-    <div class="qbonus ${bo.ok?'ok':''}"><span class="qstar">★<\/span><span>Bonus star: fiber <b class="num">${Math.round(bo.fi)}/${bo.fiT} g<\/b> · calories <b class="num">${Math.round(bo.kc).toLocaleString()}/${Math.round(bo.kcT*0.9).toLocaleString()}+<\/b><\/span>${bo.ok&&good?'':''}<\/div>
-    ${earned?`<div class="qrw earned"><div><b>Reward unlocked<\/b><div>${rw?esc(rw):'Choose a treat for yourself below, then claim it.'}<\/div><\/div><button class="btn primary sm" id="qClaim">Claim<\/button><\/div>`:''}
-    <details class="qrw" style="display:block"><summary>${rw?'Your reward: '+esc(rw):'Set a reward for a bloom week'}<\/summary><input id="qRw" type="text" maxlength="60" placeholder="e.g. a movie night, a new book" value="${esc(rw)}"><div class="note" style="margin-top:6px">A good day is 3 or more meals logged with all four checks on track. Five good days in a week earns it. A gold dot means a bonus star: you also reached your fiber target and at least 90% of your calories.<\/div><\/details>`;
+  const sub=good>=BLOOM_AT?'In full bloom this week':good>0?`${BLOOM_AT-good} more good day${BLOOM_AT-good>1?'s':''} to bloom`:'Log 3 meals with all checks on track for a good day';
+  const chip=(lab,ok)=>`<div class="qchip ${meals?(ok?'ok':'no'):''}"><b>${meals?(ok?'✓':'•'):'·'}</b>${lab}</div>`;
+  const mealsChip=`<div class="qchip ${meals>=GOOD_MEALS?'ok':''}"><b>${Math.min(meals,GOOD_MEALS)}/${GOOD_MEALS}</b>meals</div>`;
+  const rw=S.rw.text||'',bo=bonusOf(tk);
+  el.innerHTML=`<div class="qs">${plantSVG(good)}
+    <div class="qstat"><span class="qk">Streak</span><span class="qn num">${streak}</span><span class="qu">day${streak===1?'':'s'}</span></div>
+    <div class="qstat"><span class="qk">Week</span><span class="qn num">${good}<small>/${BLOOM_AT}</small></span><span class="qu">good days</span></div>
+    <div class="qstat"><span class="qk">Today</span><span class="qn num">${Math.min(meals,GOOD_MEALS)}<small>/${GOOD_MEALS}</small></span><span class="qu">meals</span></div></div>
+    <div class="qdots" aria-label="${good} of 7 good days">${wk.map(k=>`<i class="${bonusDay(k)?'on star':goodDay(k)?'on':k===tk&&meals?'t':''}"></i>`).join('')}</div>
+    <div class="qmis"><span class="qmk">Mission</span>Hold eGFR at ${g.target}+${l?` · now <b class="num">${l.v}</b>`:''} <span class="note">· ${sub}</span></div>
+    ${earned?`<div class="qrw earned"><div><b>Reward unlocked</b><div>${rw?esc(rw):'Choose a treat below, then claim it.'}</div></div><button class="btn primary sm" id="qClaim">Claim</button></div>`:''}
+    <div class="qchips">${mealsChip}${chip('Acid',c.checks[0][1])}${chip('Protein',c.checks[1][1])}${chip('Sodium',c.checks[2][1])}${chip('Potassium',c.checks[3][1])}</div>
+    <div class="qbonus ${bo.ok?'ok':''}"><span class="qstar">★</span><span>Bonus star: fiber <b class="num">${Math.round(bo.fi)}/${bo.fiT} g</b> · calories <b class="num">${Math.round(bo.kc).toLocaleString()}/${Math.round(bo.kcT*0.9).toLocaleString()}+</b></span></div>
+    <details class="qmore"><summary>${rw?'Reward: '+esc(rw):'Set a reward'}</summary><input id="qRw" type="text" maxlength="60" placeholder="e.g. a movie night, a new book" value="${esc(rw)}" style="width:100%"><div class="note">A good day is 3 or more meals logged with all four checks on track. Five good days in a week earns the reward. A gold dot is a bonus star: fiber target plus at least 90% of calories.</div></details>`;
   // today's celebration, once per day
   if(bonusDay(tk)&&S.celb!==tk){S.celb=tk;S.cel=tk;save();confetti(el);toast('Bonus star earned. You ate enough, too')}
   else if(goodDay(tk)&&S.cel!==tk){S.cel=tk;save();confetti(el);toast('Great day. All four checks on track')}
@@ -1274,16 +1545,16 @@ function renderGoal(){
   const g=S.goal,l=latest('egfr'),slope=egfrSlope(),left=daysBetween(todayKey(),g.date),today=dayChecks(todayKey()),wk=weekDots(),good=wk.filter(x=>x.cls==='s').length;
   const gap=l?g.target-l.v:null;
   // Today strip
-  $('#goalStrip').innerHTML=`<div class="row" style="justify-content:space-between"><div><span class="eyebrow">eGFR goal ${g.target}${l&&g.target<=l.v?'+ (hold)':''}${l?' · now '+l.v:''}<\/span><div style="font-weight:700;font-size:14px">${today.n?today.pass+' of 4 on track today':'Log a meal to start today'}${bpLast()?` · BP ${bpLast().s}/${bpLast().di}`:''}<\/div><\/div><span class="note num">${good}/7 days ›<\/span><\/div>`;
+  $('#goalStrip').innerHTML=`<div class="row" style="justify-content:space-between"><div><span class="eyebrow">eGFR goal ${g.target}${l&&g.target<=l.v?'+ (hold)':''}${l?' · now '+l.v:''}</span><div style="font-weight:700;font-size:14px">${today.n?today.pass+' of 4 on track today':'Log a meal to start today'}${bpLast()?` · BP ${bpLast().s}/${bpLast().di}`:''}</div></div><span class="note num">${good}/7 days ›</span></div>`;
   // Health card
   const hab=(S.habits&&S.habits[todayKey()])||{};
-  $('#goalCard').innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Your goal<\/div><h2>${l&&g.target<=l.v?`Hold eGFR at ${g.target} or higher`:`eGFR ${g.target} by ${fmtLong(g.date)}`}<\/h2><\/div><button id="goalEdit" class="btn sm">Edit<\/button><\/div>
-    <div id="goalForm" hidden><div class="grid2"><label class="f">Target eGFR<input id="g_t" type="number" step="any" inputmode="decimal" value="${g.target}"><\/label><label class="f">By date<input id="g_d" type="date" value="${g.date}"><\/label><\/div><div class="row"><button id="goalSave" class="btn primary sm">Save goal<\/button><\/div><\/div>
-    <div class="grid2 num"><div class="lc"><div class="note" style="font-weight:700">Latest eGFR<\/div><div class="v">${l?l.v:'–'}<\/div><div class="d">${l?fmtD(l.d):'add a lab result'}<\/div><\/div><div class="lc"><div class="note" style="font-weight:700">${gap==null?'To go':gap<0?'Above goal by':gap===0?'Right at goal':'To go'}<\/div><div class="v">${gap==null?'–':gap<0?(-gap):gap===0?'✓':'+'+gap}<\/div><div class="d">${left>0?'recheck within '+left+' days':'date passed'}<\/div><\/div><\/div>
-    <div class="callout">${slope==null?'Add two or more eGFR results to see your trend.':`Your trend over your recorded labs is about ${slope>0?'+':''}${slope.toFixed(1)} eGFR per month. ${gap!=null&&gap>0&&left>0?`Reaching ${g.target} needs about +${(gap/(left/30.4)).toFixed(1)} per month.`:(gap!=null&&gap<=0&&slope<0?`Holding at ${g.target} means flattening that slope: blood pressure, low acid load, no NSAIDs and your medicines on time.`:'')} A single lab can move 1–2 points on its own, so judge it over two or three draws.`}<\/div>
-    <div><h3 style="margin-bottom:8px">Today's checks<\/h3><div class="col" style="gap:8px">${today.checks.map(c=>`<div class="chk"><span class="m ${today.n?(c[1]?'y':'x'):'o'}">${today.n?(c[1]?'✓':'✕'):'–'}<\/span><span class="grow">${c[0]}<\/span><span class="note num">${today.n?c[2]:''}<\/span><\/div>`).join('')}<label class="chk"><input type="checkbox" id="nsaid" ${hab.nsaid?'checked':''}> <span class="grow">No ibuprofen or naproxen today<\/span><\/label><\/div><\/div>
-    <div><h3 style="margin-bottom:8px">Last 7 days<\/h3><div class="gdots">${wk.map(x=>`<i class="${x.cls}" title="${x.k}: ${x.n?x.pass+' of 4':'nothing logged'}"><\/i>`).join('')}<\/div><div class="note" style="margin-top:6px">${good} of 7 days fully on track. Green = all four checks, amber = three, red = fewer, grey = not logged. Aim for at least 5 of 7.<\/div><\/div>
-    <div class="note">This tracks the things diet and habits can control: acid load, protein, sodium and potassium. Food can't promise an eGFR number. Ask your nephrologist whether a cystatin C test and your BP target fit your goal, and avoid cooked meat the day before a blood draw so creatinine isn't inflated.<\/div>`;
+  $('#goalCard').innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Your goal</div><h2>${l&&g.target<=l.v?`Hold eGFR at ${g.target} or higher`:`eGFR ${g.target} by ${fmtLong(g.date)}`}</h2></div><button id="goalEdit" class="btn sm">Edit</button></div>
+    <div id="goalForm" hidden><div class="grid2"><label class="f">Target eGFR<input id="g_t" type="number" step="any" inputmode="decimal" value="${g.target}"></label><label class="f">By date<input id="g_d" type="date" value="${g.date}"></label></div><div class="row"><button id="goalSave" class="btn primary sm">Save goal</button></div></div>
+    <div class="grid2 num"><div class="lc"><div class="note" style="font-weight:700">Latest eGFR</div><div class="v">${l?l.v:'–'}</div><div class="d">${l?fmtD(l.d):'add a lab result'}</div></div><div class="lc"><div class="note" style="font-weight:700">${gap==null?'To go':gap<0?'Above goal by':gap===0?'Right at goal':'To go'}</div><div class="v">${gap==null?'–':gap<0?(-gap):gap===0?'✓':'+'+gap}</div><div class="d">${left>0?'recheck within '+left+' days':'date passed'}</div></div></div>
+    <div class="callout">${slope==null?'Add two or more eGFR results to see your trend.':`Your trend over your recorded labs is about ${slope>0?'+':''}${slope.toFixed(1)} eGFR per month. ${gap!=null&&gap>0&&left>0?`Reaching ${g.target} needs about +${(gap/(left/30.4)).toFixed(1)} per month.`:(gap!=null&&gap<=0&&slope<0?`Holding at ${g.target} means flattening that slope: blood pressure, low acid load, no NSAIDs and your medicines on time.`:'')} A single lab can move 1–2 points on its own, so judge it over two or three draws.`}</div>
+    <div><h3 style="margin-bottom:8px">Today's checks</h3><div class="col" style="gap:8px">${today.checks.map(c=>`<div class="chk"><span class="m ${today.n?(c[1]?'y':'x'):'o'}">${today.n?(c[1]?'✓':'✕'):'–'}</span><span class="grow">${c[0]}</span><span class="note num">${today.n?c[2]:''}</span></div>`).join('')}<label class="chk"><input type="checkbox" id="nsaid" ${hab.nsaid?'checked':''}> <span class="grow">No ibuprofen or naproxen today</span></label></div></div>
+    <div><h3 style="margin-bottom:8px">Last 7 days</h3><div class="gdots">${wk.map(x=>`<i class="${x.cls}" title="${x.k}: ${x.n?x.pass+' of 4':'nothing logged'}"></i>`).join('')}</div><div class="note" style="margin-top:6px">${good} of 7 days fully on track. Green = all four checks, amber = three, red = fewer, grey = not logged. Aim for at least 5 of 7.</div></div>
+    <div class="note">This tracks the things diet and habits can control: acid load, protein, sodium and potassium. Food can't promise an eGFR number. Ask your nephrologist whether a cystatin C test and your BP target fit your goal, and avoid cooked meat the day before a blood draw so creatinine isn't inflated.</div>`;
 }
 document.addEventListener('click',e=>{const g=e.target.closest('[data-goto]');if(g){e.preventDefault();const b=document.querySelector(`nav.tabs button[data-tab="${g.dataset.goto}"]`);b&&b.click()}});
 $('#goalStrip').addEventListener('click',()=>{const b=document.querySelector('nav.tabs button[data-tab="targets"]');b&&b.click()});
@@ -1313,8 +1584,8 @@ function renderMeds(){
     medTimes(m).forEach((t,i)=>{(slots[t]=slots[t]||[]).push({m,i,on:c>i})})});
   const keys=Object.keys(slots).sort((x,y)=>MORDER.indexOf(x)-MORDER.indexOf(y));
   const nextK=keys.find(k=>slots[k].some(x=>!x.on));
-  $('#medCard').innerHTML=`<summary class="sumrow"><h3 style="margin:0">Medicines<\/h3><span class="note num" style="margin-left:auto">${pg.need?(nextK?`${pg.done} of ${pg.need} · next ${MNAME[nextK]}`:`all ${pg.need} taken ✓`):'none due'}<\/span><\/summary><div class="medbody">`+
-   (keys.length?keys.map(t=>`<div class="mgrp"><span class="mt">${MNAME[t]||t}<\/span><div class="mchips">${slots[t].map(x=>`<button class="mchip ${x.on?'on':''}" data-md="${x.m.id}" data-i="${x.i}" title="${esc(x.m.dose||'')}">${x.on?'✓ ':''}${esc(x.m.name||'Medicine')}<\/button>`).join('')}<\/div><\/div>`).join(''):'<div class="note">No medicines yet. Add them in Health.<\/div>')+`<div class="note"><a href="#" data-goto="targets" style="color:inherit">Edit medicines<\/a><\/div><\/div>`;
+  $('#medCard').innerHTML=`<summary class="sumrow"><h3 style="margin:0">Medicines</h3><span class="note num" style="margin-left:auto">${pg.need?(nextK?`${pg.done} of ${pg.need} · next ${MNAME[nextK]}`:`all ${pg.need} taken ✓`):'none due'}</span></summary><div class="medbody">`+
+   (keys.length?keys.map(t=>`<div class="mgrp"><span class="mt">${MNAME[t]||t}</span><div class="mchips">${slots[t].map(x=>`<button class="mchip ${x.on?'on':''}" data-md="${x.m.id}" data-i="${x.i}" title="${esc(x.m.dose||'')}">${x.on?'✓ ':''}${esc(x.m.name||'Medicine')}</button>`).join('')}</div></div>`).join(''):'<div class="note">No medicines yet. Add them in Health.</div>')+`<div class="note"><a href="#" data-goto="targets" style="color:inherit">Edit medicines</a></div></div>`;
 }
 function renderMedCfg(){
   S.meds.forEach(m=>{if(!Array.isArray(m.slots)||m.slots.some(x=>!MNAME[x])){m.slots=MDEF[m.id]?MDEF[m.id].slice():(Array.isArray(m.times)?m.times.map(slotFromTime):['bf']);save()}});
@@ -1322,13 +1593,13 @@ function renderMedCfg(){
   if((S.medv||0)<2){S.medv=2;const v=S.meds.find(m=>m.id==='m6');if(v&&Array.isArray(v.slots)&&v.slots.length===1&&v.slots[0]==='lunch')v.slots=['bf'];save()}
   S.meds.forEach(m=>{if(m.id==='m8'&&!m.monthly){m.monthly=true;m.every=1;m.per=1;if(!m.next)m.next='2026-11-10';save()}});
   S.meds.forEach(m=>{if(m.id==='m2'&&m.dose==='650 mg × 4 tablets a day'&&m.per===1){m.dose='650 mg × 2 tablets each time';m.per=2;save()}});
-  $('#medCfg').innerHTML=`<summary><h2>Your medicines<\/h2><\/summary><div class="row" style="justify-content:flex-end"><button id="medAdd" class="btn sm">Add medicine<\/button><\/div>
-   <div class="note">Fill in what you take, as prescribed. This only tracks whether you took it. Don't change or stop anything without your doctor, and ask your nephrologist about any medicine from another doctor.<\/div>
-   ${S.meds.map(m=>`<div class="medit"><label class="f">Name<input data-mf="name" data-id="${m.id}" value="${esc(m.name)}"><\/label><label class="f">Dose / notes<input data-mf="dose" data-id="${m.id}" value="${esc(m.dose)}" placeholder="e.g. 5 mg"><\/label><label class="f">Times a day<select data-mf="per" data-id="${m.id}">${[1,2,3,4].map(n=>`<option ${m.per===n&&m.every<=1?'selected':''} value="${n}">${n}<\/option>`).join('')}<\/select><\/label>${medTimes(m).map((t,i)=>`<label class="f">${m.monthly||m.every>1?'Taken at':'Dose '+(i+1)+' at'}<select data-mf="slot" data-i="${i}" data-id="${m.id}">${MSLOTS.map(([k,n])=>`<option value="${k}" ${k===t?'selected':''}>${n}<\/option>`).join('')}<\/select><\/label>`).join('')}${m.monthly?`<label class="f">Next dose (repeats monthly)<input data-mf="next" data-id="${m.id}" type="date" value="${m.next||''}"><\/label>`:`<label class="f">Every how many days<input data-mf="every" data-id="${m.id}" type="number" min="1" inputmode="numeric" value="${m.every||1}"><\/label>`}<button class="btn sm ghost" data-mdel="${m.id}" style="grid-column:1 / -1;color:var(--avoid)">Remove ${esc(m.name||'medicine')}<\/button><\/div>`).join('')}`;
+  $('#medCfg').innerHTML=`<summary><h2>Your medicines</h2></summary><div class="row" style="justify-content:flex-end"><button id="medAdd" class="btn sm">Add medicine</button></div>
+   <div class="note">Fill in what you take, as prescribed. This only tracks whether you took it. Don't change or stop anything without your doctor, and ask your nephrologist about any medicine from another doctor.</div>
+   ${S.meds.map(m=>`<div class="medit"><label class="f">Name<input data-mf="name" data-id="${m.id}" value="${esc(m.name)}"></label><label class="f">Dose / notes<input data-mf="dose" data-id="${m.id}" value="${esc(m.dose)}" placeholder="e.g. 5 mg"></label><label class="f">Times a day<select data-mf="per" data-id="${m.id}">${[1,2,3,4].map(n=>`<option ${m.per===n&&m.every<=1?'selected':''} value="${n}">${n}</option>`).join('')}</select></label>${medTimes(m).map((t,i)=>`<label class="f">${m.monthly||m.every>1?'Taken at':'Dose '+(i+1)+' at'}<select data-mf="slot" data-i="${i}" data-id="${m.id}">${MSLOTS.map(([k,n])=>`<option value="${k}" ${k===t?'selected':''}>${n}</option>`).join('')}</select></label>`).join('')}${m.monthly?`<label class="f">Next dose (repeats monthly)<input data-mf="next" data-id="${m.id}" type="date" value="${m.next||''}"></label>`:`<label class="f">Every how many days<input data-mf="every" data-id="${m.id}" type="number" min="1" inputmode="numeric" value="${m.every||1}"></label>`}<button class="btn sm ghost" data-mdel="${m.id}" style="grid-column:1 / -1;color:var(--avoid)">Remove ${esc(m.name||'medicine')}</button></div>`).join('')}`;
 }
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-md]');
-  if(b){const id=b.dataset.md,i=+b.dataset.i,L=S.medlog[todayKey()]=S.medlog[todayKey()]||{},c=L[id]||0;L[id]=(i>=c)?i+1:i;if(!L[id])delete L[id];
+  if(b){const id=b.dataset.md,i=+b.dataset.i,L=S.medlog[todayKey()]=S.medlog[todayKey()]||{},c=L[id]||0;L[id]=(i>=c)?i+1:i;if(!L[id])delete L[id];try{renderToday()}catch(_){}
     const mm=S.meds.find(x=>x.id===id);if(mm&&mm.monthly){if(L[id]){mm.prev=mm.next;mm.next=addMonth(todayKey())}else if(mm.prev){mm.next=mm.prev}}
     save();renderMeds();renderMedCfg();return}
   const dl=e.target.closest('[data-mdel]');
@@ -1346,22 +1617,22 @@ function bpLast(){const a=bpSorted();return a.length?a[a.length-1]:null}
 function bpChart(a){if(a.length<2)return'';const W=300,H=90,P=8,all=a.flatMap(r=>[r.s,r.di]).concat([S.bpT.s,S.bpT.d]),lo=Math.min(...all)-8,hi=Math.max(...all)+8,y=v=>H-P-(v-lo)/(hi-lo)*(H-2*P),x=i=>P+i*(W-2*P)/(a.length-1);
   const line=(k,c)=>`<polyline points="${a.map((r,i)=>x(i)+','+y(r[k])).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round"/>`;
   const tl=(v)=>`<line x1="0" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".6"/>`;
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:90px" aria-label="Blood pressure trend">${tl(S.bpT.s)}${tl(S.bpT.d)}${line('s','var(--accent)')}${line('di','var(--muted)')}<\/svg>`}
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:90px" aria-label="Blood pressure trend">${tl(S.bpT.s)}${tl(S.bpT.d)}${line('s','var(--accent)')}${line('di','var(--muted)')}</svg>`}
 function renderBP(){
   const all=bpSorted(),cut=shift(todayKey(),-6),wk=all.filter(r=>r.d>=cut),avg=k=>wk.length?Math.round(wk.reduce((a,r)=>a+r[k],0)/wk.length):null,as=avg('s'),ad=avg('di'),T=S.bpT,last=all[all.length-1];
   let cls='n',msg='Log a reading to see your 7-day average.';
   if(wk.length){if(as>=140||ad>=90){cls='a';msg=`Average ${as}/${ad} is high. Tell your nephrologist or family doctor this week.`}else if(as>T.s||ad>T.d){cls='l';msg=`Average ${as}/${ad} is a little above your ${T.s}/${T.d} target.`}else if(as<100){cls='l';msg=`Average ${as}/${ad} is low. If you feel dizzy or faint, call your doctor.`}else{cls='s';msg=`Average ${as}/${ad} is at or under your ${T.s}/${T.d} target.`}}
-  let alertTxt='';if(last&&(last.s>=180||last.di>=120))alertTxt=`<div class="alert a"><b>${last.s}/${last.di} is very high.<\/b> Rest 5 minutes and recheck. If it's still this high, call your doctor today. With chest pain, trouble breathing, vision change, weakness or confusion, call emergency services.<\/div>`;
-  else if(last&&last.s<90)alertTxt=`<div class="alert l"><b>${last.s}/${last.di} is low.<\/b> Sit or lie down. If you feel faint or dizzy, call your doctor.<\/div>`;
-  $('#bpCard').innerHTML=`<div><div class="eyebrow">Blood pressure<\/div><h2>${as!=null?`${as}/${ad} · 7-day average`:'Your readings'}<\/h2><\/div>${alertTxt}
-   <div class="callout">${msg}<\/div>${bpChart(all.slice(-14))}${all.length>1?'<div class="note">Solid line: top number. Grey line: bottom number. Dashed: your target.<\/div>':''}
-   <div class="grid2"><label class="f">Top number<input id="bp_s" type="number" inputmode="numeric" placeholder="120"><\/label><label class="f">Bottom number<input id="bp_d" type="number" inputmode="numeric" placeholder="80"><\/label><\/div>
-   <div class="row"><button id="bpAdd" class="btn primary sm">Add reading<\/button><span id="bpMsg" class="note"><\/span><\/div>
-   ${all.length?`<details class="hist"><summary>Recent readings<\/summary><div class="col" style="gap:6px;padding-top:8px">${all.slice(-8).reverse().map(r=>`<div class="row" style="justify-content:space-between"><span class="num">${r.s}/${r.di}<\/span><span class="note">${fmtD(r.d)}${r.t?' · '+fmtTimeShort(r.t):''}<\/span><button class="btn sm ghost" data-bpdel="${r.d}|${r.t||''}|${r.s}|${r.di}">Delete<\/button><\/div>`).join('')}<\/div><\/details>`:''}
-   <details class="hist"><summary>Target and how to measure<\/summary><div class="col" style="gap:8px;padding-top:8px"><div class="grid2"><label class="f">Target top<input id="bpT_s" type="number" inputmode="numeric" value="${T.s}"><\/label><label class="f">Target bottom<input id="bpT_d" type="number" inputmode="numeric" value="${T.d}"><\/label><\/div><button id="bpTSave" class="btn sm" style="align-self:flex-start">Save target<\/button>
-   <div class="note">130/80 is a common goal in CKD, and some guidelines aim lower if you tolerate it. Ask your nephrologist for your own number.<\/div>
-   <ul class="plain"><li>Sit quietly 5 minutes, back supported, feet flat, arm resting at heart level.<\/li><li>No caffeine or exercise for 30 minutes before.<\/li><li>Take two readings a minute apart, morning and evening. Log both.<\/li><li>Morning readings are best before your morning medicines.<\/li><\/ul><\/div><\/details>
-   <details class="hist"><summary>Questions for your nephrologist<\/summary><ul class="plain" style="padding-top:8px"><li>What BP target do you want for me?<\/li><li>I have a lot of protein in my urine. Is a kidney-protecting BP medicine such as an ACE inhibitor or ARB right for me, given my potassium?<\/li><li>Is my amlodipine dose right, and who adjusts it, you or my family doctor?<\/li><li>Should I take my own readings at home and send them to you?<\/li><\/ul><\/details>`;
+  let alertTxt='';if(last&&(last.s>=180||last.di>=120))alertTxt=`<div class="alert a"><b>${last.s}/${last.di} is very high.</b> Rest 5 minutes and recheck. If it's still this high, call your doctor today. With chest pain, trouble breathing, vision change, weakness or confusion, call emergency services.</div>`;
+  else if(last&&last.s<90)alertTxt=`<div class="alert l"><b>${last.s}/${last.di} is low.</b> Sit or lie down. If you feel faint or dizzy, call your doctor.</div>`;
+  $('#bpCard').innerHTML=`<div><div class="eyebrow">Blood pressure</div><h2>${as!=null?`${as}/${ad} · 7-day average`:'Your readings'}</h2></div>${alertTxt}
+   <div class="callout">${msg}</div>${bpChart(all.slice(-14))}${all.length>1?'<div class="note">Solid line: top number. Grey line: bottom number. Dashed: your target.</div>':''}
+   <div class="grid2"><label class="f">Top number<input id="bp_s" type="number" inputmode="numeric" placeholder="120"></label><label class="f">Bottom number<input id="bp_d" type="number" inputmode="numeric" placeholder="80"></label></div>
+   <div class="row"><button id="bpAdd" class="btn primary sm">Add reading</button><span id="bpMsg" class="note"></span></div>
+   ${all.length?`<details class="hist"><summary>Recent readings</summary><div class="col" style="gap:6px;padding-top:8px">${all.slice(-8).reverse().map(r=>`<div class="row" style="justify-content:space-between"><span class="num">${r.s}/${r.di}</span><span class="note">${fmtD(r.d)}${r.t?' · '+fmtTimeShort(r.t):''}</span><button class="btn sm ghost" data-bpdel="${r.d}|${r.t||''}|${r.s}|${r.di}">Delete</button></div>`).join('')}</div></details>`:''}
+   <details class="hist"><summary>Target and how to measure</summary><div class="col" style="gap:8px;padding-top:8px"><div class="grid2"><label class="f">Target top<input id="bpT_s" type="number" inputmode="numeric" value="${T.s}"></label><label class="f">Target bottom<input id="bpT_d" type="number" inputmode="numeric" value="${T.d}"></label></div><button id="bpTSave" class="btn sm" style="align-self:flex-start">Save target</button>
+   <div class="note">130/80 is a common goal in CKD, and some guidelines aim lower if you tolerate it. Ask your nephrologist for your own number.</div>
+   <ul class="plain"><li>Sit quietly 5 minutes, back supported, feet flat, arm resting at heart level.</li><li>No caffeine or exercise for 30 minutes before.</li><li>Take two readings a minute apart, morning and evening. Log both.</li><li>Morning readings are best before your morning medicines.</li></ul></div></details>
+   <details class="hist"><summary>Questions for your nephrologist</summary><ul class="plain" style="padding-top:8px"><li>What BP target do you want for me?</li><li>I have a lot of protein in my urine. Is a kidney-protecting BP medicine such as an ACE inhibitor or ARB right for me, given my potassium?</li><li>Is my amlodipine dose right, and who adjusts it, you or my family doctor?</li><li>Should I take my own readings at home and send them to you?</li></ul></details>`;
 }
 function fmtTimeShort(t){const [h,m]=t.split(':').map(Number);return `${(h%12)||12}:${String(m).padStart(2,'0')} ${h<12?'AM':'PM'}`}
 document.addEventListener('click',e=>{
@@ -1378,40 +1649,40 @@ function renderQuick(){
   const y=(S.log[shift(todayKey(),-1)]||[]);const seen=new Set(S.favs.map(f=>f.name));
   const yest=y.filter(e=>!seen.has(e.name));
   $('#quickWrap').hidden=!(S.favs.length||yest.length);
-  $('#quick').innerHTML=S.favs.map((f,i)=>`<button class="chip-btn" data-qf="${i}">★ ${esc(f.name)}<\/button>`).join('')+yest.map(e=>`<button class="chip-btn" data-qy="${y.indexOf(e)}"><span class="y">Yesterday ·<\/span> ${esc(e.name)}<\/button>`).join('');
+  $('#quick').innerHTML=S.favs.map((f,i)=>`<button class="chip-btn" data-qf="${i}">★ ${esc(f.name)}</button>`).join('')+yest.map(e=>`<button class="chip-btn" data-qy="${y.indexOf(e)}"><span class="y">Yesterday ·</span> ${esc(e.name)}</button>`).join('');
 }
 $('#quick').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   const src=b.dataset.qf!=null?S.favs[+b.dataset.qf]:(S.log[shift(todayKey(),-1)]||[])[+b.dataset.qy];if(!src)return;
-  draft={name:src.name,slot:slotNow(),items:src.items.map(it=>({...it})),advice:'',verdict:'',unknown:[],touched:true};renderDraft();
+  openLogger(MSLOT(slotNow()),true);draft={name:src.name,slot:curSlot(),items:src.items.map(it=>({...it})),advice:'',verdict:'',unknown:[],touched:true};renderDraft();
   try{$('#draft').scrollIntoView({behavior:'smooth',block:'center'})}catch(_){}});
 
 // ---------- Report for the doctor ----------
 let DL=null;
-function reportData(n){const end=todayKey();const days=[];for(let i=n-1;i>=0;i--){const d=shift(end,-i);const L=S.log[d]||[];const t=eatenTotals(d);days.push({d,L,t,naAll:t.na+(L.length?S.t.med:0)})}return days}
+function reportData(n){const end=todayKey();const days=[];for(let i=n-1;i>=0;i--){const d=shift(end,-i);const L=S.log[d]||[];const t=eatenTotals(d);days.push({d,L,t,naAll:t.na+medNa(d)})}return days}
 function buildReportHTML(n){
   const T=S.t, days=reportData(n), logged=days.filter(x=>x.L.length);
   const avg=k=>logged.length?logged.reduce((a,x)=>a+(k==='na'?x.naAll:x.t[k]),0)/logged.length:0;
   const over=k=>logged.filter(x=>(k==='na'?x.naAll:x.t[k])>T[k]).length;
-  const cell=(v,t,min)=>`<td class="${min?(v<t*0.9?'o':''):(v>t?'o':'')}">${Math.round(v).toLocaleString()}<\/td>`;
+  const cell=(v,t,min)=>`<td class="${min?(v<t*0.9?'o':''):(v>t?'o':'')}">${Math.round(v).toLocaleString()}</td>`;
   const labs=labsSorted().reverse();
-  return `<!doctype html><html><head><meta charset="utf-8"><title>Mindful Bites report<\/title><style>
+  return `<!doctype html><html><head><meta charset="utf-8"><title>Mindful Bites report</title><style>
 body{font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif;color:#13201E;max-width:900px;margin:24px auto;padding:0 16px}
 h1{font:400 30px Georgia,serif;margin:0}h2{font:400 21px Georgia,serif;margin:28px 0 8px;border-bottom:1px solid #ccd;padding-bottom:4px}
 .m{color:#56645F}table{border-collapse:collapse;width:100%;font-size:12.5px}th,td{padding:5px 6px;border-bottom:1px solid #e3e6e5;text-align:right}th:first-child,td:first-child{text-align:left}
 td.o{color:#B3261E;font-weight:700}.box{display:flex;gap:10px;flex-wrap:wrap}.box div{border:1px solid #d3dcd8;border-radius:10px;padding:8px 12px}
-.meal{margin:6px 0 10px}.meal b{display:block}.it{color:#56645F;font-size:12.5px}@media print{h2{break-after:avoid}}<\/style><\/head><body>
-<h1>Mindful Bites · food and lab report<\/h1>
-<p class="m">${fmtD(days[0].d)} – ${fmtD(days[days.length-1].d)} ${days[days.length-1].d.slice(0,4)} · ${logged.length} of ${n} days logged · generated ${new Date().toLocaleString()}<\/p>
-<p class="m">CKD stage 5, not on dialysis. Food values are approximate estimates (Indian food composition data; photo estimates by AI). Sodium totals include ${T.med} mg/day from sodium bicarbonate tablets.<\/p>
-<h2>Daily average vs targets (logged days)<\/h2>
-<div class="box">${[['k','Potassium','mg'],['p','Phosphorus','mg'],['na','Sodium','mg'],['pr','Protein','g'],['kcal','Calories','kcal']].map(([k,n2,u])=>`<div><div class="m">${n2}<\/div><b>${Math.round(avg(k)).toLocaleString()} ${u}<\/b> <span class="m">/ ${k==='kcal'?'≥':''}${T[k].toLocaleString()}<\/span>${k!=='kcal'?`<div class="m">${over(k)} day(s) over<\/div>`:''}<\/div>`).join('')}<\/div>
-<h2>Day by day<\/h2><table><tr><th>Date<\/th><th>Meals<\/th><th>K mg<\/th><th>P mg<\/th><th>Na mg<\/th><th>Protein g<\/th><th>kcal<\/th><\/tr>
-${days.map(x=>x.L.length?`<tr><td>${fmtD(x.d)}<\/td><td>${x.L.length}<\/td>${cell(x.t.k,T.k)}${cell(x.t.p,T.p)}${cell(x.naAll,T.na)}${cell(x.t.pr,T.pr)}${cell(x.t.kcal,T.kcal,true)}<\/tr>`:`<tr><td>${fmtD(x.d)}<\/td><td colspan="6" class="m" style="text-align:left">not logged<\/td><\/tr>`).join('')}<\/table>
-<h2>Lab results<\/h2><table><tr><th>Date<\/th>${MARKERS.map(m=>`<th>${m[1]}<\/th>`).join('')}<\/tr>${labs.map(r=>`<tr><td>${r.d}<\/td>${MARKERS.map(([k])=>`<td class="${typeof r[k]==='number'&&isOut(k,r[k])?'o':''}">${r[k]??''}<\/td>`).join('')}<\/tr>`).join('')}<\/table>
-<p class="m">Units: ${MARKERS.map(m=>`${m[1]} ${m[2]}`).join(' · ')}<\/p>
-<h2>Meals logged<\/h2>
-${logged.map(x=>`<h3 style="margin:14px 0 4px">${fmtD(x.d)}<\/h3>`+[...x.L].sort((a,b)=>String(a.t).localeCompare(String(b.t))).map(en=>{const st=sumItems(en.items);return `<div class="meal"><b>${en.t?new Date(en.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})+' · ':''}${esc(en.name)}<\/b><div class="it">${en.items.map(it=>{const f=getF(it);return f?`${esc(f.name)} (${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)})`:''}).join('; ')}<\/div><div class="it">K ${Math.round(st.k)} · P ${Math.round(st.p)} · Na ${Math.round(st.na)} mg · ${st.pr.toFixed(1)} g protein · ${Math.round(st.kcal)} kcal<\/div><\/div>`}).join('')).join('')||'<p class="m">No meals logged in this period.<\/p>'}
-<\/body><\/html>`;
+.meal{margin:6px 0 10px}.meal b{display:block}.it{color:#56645F;font-size:12.5px}@media print{h2{break-after:avoid}}</style></head><body>
+<h1>Mindful Bites · food and lab report</h1>
+<p class="m">${fmtD(days[0].d)} – ${fmtD(days[days.length-1].d)} ${days[days.length-1].d.slice(0,4)} · ${logged.length} of ${n} days logged · generated ${new Date().toLocaleString()}</p>
+<p class="m">CKD stage 5, not on dialysis. Food values are approximate estimates (Indian food composition data; photo estimates by AI). Sodium totals include ${T.med} mg/day from sodium bicarbonate tablets.</p>
+<h2>Daily average vs targets (logged days)</h2>
+<div class="box">${[['k','Potassium','mg'],['p','Phosphorus','mg'],['na','Sodium','mg'],['pr','Protein','g'],['kcal','Calories','kcal']].map(([k,n2,u])=>`<div><div class="m">${n2}</div><b>${Math.round(avg(k)).toLocaleString()} ${u}</b> <span class="m">/ ${k==='kcal'?'≥':''}${T[k].toLocaleString()}</span>${k!=='kcal'?`<div class="m">${over(k)} day(s) over</div>`:''}</div>`).join('')}</div>
+<h2>Day by day</h2><table><tr><th>Date</th><th>Meals</th><th>K mg</th><th>P mg</th><th>Na mg</th><th>Protein g</th><th>kcal</th></tr>
+${days.map(x=>x.L.length?`<tr><td>${fmtD(x.d)}</td><td>${x.L.length}</td>${cell(x.t.k,T.k)}${cell(x.t.p,T.p)}${cell(x.naAll,T.na)}${cell(x.t.pr,T.pr)}${cell(x.t.kcal,T.kcal,true)}</tr>`:`<tr><td>${fmtD(x.d)}</td><td colspan="6" class="m" style="text-align:left">not logged</td></tr>`).join('')}</table>
+<h2>Lab results</h2><table><tr><th>Date</th>${MARKERS.map(m=>`<th>${m[1]}</th>`).join('')}</tr>${labs.map(r=>`<tr><td>${r.d}</td>${MARKERS.map(([k])=>`<td class="${typeof r[k]==='number'&&isOut(k,r[k])?'o':''}">${r[k]??''}</td>`).join('')}</tr>`).join('')}</table>
+<p class="m">Units: ${MARKERS.map(m=>`${m[1]} ${m[2]}`).join(' · ')}</p>
+<h2>Meals logged</h2>
+${logged.map(x=>`<h3 style="margin:14px 0 4px">${fmtD(x.d)}</h3>`+[...x.L].sort((a,b)=>String(a.t).localeCompare(String(b.t))).map(en=>{const st=sumItems(en.items);return `<div class="meal"><b>${en.t?new Date(en.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})+' · ':''}${esc(en.name)}</b><div class="it">${en.items.map(it=>{const f=getF(it);return f?`${esc(f.name)} (${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)})`:''}).join('; ')}</div><div class="it">K ${Math.round(st.k)} · P ${Math.round(st.p)} · Na ${Math.round(st.na)} mg · ${st.pr.toFixed(1)} g protein · ${Math.round(st.kcal)} kcal</div></div>`}).join('')).join('')||'<p class="m">No meals logged in this period.</p>'}
+</body></html>`;
 }
 function buildCSV(n){const q=v=>`"${String(v??'').replace(/"/g,'""')}"`;const rows=[['date','time','meal_slot','meal_name','food','portion','servings','potassium_mg','phosphorus_mg','sodium_mg','protein_g','kcal']];
   reportData(n).forEach(x=>x.L.forEach(en=>en.items.forEach(it=>{const f=getF(it);if(!f)return;rows.push([x.d,en.t?new Date(en.t).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'',SLOTNAME[en.slot]||'',en.name,f.name,f.serving,it.q,Math.round(f.k*it.q),Math.round(f.p*it.q),Math.round(f.na*it.q),(f.pr*it.q).toFixed(1),Math.round(f.kcal*it.q)])})));
