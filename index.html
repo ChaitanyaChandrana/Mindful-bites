@@ -7,8 +7,8 @@
 [hidden]{display:none!important}
 /* Layout: a deep curry-leaf header band, then one narrow column; the day is drawn as a thali of concentric rings; fixed bottom tabs */
 :root{
-  --bg:#FBF5EE; --surface:#FFFFFF; --sunk:#F3EBE0; --fg:#1F2A2E; --muted:#66706F; --line:#EBE1D4;
-  --band:#DCD8F4; --band-fg:#25233F; --band-muted:#5E5A88;
+  --bg:#F3F8FD; --surface:#FFFFFF; --sunk:#E8F0F9; --fg:#1E2A38; --muted:#5F6D7E; --line:#DDE7F2;
+  --band:#D5E5FA; --band-fg:#1E2A38; --band-muted:#566A85;
   --accent:#2F7F6E; --accent-fg:#FFFFFF;
   --r-k:#C9708F; --r-p:#4FA9A4; --r-na:#6F90DC; --r-pr:#E0A24F;
   --safe:#2E8B62; --safe-bg:#DDF3E8; --limit:#8A6410; --limit-bg:#FBF0CF; --avoid:#B6443E; --avoid-bg:#FCE4E1;
@@ -277,8 +277,8 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
 @media (prefers-reduced-motion:no-preference){.fill,.ring{transition:stroke-dasharray .4s ease,width .3s ease}}
 
 /* v57: compact top, 4x2 markers, meal rows */
-:root:not([data-theme="dark"]) .quest{background:linear-gradient(160deg,#fff 30%,#FCE8DA 230%)}
-:root:not([data-theme="dark"]) .meals{background:linear-gradient(180deg,#fff,#F4F1FC 260%)}
+:root:not([data-theme="dark"]) .quest{background:linear-gradient(160deg,#fff 30%,#E3ECFC 230%)}
+:root:not([data-theme="dark"]) .meals{background:linear-gradient(180deg,#fff,#EAF7F1 260%)}
 .quest{padding:14px 16px;gap:10px}
 .qs{display:grid;grid-template-columns:44px 1fr 1fr 1fr;gap:10px;align-items:center}
 .qs .qplant{width:44px;height:52px}
@@ -288,7 +288,10 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
 .qu{font-size:11.5px;color:var(--muted)}
 .quest .qdots{margin-top:0;gap:5px}.quest .qdots i{flex:1;width:auto;height:6px}
 .qmis{font-size:13.5px;line-height:1.35}.qmis .qmk{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:6px}
-.qchips{gap:5px}.qmore{border-top:1px solid var(--line);padding-top:8px}.qmore>summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--muted);list-style:none}.qmore>summary::-webkit-details-marker{display:none}
+.qchips{gap:5px}.qchips.three{grid-template-columns:repeat(3,1fr)}.qgrp{display:flex;flex-direction:column;gap:5px}.qgl{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:pointer}.qchip small{display:block;font-weight:600;font-size:10.5px;opacity:.8}
+.qcoach{font-size:14px;font-weight:600;line-height:1.4;background:var(--sunk);border-radius:12px;padding:10px 12px}.qtip{font-size:12px}
+.qbadges{display:flex;gap:6px;flex-wrap:wrap}.qbadge{border-radius:99px;background:var(--sunk);color:var(--muted);padding:4px 10px;font-weight:700;font-size:13px}.qbadge small{font-size:10px;margin-left:3px;font-weight:600}.qbadge.on{background:var(--limit-bg);color:var(--limit)}.qmore{border-top:1px solid var(--line);padding-top:8px}.qmore>summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--muted);list-style:none}.qmore>summary::-webkit-details-marker{display:none}
 .qmore[open]>summary{margin-bottom:10px}.qmore>*+*{margin-top:10px}
 .kpcard{padding:14px;gap:10px}
 .mkl{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
@@ -313,6 +316,16 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
 .mcn{font-size:11.5px;font-weight:700;color:var(--muted)}
 .mcb{display:flex;height:12px;border-radius:99px;background:var(--sunk);overflow:hidden;gap:1px}
 .mcb.over{box-shadow:0 0 0 1.5px var(--avoid)}
+.mcb.dv{position:relative;gap:0;background:linear-gradient(90deg,var(--safe-bg) 50%,var(--avoid-bg) 50%)}
+.dh{position:absolute;top:0;bottom:0;display:flex;gap:1px}.dh.l{right:50%;flex-direction:row-reverse}.dh.r{left:50%}
+.dh .mseg{min-width:2px}
+.dz{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--fg);opacity:.55;z-index:2}
+.flbar{position:relative;height:12px;border-radius:99px;background:var(--sunk);overflow:hidden}.flbar i{display:block;height:100%;border-radius:99px;background:var(--r-na)}.flbar i.s{background:var(--safe)}.flbar i.a{background:var(--avoid)}.flbar u{position:absolute;top:0;bottom:0;width:2px;background:var(--fg);opacity:.5}.flbar u.mx{background:var(--avoid);opacity:.8}
+#fluidCard{gap:10px}.flk{display:flex;gap:6px;flex-wrap:wrap}.flkb{border:0;border-radius:99px;background:var(--sunk);color:var(--muted);font:inherit;font-size:12px;font-weight:700;padding:6px 10px;cursor:pointer}.flkb.on{background:var(--accent);color:var(--accent-fg)}
+.flrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.flrow input{width:84px;min-width:0}
+.evid table{border-collapse:collapse;width:100%;font-size:12.5px}.evid td,.evid th{padding:5px 6px;border-bottom:1px solid var(--line);text-align:left}.evid th{color:var(--muted);font-weight:700}
+.evid{display:flex;flex-direction:column;gap:6px}.evid h3{margin:10px 0 2px;font-size:15px}.evid ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.45}
+.dlim{position:absolute;top:1px;bottom:1px;width:0;border-left:2px dotted var(--avoid);z-index:2}
 .mseg{display:block;height:100%;flex:none;cursor:pointer}.mseg.dim{opacity:.4}.mseg.base{background:color-mix(in srgb,var(--fg) 25%,transparent);cursor:default}
 .mcv{font-size:12px;font-weight:700;min-width:78px;text-align:right;white-space:nowrap}.mcv small{font-weight:500;color:var(--muted);font-size:10.5px}.mcv.bad{color:var(--avoid)}
 .mcnote{margin-top:2px;font-size:11px}
@@ -353,6 +366,7 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div class="mpanel"><div class="mh"><div class="mt"><b class="mtitle"></b><span class="ms"></span></div></div><div class="macts mh"><button class="btn mcam" data-mact="cam" aria-label="Take a photo of this meal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Photo</span></button><button class="btn primary madd" data-mact="add">Check meal</button></div><div class="ml"></div><div class="mm"></div></div>
     </div>
     <div class="card" id="kpBlocks"></div>
+    <div class="card" id="fluidCard"></div>
     <div id="lfiles" hidden>
         <input id="lpick" class="hidden-file" type="file" accept="image/*" multiple>
         <input id="lcam" class="hidden-file" type="file" accept="image/*" capture="environment">
@@ -457,6 +471,61 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div class="note">Shaded band = normal range. Red = outside it.</div>
       <details class="hist"><summary>All results</summary><div class="tbl" id="labTable"></div></details>
     </div>
+    <details class="card fold" id="evid">
+      <summary><h2>Why it matters</h2></summary>
+      <div class="evid">
+        <h3>Your eight daily checks, and why</h3>
+        <ul>
+          <li><b>Potassium and phosphorus within your limits.</b> Both build up when kidney function is low, and high potassium is the one that can be dangerous. The limits are the ones saved in Health, so your care team can change them.</li>
+          <li><b>Protein within your range.</b> Lower protein intake in advanced kidney disease reduces waste build-up and phosphorus load. Staying too low causes muscle loss, so the app shows a range.</li>
+          <li><b>Sodium within limit.</b> Sodium raises blood pressure and fluid load. The count includes sodium bicarbonate once you tick it.</li>
+          <li><b>Acid load at or below +10.</b> Lower dietary acid is linked to slower kidney decline in observational studies. It is an estimate.</li>
+          <li><b>Medicines taken.</b> Sevelamer only works with meals, and bicarbonate and blood pressure medicines only help if taken.</li>
+          <li><b>Moved 30+ minutes.</b> General guidance for kidney disease is about 150 minutes of moderate activity a week.</li>
+          <li><b>No NSAIDs.</b> Ibuprofen and naproxen can harm kidneys at advanced stages, so guidelines advise avoiding them.</li>
+          <li><b>A good day</b> is 3 meals logged, potassium in range and 6 of 8 checks. This scoring is the app's own design for staying motivated, not a clinical measure, and you get one rest day in any seven so a bad day does not erase your progress.</li>
+        </ul>
+        <h3>Water and fluids</h3>
+        <ul>
+          <li><b>No guideline gives one water number for stage 4–5 without dialysis.</b> The KDIGO 2024 text I could read has none. The National Kidney Foundation says people in stage 4–5 usually need to limit fluids, with a rule of thumb of about as much as the urine you pass. One expert review argues the opposite: enough water to pass 2–3 litres of urine. They disagree, and the answer depends on your urine output, swelling, heart and blood sodium. So the app asks you for the range your nephrologist sets.</li>
+          <li>The biggest trial (CKD WIT, 631 people with stage 3 disease) coached people to drink 1–1.5 litres extra for a year. Kidney decline did not change, and a few people’s sodium dipped low. That was stage 3, not eGFR 13, so it cannot be applied to you directly.</li>
+          <li><b>Too little</b> matters more with Farxiga: its label warns of volume depletion and sudden kidney injury, especially when eGFR is low. <b>Too much</b> can cause swelling and low blood sodium, which is fairly common in advanced kidney disease.</li>
+          <li>Salt makes you thirsty and holds water, and sodium bicarbonate carries sodium. Weighing yourself each morning is the simplest check on extra fluid.</li>
+          <li>Sick-day rule: with vomiting, diarrhoea or fever, UK kidney guidance says to pause medicines such as SGLT2 inhibitors (Farxiga), ACE inhibitors, ARBs, diuretics and NSAIDs until you are eating and drinking normally. Ask your care team first.</li>
+          <li>Exercise: weigh before and after a gym session. Each kilogram lost is roughly one litre of sweat (basic physiology, not a clinical rule). Plain water carries no potassium; coconut water has about 600 mg a cup.</li>
+          <li>Hydration and your blood tests: one small study in healthy women found a glass of water did not change creatinine. I found no study on potassium or phosphate.</li>
+          <table><tr><th>Drink, 1 cup</th><th>K mg</th><th>P mg</th><th>Na mg</th></tr>
+            <tr><td>Water</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>Plain tea</td><td>88</td><td>2</td><td>7</td></tr>
+            <tr><td>Lowfat buttermilk</td><td>370</td><td>218</td><td>257</td></tr>
+            <tr><td>Coconut water</td><td>~600</td><td>–</td><td>–</td></tr>
+            <tr><td>Orange juice (estimate)</td><td>~480</td><td>–</td><td>–</td></tr>
+            <tr><td>Sports drink, 20 oz bottle</td><td>80</td><td>–</td><td>270</td></tr></table>
+          <li>Dark colas and many flavoured drinks contain phosphate additives that are almost fully absorbed. Check the label for “phos”. I could not find values for lassi or milk chai.</li>
+        </ul>
+        <h3>Walking and exercise</h3>
+        <ul>
+          <li>Trials in kidney disease show exercise improves fitness, walking ability, blood pressure and quality of life. KDIGO 2024 suggests about 150 minutes a week of moderate activity as tolerated, with some strength work.</li>
+          <li>A 2019 pooled analysis of 13 trials in people not on dialysis found a small gain in eGFR (about 2.6) and systolic blood pressure about 5.6 mmHg lower. Those people were mostly stage 3 to 4. At your stage there is almost no trial data, so treat walking as protecting your heart, muscles and mood, not as a promise to lift eGFR.</li>
+          <li><b>Creatinine and exercise.</b> Hard exercise temporarily changes creatinine and cystatin C, and creatinine-based eGFR estimates fell roughly 16 to 30% right after very intense sessions in studies. More muscle also means a higher creatinine without kidney damage. Many clinicians suggest a rest day before blood tests (a common habit, not a formal rule). If you lift heavy, ask whether a cystatin C test can sit beside your creatinine.</li>
+          <li>Exercise can nudge potassium up for a short time. With potassium around 5.5, keep sessions moderate, drink as advised, and check with your nephrologist about your gym intensity.</li>
+        </ul>
+        <h3>Sevelamer and phosphorus</h3>
+        <ul>
+          <li>Sevelamer works inside the gut. It binds phosphorus from the meal you eat with it, so it must be taken with food. It does not remove phosphorus already in your blood.</li>
+          <li>No trial reports milligrams bound per tablet. A reasonable estimate is about 40 mg of phosphorus per 800 mg tablet, within a range of roughly 20 to 65. Trials show blood phosphorus falling about 1 to 2 mg/dL on 2.4 to 7.2 g a day.</li>
+          <li>Phosphorus added to packaged food is almost fully absorbed (near 100%), animal foods about 40 to 60%, and plant foods about 20 to 50%. A binder removes a roughly fixed amount, so it cannot cancel a high-phosphorus meal.</li>
+          <li>Skipping the meal usually means skipping the dose. The label spaces some medicines away from it (for example ciprofloxacin, mycophenolate, levothyroxine), so ask your pharmacist about your list. Studies have not shown that binders improve survival before dialysis. They are used to keep blood phosphorus in range.</li>
+        </ul>
+        <h3>Fruit and acid load</h3>
+        <ul>
+          <li>Fruit and vegetables push the acid score below zero mostly because of their potassium. Studies in stage 3 to 4 found a fruit and vegetable diet lowered markers of kidney injury, but those patients started with potassium at or below 4.6.</li>
+          <li>With potassium around 5.5, high-potassium picks such as banana, orange, coconut water, potato, tomato and dried fruit are risky even though they look alkaline. Lower-potassium choices are apple, berries, grapes, pineapple, pear, cabbage and cauliflower.</li>
+          <li>You also take sodium bicarbonate. The lab that matters is your blood bicarbonate, and a more negative score is not always better. Your nephrologist decides on any change.</li>
+        </ul>
+        <div class="note">Estimates only; not medical advice. Sources: Cochrane exercise in CKD review; Zhang et al. 2019, BMC Nephrology; KDIGO 2024 CKD guideline; KDIGO CKD-MBD 2017; Cochrane phosphate binders 2018; Renvela prescribing information; Kidney Int Rep 2020 on acid-load equations; Goraya et al. fruit and vegetable trials; NIDDK potassium handout.</div>
+      </div>
+    </details>
     <details class="card fold" id="medCfg"></details>
     <details class="card fold">
       <summary><h2>Report for your doctor</h2></summary>
@@ -478,6 +547,12 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
         <label class="f">Calories, at least (kcal)<input id="t_kcal" type="number" inputmode="numeric"></label>
         <label class="f">Fiber, at least (g)<input id="t_fi" type="number" inputmode="numeric"></label>
       </div>
+      <div class="note" style="margin-top:4px"><b>Fluids.</b> No guideline gives one water number for stage 4–5 without dialysis. Enter the range your nephrologist gave you (leave blank if none yet).</div>
+      <div class="grid2">
+        <label class="f">Fluid at least (mL a day)<input id="f_min" type="number" inputmode="numeric" placeholder="optional"></label>
+        <label class="f">Fluid at most (mL a day)<input id="f_max" type="number" inputmode="numeric" placeholder="optional"></label>
+        <label class="f">Your 24-hour urine (mL)<input id="f_urine" type="number" inputmode="numeric" placeholder="optional"></label>
+      </div>
       <button id="defaults" class="btn sm" style="align-self:flex-start">Restore plan defaults</button>
     </details>
     <details class="card fold">
@@ -491,7 +566,7 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
       <div class="callout"><b>Never:</b> star fruit, coconut water, low-sodium or "lite" salt (potassium chloride), fruit juice, banana, mango, dry fruits, and packaged food with "phosphate" or E338–E343 / E450–E452 on the label.</div>
       <div class="callout"><b>Double-boil vegetables and dal:</b> cut small, boil in plenty of water, drain, boil again in fresh water, then do the tadka. Pressure-cooking and steaming don't remove potassium. Soaking alone barely does.</div>
     </details>
-    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 62 · Nov 1</div></div>
+    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 67 · Nov 2</div></div>
     <p class="note">For education only, not a prescription. Potassium can change quickly at eGFR 13, so recheck labs as your nephrologist advises. Numbers are approximate Indian food values (IFCT 2017 style).</p>
   </section>
 </main>
@@ -689,7 +764,7 @@ if(!S.favs)S.favs=[];
 if(!S.stamp)S.stamp={};
 
 // ---------- Saving: this device first, then your Claude account when available ----------
-function docsOf(){const o={state:{t:S.t,plan:S.plan,labs:S.labs,favs:S.favs,goal:S.goal,habits:S.habits,meds:S.meds,medlog:S.medlog,bp:S.bp,bpT:S.bpT,rw:S.rw}};Object.keys(S.log).forEach(d=>{o['day-'+d]={entries:S.log[d]}});return o}
+function docsOf(){const o={state:{t:S.t,plan:S.plan,labs:S.labs,favs:S.favs,goal:S.goal,habits:S.habits,meds:S.meds,medlog:S.medlog,bp:S.bp,bpT:S.bpT,rw:S.rw,fluid:S.fluid,fluidT:S.fluidT,wt:S.wt,badges:S.badges}};Object.keys(S.log).forEach(d=>{o['day-'+d]={entries:S.log[d]}});return o}
 const known={}, pushed={};
 Object.entries(docsOf()).forEach(([id,p])=>{known[id]=JSON.stringify(p)});
 let COL=null, syncT=null, syncState='device', lastSync=null;
@@ -725,7 +800,7 @@ async function initSync(){
     let changed=false;
     snap.docs.forEach(ds=>{const r=ds.data();if(!r)return;const id=ds.id;const {updatedAt,...p}=r;const j=JSON.stringify(p);pushed[id]=j;
       if((+updatedAt||0)>(S.stamp[id]||0)){
-        if(id==='state'){if(p.t)S.t=p.t;if(p.plan)S.plan=p.plan;if(p.labs)S.labs=p.labs;if(p.favs)S.favs=p.favs;if(p.goal)S.goal=p.goal;if(p.habits)S.habits=p.habits;if(p.meds)S.meds=p.meds;if(p.medlog)S.medlog=p.medlog;if(p.bp)S.bp=p.bp;if(p.rw)S.rw=p.rw;if(p.bpT)S.bpT=p.bpT}
+        if(id==='state'){if(p.t)S.t=p.t;if(p.plan)S.plan=p.plan;if(p.labs)S.labs=p.labs;if(p.favs)S.favs=p.favs;if(p.goal)S.goal=p.goal;if(p.habits)S.habits=p.habits;if(p.meds)S.meds=p.meds;if(p.medlog)S.medlog=p.medlog;if(p.bp)S.bp=p.bp;if(p.rw)S.rw=p.rw;if(p.bpT)S.bpT=p.bpT;if(p.fluid)S.fluid=p.fluid;if(p.fluidT)S.fluidT=p.fluidT;if(p.wt)S.wt=p.wt;if(p.badges)S.badges=p.badges}
         else if(id.startsWith('day-')&&Array.isArray(p.entries)){S.log[id.slice(4)]=p.entries}
         known[id]=j;S.stamp[id]=+updatedAt;changed=true}});
     COL=col; syncState='ok'; lastSync=new Date();
@@ -805,16 +880,34 @@ function mealEffHTML(items,pral0){const pr=sumPral(items);const crHit=items.some
   return `<div class="note num"><b>Kidney effect:</b> this meal ${pr>0?'adds':'changes'} ${pr>0?'+':''}${pr.toFixed(1)} mEq acid load; the day would reach ${after>0?'+':''}${after.toFixed(0)} of +${PRAL_MAX} (lower is better).${crHit?' It has cooked meat or fish, which can raise your creatinine reading for a few hours. If a blood test is coming, skip it the day before.':''}</div>`}
 function medNa(day){const T=S.t,m=(S.meds||[]).find(x=>x.id==='m2');if(!m)return T.med;const per=Math.max(1,m.per||1),c=Math.min(per,((S.medlog||{})[day]||{})[m.id]||0);return T.med*c/per}
 function dayEffect(k){const L=(S.log[k]||[]);const items=L.flatMap(e=>e.items||[]);const t=sumItems(items);
-  return {n:L.length,pral:sumPral(items),pr:t.pr,k:t.k,na:t.na+medNa(k)}}
+  return {n:L.length,pral:sumPral(items),pr:t.pr,k:t.k,p:t.p,na:t.na+medNa(k)}}
 const PRAL_MAX=10;
-function dayChecks(k){const d=dayEffect(k),T=S.t,h=(S.habits&&S.habits[k])||{};
-  const c=[['Acid load low',d.pral<=PRAL_MAX,`${d.pral>0?'+':''}${d.pral.toFixed(0)} of +${PRAL_MAX} mEq`],['Protein in range',d.pr<=T.pr,`${Math.round(d.pr)} g (aim ${T.prLo??DEFAULT_T.prLo}–${T.pr})`],['Sodium in range',d.na<=T.na,`${Math.round(d.na).toLocaleString()} of ${T.na.toLocaleString()} mg`],['Potassium in range',d.k<=T.k,`${Math.round(d.k).toLocaleString()} of ${T.k.toLocaleString()} mg`]];
-  return {n:d.n,checks:c,pass:c.filter(x=>x[1]).length,nsaid:!!h.nsaid}}
+function medDone(k){
+  if(k===todayKey()){const m=medProgress();return {need:m.need,done:m.done}}
+  const log=(S.medlog||{})[k]||{};let need=0,done=0;
+  (S.meds||[]).forEach(m=>{if(isSched(m)){if(log[m.id]){need+=1;done+=1}return}need+=m.per;done+=Math.min(m.per,log[m.id]||0)});
+  return {need,done}}
+// Eight daily checks: five about food (limits from your own targets) and three about care habits.
+function dayChecks(k){const d=dayEffect(k),T=S.t,h=(S.habits&&S.habits[k])||{},fmt=n=>Math.round(n).toLocaleString();
+  const diet=[
+    {id:'k',name:'Potassium',ok:d.k<=T.k,txt:`${fmt(d.k)} of ${fmt(T.k)} mg`},
+    {id:'p',name:'Phosphorus',ok:d.p<=T.p,txt:`${fmt(d.p)} of ${fmt(T.p)} mg`},
+    {id:'pr',name:'Protein',ok:d.pr<=T.pr,txt:`${Math.round(d.pr)} g (aim ${T.prLo??DEFAULT_T.prLo}–${T.pr})`},
+    {id:'na',name:'Sodium',ok:d.na<=T.na,txt:`${fmt(d.na)} of ${fmt(T.na)} mg`},
+    {id:'acid',name:'Acid load',ok:d.pral<=PRAL_MAX,txt:`${d.pral>0?'+':d.pral<-0.05?'−':''}${Math.abs(d.pral).toFixed(0)} of +${PRAL_MAX} mEq`}];
+  const md=medDone(k);
+  const habits=[
+    {id:'meds',name:'Medicines',ok:md.need>0?md.done>=md.need:true,txt:`${md.done} of ${md.need} taken`,auto:true},
+    {id:'move',name:'Move 30+ min',ok:!!h.move,txt:h.move?'done':'not yet'},
+    {id:'nsaid',name:'No NSAIDs',ok:!!h.nsaid,txt:h.nsaid?'confirmed':'tap to confirm'}];
+  const dpass=diet.filter(x=>x.ok).length,hpass=habits.filter(x=>x.ok).length;
+  const c=diet.map(x=>[x.name,x.ok,x.txt]);
+  return {n:d.n,diet,habits,checks:c,dpass,hpass,pass:dpass,score:(d.n?dpass:0)+hpass,kOk:diet[0].ok,medNeed:md.need}}
 function egfrSlope(){const s=series('egfr');if(s.length<2)return null;const day=d=>Date.parse(d+'T12:00:00')/864e5;const x=s.map(p=>day(p.d)),y=s.map(p=>p.v),n=s.length;const mx=x.reduce((a,b)=>a+b)/n,my=y.reduce((a,b)=>a+b)/n;let nu=0,de=0;for(let i=0;i<n;i++){nu+=(x[i]-mx)*(y[i]-my);de+=(x[i]-mx)**2}return de?nu/de*30.4:null}
 if(!S.goal)S.goal={target:15,date:shift(todayKey(),60)}; if(!S.habits)S.habits={};
 if(!S.meds)S.meds=[{id:'m1',name:'Farxiga',dose:'10 mg',per:1,every:1},{id:'m2',name:'Sodium bicarbonate',dose:'650 mg × 2 tablets each time',per:2,every:1},{id:'m3',name:'Sevelamer',dose:'with meals',per:2,every:1},{id:'m4',name:'Amlodipine',dose:'',per:1,every:1},{id:'m5',name:'Atorvastatin',dose:'40 mg',per:1,every:1},{id:'m6',name:'Vitamin D',dose:'4000 IU',per:1,every:1},{id:'m7',name:'Gabapentin',dose:'100 mg',per:1,every:1},{id:'m8',name:'Ebglyss injection',dose:'',per:1,every:1,monthly:true,next:'2026-11-10'}];
 if(!S.medlog)S.medlog={};
-if(!S.bp)S.bp=[]; if(!S.bpT)S.bpT={s:130,d:80};
+if(!S.bp)S.bp=[]; if(!S.bpT)S.bpT={s:130,d:80}; if(!S.fluid)S.fluid={}; if(!S.fluidT)S.fluidT={min:0,max:0,urine:0}; if(!S.wt)S.wt={}; if(!S.badges)S.badges=[];
 
 // ---------- Helpers ----------
 const $=s=>document.querySelector(s);
@@ -927,6 +1020,7 @@ function mkAdvice(day,add,meals){
       out.push(k.left<T.k*0.15||p.left<T.p*0.15
         ?`It fits, but leaves only ${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus for the rest of today. Keep later meals to Safe foods.`
         :`It fits your limits. You would still have ${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus left for the rest of today.`)}
+    if(add.pral<-1&&!k.over&&k.left<T.k*0.35)out.push('Fruit and vegetables lower acid load, but they carry potassium too. Apple, berries, grapes, pineapple or pear are the lower-potassium picks.');
     if(add.cr===2)out.push('Cooked meat or fish here is likely to raise your creatinine reading for 4–6 hours. If a blood test is coming, skip it the day before.');
     else if(add.cr===1)out.push('This may nudge your creatinine reading for a few hours.');
     return out.join(' ')}
@@ -940,6 +1034,7 @@ function mkAdvice(day,add,meals){
   if(na.over)out.push('Sodium is over, counting your bicarbonate tablets. Skip pickles, papad and packaged food.');
   if(pr>hi)out.push(`Protein is ${fmtOv(pr-hi)} g over your top of ${hi} g. Go lighter on dal, paneer or chicken.`);
   if(acid>PRAL_MAX)out.push(`Acid load is over +${PRAL_MAX} mEq. Go lighter on meat, fish and cheese for the rest of today.`);
+  else if(acid<-1&&k.left<T.k*0.35)out.push('Your acid load is on the base side, helped by fruit and vegetables. They also carry potassium, so favour apple, berries, grapes, pineapple or pear.');
   if(!out.length){
     if(k.left<T.k*0.15||p.left<T.p*0.15)out.push(`Little room left: ${fmtMg(k.left)} mg potassium and ${fmtMg(p.left)} mg phosphorus. Keep to Safe foods like ${SAFE_K}.`);
     else{const rem=Math.max(1,3-meals);
@@ -974,6 +1069,16 @@ function entryHTML(en,ei){let h='';const st=sumItems(en.items);let lv='s';en.ite
 const MCOL={breakfast:'var(--r-k)',mid:'var(--r-p)',lunch:'var(--r-na)',dinner:'var(--r-pr)',snack:'var(--muted)'};
 const MTABS=["breakfast","mid","lunch","dinner","snack"],MTNAME={breakfast:'Breakfast',mid:'Mid-morning',lunch:'Lunch',dinner:'Dinner',snack:'Other meals'};
 let mTab=null;
+function sevInfo(day,P){
+  const m=(S.meds||[]).find(x=>x.id==='m3');if(!m)return null;
+  const per=Math.max(1,m.per||1),c=Math.min(per,((S.medlog||{})[day]||{})[m.id]||0);
+  const tm=/(\d+)\s*(?:tablets?|tabs?|caps?|capsules?)/i.exec(m.dose||''),tabs=tm?+tm[1]:1,n=c*tabs,cap=0.6*P;
+  return {c,n,mid:Math.min(n*40,cap),lo:Math.min(n*20,cap),hi:Math.min(n*65,cap)}}
+function sevNote(day,P){
+  const v=sevInfo(day,P||0);if(!v)return'';
+  const f=x=>Math.round(x/5)*5;
+  return v.n?`<div class="note mcnote mcsev"><b>Sevelamer:</b> ${v.c} dose${v.c>1?'s':''} ticked (${v.n} tablet${v.n>1?'s':''}). It may bind roughly ${f(v.mid)} mg of the phosphorus eaten (rough range ${f(v.lo)}–${f(v.hi)} mg), so the “after binder” line is intake minus that estimate. Your ${S.t.p} mg limit still applies to what you eat.</div>`
+   :`<div class="note mcnote mcsev"><b>Sevelamer:</b> tick it in Medicines with each meal. It binds roughly 40 mg phosphorus per 800 mg tablet (a rough estimate; range 20–65). It does not clear phosphorus already in your blood.</div>`}
 function mealsUI(){
   if(!mTab){const x=MSLOT(slotNow());mTab=x==='snack'?'dinner':x}
   const isToday=viewDay===todayKey(),L=S.log[viewDay]||[],bySlot={};
@@ -988,8 +1093,20 @@ function mealsUI(){
   {const T=S.t,tot={};MTABS.forEach(sl=>tot[sl]=sumItems(arrOf(sl).flatMap(x=>x[0].items||[])));
    MTABS.forEach(sl=>{const its=arrOf(sl).flatMap(x=>x[0].items||[]);tot[sl].pral=sumPral(its);tot[sl].cr=crLevel(its)});
    const fiT=T.fi??DEFAULT_T.fi;
-   const rows=[['Potassium','k',T.k,'mg',0],['Phosphorus','p',T.p,'mg',0],['Sodium','na',T.na,'mg',medNa(viewDay)],['Acid load','pral',PRAL_MAX,'mEq',0],['Creatinine','cr',0,'',0],['Protein','pr',T.pr,'g',0],['Fiber','fi',fiT,'g',0],['Calories','kcal',T.kcal,'kcal',0]];
+   const rows=[['Potassium','k',T.k,'mg',0],['Phosphorus','p',T.p,'mg',0],...((()=>{const P=MTABS.reduce((a,sl)=>a+tot[sl].p,0),v=sevInfo(viewDay,P);return v&&v.n&&P>0?[['After binder','pnet',T.p,'mg',0]]:[]})()),['Sodium','na',T.na,'mg',medNa(viewDay)],['Acid load','pral',PRAL_MAX,'mEq',0],['Creatinine','cr',0,'',0],['Protein','pr',T.pr,'g',0],['Fiber','fi',fiT,'g',0],['Calories','kcal',T.kcal,'kcal',0]];
    $('#mcmp').innerHTML=rows.map(([nm,key,lim,u,base])=>{
+     if(key==='pnet'){
+       const P=MTABS.reduce((a,sl)=>a+tot[sl].p,0),v=sevInfo(viewDay,P),net=P-v.mid,lo=P-v.hi,hi=P-v.lo,sc=Math.max(lim,P);
+       const f=x=>Math.round(x).toLocaleString();
+       return `<div class="mcr"><span class="mcn">After binder</span><div class="mcb"><i class="mseg base" style="width:${lo/sc*100}%;background:var(--r-p)"></i><i class="mseg base" style="width:${(hi-lo)/sc*100}%;background:var(--r-p);opacity:.4" title="range ${f(lo)}–${f(hi)} mg"></i></div><span class="mcv num">≈${f(net)}<small>/${f(lim)}</small></span></div>`}
+     if(key==='pral'){
+       const neg=MTABS.reduce((a,sl)=>a+Math.min(0,tot[sl].pral),0),pos=MTABS.reduce((a,sl)=>a+Math.max(0,tot[sl].pral),0),net=pos+neg;
+       const sc=Math.max(15,Math.ceil(Math.max(-neg,pos)/5)*5);
+       const seg=(sl,v)=>`<i class="mseg ${sl===mTab?'':'dim'}" data-tab="${sl}" style="width:${Math.abs(v)/sc*100}%;background:${MCOL[sl]}" title="${MTNAME[sl]}: ${v>0?'+':'−'}${Math.abs(v).toFixed(1)} mEq"></i>`;
+       const L=MTABS.filter(sl=>tot[sl].pral<-0.05).map(sl=>seg(sl,tot[sl].pral)).join(''),R=MTABS.filter(sl=>tot[sl].pral>0.05).map(sl=>seg(sl,tot[sl].pral)).join('');
+       const bad=net>PRAL_MAX;
+       const val=net<-0.05?`−${Math.abs(net).toFixed(1)}<small> base</small>`:`${net>0.05?'+':''}${net.toFixed(1)}<small>/+${PRAL_MAX}</small>`;
+       return `<div class="mcr"><span class="mcn">Acid load</span><div class="mcb dv${bad?' over':''}"><div class="dh l" style="width:50%">${L}</div><div class="dh r" style="width:50%">${R}</div><i class="dz"></i><i class="dlim" style="left:${50+PRAL_MAX/sc*50}%"></i></div><span class="mcv num${bad?' bad':''}">${val}</span></div>`}
      if(key==='cr'){const mx=Math.max(0,...MTABS.map(sl=>tot[sl].cr));
        const segs=MTABS.map(sl=>tot[sl].cr>0?`<i class="mseg ${sl===mTab?'':'dim'}" data-tab="${sl}" style="width:${100/MTABS.length}%;background:${MCOL[sl]}" title="${MTNAME[sl]}: ${tot[sl].cr===2?'likely raises':'may nudge'} creatinine"></i>`:`<i style="width:${100/MTABS.length}%"></i>`).join('');
        return `<div class="mcr"><span class="mcn">${nm}</span><div class="mcb crb${mx===2?' over':''}">${segs}</div><span class="mcv${mx===2?' bad':''}">${['None','May nudge','Likely raised'][mx]}</span></div>`}
@@ -998,7 +1115,7 @@ function mealsUI(){
        MTABS.filter(sl=>tot[sl][key]>0).map(sl=>`<i class="mseg ${sl===mTab?'':'dim'}" data-tab="${sl}" style="width:${tot[sl][key]/scale*100}%;background:${MCOL[sl]}" title="${MTNAME[sl]}: ${Math.round(tot[sl][key]*10)/10} ${u}"></i>`).join('');
      const fmt=n=>key==='pral'||key==='fi'?(Math.round(n*10)/10).toString():Math.round(n).toLocaleString();
      return `<div class="mcr"><span class="mcn">${nm}</span><div class="mcb${over?' over':''}">${segs}</div><span class="mcv num${over?' bad':''}">${fmt(sum)}<small>/${fmt(lim)}</small></span></div>`}).join('')+
-     `<div class="note mcnote">Each colour is a meal; tap one to open it. Bars fill your daily limit. Grey in Sodium = bicarbonate doses you ticked in Medicines (${fmtMg(medNa(viewDay))} mg so far; each dose adds ${fmtMg(T.med/Math.max(1,((S.meds||[]).find(x=>x.id==='m2')||{}).per||1))} mg). Creatinine can't be measured from food: it flags cooked meat or fish, which can raise the blood-test reading for 3–6 hours.</div>`}
+     `<div class="note mcnote">Each colour is a meal; tap one to open it. Bars fill your daily limit. Acid load runs from base (left, like fruit) through 0 to acid (right, dotted line = +10 limit). Grey in Sodium = bicarbonate doses you ticked in Medicines (${fmtMg(medNa(viewDay))} mg so far; each dose adds ${fmtMg(T.med/Math.max(1,((S.meds||[]).find(x=>x.id==='m2')||{}).per||1))} mg). Creatinine can't be measured from food: it flags cooked meat or fish, which can raise the blood-test reading for 3–6 hours.</div>`+sevNote(viewDay,MTABS.reduce((a,sl)=>a+tot[sl].p,0))}
   const arr=arrOf(mTab),st=sumItems(arr.flatMap(x=>x[0].items||[])),p=$('#mrows .mpanel');
   p.querySelector('.mtitle').textContent=MTNAME[mTab];
   p.querySelector('.ms').textContent=arr.length?`${arr.length} meal${arr.length>1?'s':''} · K ${Math.round(st.k)} · P ${Math.round(st.p)} mg`:(isToday?'Nothing logged yet':'Nothing logged');
@@ -1006,6 +1123,43 @@ function mealsUI(){
   p.querySelectorAll('.macts').forEach(x=>x.hidden=!isToday);
   p.querySelector('.madd').textContent=loggerSlot&&loggerSlot===mTab?'Close':'Check meal';
 }
+// ---------- Fluids ----------
+const FL_KINDS=[['water','Water'],['tea','Tea or coffee'],['milk','Milk or chaas'],['juice','Juice'],['soup','Soup'],['other','Other']];
+let flKind='water';
+function renderFluid(){
+  const el=$('#fluidCard');if(!el)return;
+  const k=viewDay,isToday=k===todayKey(),L=(S.fluid[k]||[]),tot=L.reduce((a,e)=>a+e.ml,0),T=S.fluidT||{},mx=+T.max||0,mn=+T.min||0;
+  const scale=Math.max(mx?mx*1.25:2000,tot*1.05,1),f=n=>Math.round(n).toLocaleString();
+  const over=mx&&tot>mx,inr=(mx||mn)&&tot>=mn&&(!mx||tot<=mx);
+  const cls=over?'a':inr?'s':'l';
+  let msg;
+  if(!mx&&!mn)msg='No target set. It depends on how much urine you make and any swelling, so your nephrologist sets it. Add it in <a href="#" data-goto="targets" style="color:inherit">Health</a>.';
+  else if(over)msg=`Over your limit by ${f(tot-mx)} mL. Use smaller cups and sip slowly. Tell your care team if you feel swollen or short of breath.`;
+  else if(tot<mn)msg=`${f(mn-tot)} mL to reach your minimum${isToday?'':''}.`;
+  else msg=mx?`Within your range, with ${f(mx-tot)} mL of room left.`:'Above your minimum.';
+  const by={};L.forEach(e=>by[e.kind]=(by[e.kind]||0)+e.ml);
+  const brk=Object.keys(by).map(x=>`${(FL_KINDS.find(y=>y[0]===x)||[0,'Other'])[1]} ${f(by[x])}`).join(' · ');
+  const ur=+T.urine||0,w=S.wt||{},wk=w[k],prev=Object.keys(w).filter(d=>d<k).sort().pop();
+  const dw=(wk!=null&&prev!=null)?(wk-w[prev]):null;
+  el.innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Fluids${isToday?'':' · this day'}</div><h2 class="num" style="margin:0">${f(tot)} <small style="font:600 14px var(--body);color:var(--muted)">mL${mx?` of ${f(mx)}`:''}</small></h2></div><div class="note" style="text-align:right">${mn||mx?`Range ${mn?f(mn):'0'}–${mx?f(mx):'no limit'} mL`:''}</div></div>
+    <div class="flbar"><i class="${cls}" style="width:${tot/scale*100}%"></i>${mn?`<u style="left:${mn/scale*100}%"></u>`:''}${mx?`<u class="mx" style="left:${mx/scale*100}%"></u>`:''}</div>
+    <div class="note fl-msg">${msg}</div>
+    ${brk?`<div class="note">${esc(brk)} mL</div>`:''}
+    ${isToday?`<div class="flk">${FL_KINDS.map(([id,n])=>`<button class="flkb ${flKind===id?'on':''}" data-flk="${id}">${n}</button>`).join('')}</div>
+    <div class="flrow"><button class="btn sm" data-fl="150">+150</button><button class="btn sm" data-fl="250">+250</button><button class="btn sm" data-fl="500">+500</button><input id="flc" type="number" inputmode="numeric" placeholder="mL" aria-label="Custom amount in mL"><button class="btn sm primary" id="flAdd">Add</button><button class="btn sm ghost" id="flUndo" ${L.length?'':'disabled'}>Undo</button></div>`:''}
+    <details class="qmore"><summary>Morning weight · safety</summary>
+      ${isToday?`<div class="flrow"><input id="wtv" type="number" step="0.1" inputmode="decimal" placeholder="kg" value="${wk??''}" aria-label="Morning weight in kg"><button class="btn sm" id="wtSave">Save weight</button></div>`:''}
+      <div class="note">${wk!=null?`${wk} kg${dw!=null?` · ${dw>0?'+':''}${dw.toFixed(1)} kg vs your last entry`:''}. `:''}Weigh at the same time on the same scale. A quick rise with swelling or breathlessness can mean extra fluid.</div>
+      ${ur?`<div class="note">Rule of thumb in NKF guidance for advanced kidney disease: fluid about equal to the urine you pass (yours was about ${f(ur)} mL). Your nephrologist may set it differently.</div>`:''}
+      <div class="note">Soups, tea, chaas and juice count. Their potassium and phosphorus still go in your meals. Vomiting, diarrhoea or fever: ask your care team about pausing Farxiga and other sick-day medicines.</div>
+    </details>`}
+document.addEventListener('click',e=>{
+  const kb=e.target.closest('[data-flk]');if(kb){flKind=kb.dataset.flk;renderFluid();return}
+  const add=(ml)=>{ml=Math.round(ml);if(!isFinite(ml)||ml<=0||ml>3000){toast('Enter an amount between 1 and 3000 mL');return}const d=todayKey();(S.fluid[d]=S.fluid[d]||[]).push({ml,kind:flKind,t:new Date().toISOString()});save();renderFluid()};
+  const b=e.target.closest('[data-fl]');if(b){add(+b.dataset.fl);return}
+  if(e.target.id==='flAdd'){add(parseFloat($('#flc').value));return}
+  if(e.target.id==='flUndo'){const d=todayKey();(S.fluid[d]||[]).pop();save();renderFluid();return}
+  if(e.target.id==='wtSave'){const v=parseFloat($('#wtv').value);if(!isFinite(v)||v<20||v>250){toast('Enter your weight in kg');return}S.wt[todayKey()]=Math.round(v*10)/10;save();renderFluid();toast('Weight saved')}});
 function renderToday(){
   const T=S.t, t=eatenTotals(viewDay), isToday=viewDay===todayKey();
   const vals={k:t.k,p:t.p,na:t.na+medNa(viewDay),pr:t.pr}; const tg={k:T.k,p:T.p,na:T.na,pr:T.pr};
@@ -1020,6 +1174,7 @@ function renderToday(){
   // entries
   if(!isToday&&loggerSlot)closeLogger();
   mealsUI();
+  try{renderFluid()}catch(err){}
   renderWeek(); renderQuick(); renderKAlert(); renderHeader(); renderGoal(); renderMeds();
 }
 function renderWeek(){
@@ -1386,7 +1541,8 @@ $('#resetAll').addEventListener('click',()=>{const c=$('#resetConfirm');if(!c.da
 
 // ---------- TARGETS ----------
 const TF=['k','p','na','med','pr','prLo','kcal','fi'];
-function fillTargets(){TF.forEach(k=>$('#t_'+k).value=S.t[k]??DEFAULT_T[k])}
+function fillTargets(){TF.forEach(k=>$('#t_'+k).value=S.t[k]??DEFAULT_T[k]);['min','max','urine'].forEach(k=>{const e=$('#f_'+k);if(e)e.value=(S.fluidT&&S.fluidT[k])||''})}
+['min','max','urine'].forEach(k=>{const e=$('#f_'+k);e&&e.addEventListener('change',ev=>{const v=parseFloat(ev.target.value);S.fluidT[k]=isFinite(v)&&v>0?Math.round(v):0;if(!S.fluidT[k])ev.target.value='';save();try{renderFluid()}catch(_){}})});
 TF.forEach(k=>$('#t_'+k).addEventListener('change',e=>{const v=parseFloat(e.target.value);if(isFinite(v)&&v>0){S.t[k]=v;save();renderBars();renderToday()}else e.target.value=S.t[k]}));
 $('#defaults').addEventListener('click',()=>{S.t={...DEFAULT_T};save();fillTargets();renderBars();renderToday()});
 
@@ -1490,14 +1646,19 @@ function renderHeader(){$('#hdrChips').innerHTML=`<span class="chip">CKD 5 · no
 // ---------- Goal: eGFR target ----------
 function fmtLong(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'})}
 function daysBetween(a,b){return Math.round((Date.parse(b+'T12:00:00')-Date.parse(a+'T12:00:00'))/864e5)}
-function weekDots(){const out=[];for(let i=6;i>=0;i--){const k=shift(todayKey(),-i),c=dayChecks(k);out.push({k,cls:!c.n?'':c.pass===4?'s':c.pass===3?'l':'a',pass:c.pass,n:c.n})}return out}
+function weekDots(){const out=[];for(let i=6;i>=0;i--){const k=shift(todayKey(),-i),c=dayChecks(k);out.push({k,cls:!c.n?'':c.score>=6?'s':c.score>=4?'l':'a',pass:c.score,n:c.n})}return out}
 
 // ---------- Quest: a plant that grows with good days, plus a reward ----------
 if(!S.rw)S.rw={text:'',last:''};
 const GOOD_MEALS=3,BLOOM_AT=5;
 function bonusOf(k){const t=eatenTotals(k),T=S.t,fiT=T.fi??DEFAULT_T.fi;return {fi:t.fi,fiT,kc:t.kcal,kcT:T.kcal,ok:t.fi>=fiT&&t.kcal>=T.kcal*0.9}}
 function bonusDay(k){return goodDay(k)&&bonusOf(k).ok}
-function goodDay(k){const L=S.log[k]||[];return L.length>=GOOD_MEALS&&dayChecks(k).pass===4}
+function goodDay(k){const L=S.log[k]||[];if(L.length<GOOD_MEALS)return false;const c=dayChecks(k);return c.score>=GOOD_SCORE&&c.kOk}
+const GOOD_SCORE=6;
+// Streak: consecutive good days, with one rest day allowed in any 7 so one slip doesn't wipe out your progress.
+function streakCalc(){const tk=todayKey();let count=0,last=null,i=goodDay(tk)?0:1,used=false;for(;i<400;i++){const k=shift(tk,-i);if(goodDay(k))count++;else if(last===null||i-last>=7){last=i;if(i<7)used=true}else break}return {count,used}}
+function bestStreak(){const tk=todayKey();let cur=0,best=0,last=-99;for(let i=119;i>=0;i--){if(goodDay(shift(tk,-i)))cur++;else if(cur>0&&(last===-99||last-i>=7))last=i;else{cur=0;last=-99}best=Math.max(best,cur)}return best}
+const COACH_TIPS=['Walking counts. In kidney disease, regular activity is linked with better fitness, blood pressure and quality of life.','Sevelamer only works with food. Take it with the meal it is meant for.','Lower-potassium fruit (apple, berries, grapes, pineapple, pear) keeps acid load down without pushing potassium up.','Blood pressure control is one of the biggest levers for protecting your kidneys. Log a reading today.','Skip NSAIDs such as ibuprofen and naproxen. They can harm kidneys at your stage.','Packaged food hides phosphorus additives that are absorbed almost completely. Fresh food keeps phosphorus lower.','One slip does not undo your progress. Your streak allows one rest day in any seven.'];
 function plantSVG(n){
   const h=12+n*10,top=118-h;let g='';
   const leaves=Math.min(n,6);
@@ -1512,49 +1673,67 @@ function plantSVG(n){
 function confetti(box){if(!box)return;const c=document.createElement('div');c.className='cf';const cols=['--r-k','--r-p','--r-na','--r-pr','--safe'];
   for(let i=0;i<26;i++){const e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.background=`var(${cols[i%5]})`;e.style.animationDelay=Math.random()*.5+'s';c.appendChild(e)}
   box.appendChild(c);setTimeout(()=>c.remove(),2800)}
+function coachLine(c,streak,meals){
+  const h=new Date().getHours(),miss=[];
+  if(!c.habits[0].ok)miss.push('take your medicines');
+  if(!c.habits[1].ok)miss.push('get a 30-minute walk');
+  if(!c.habits[2].ok)miss.push('tick No NSAIDs');
+  const good=meals>=GOOD_MEALS&&c.score>=GOOD_SCORE&&c.kOk;
+  if(c.score===8)return 'Perfect day: eight for eight. Your kidneys thank you.';
+  if(good)return `Good day secured${streak.count>1?`, day ${streak.count} in a row`:''}. ${8-c.score} more for a perfect eight.`;
+  if(!meals&&h<11)return `Good morning. Take your medicines, then log breakfast. A good day needs 3 meals and 6 of 8 checks.`;
+  if(!meals)return 'Log your first meal to get today going. Every entry counts.';
+  if(!c.kOk)return 'Potassium is over today. Keep the rest of the day to low-potassium food and you can still reach a good day.';
+  const need=Math.max(1,GOOD_SCORE-c.score);
+  const tail=meals<GOOD_MEALS?`log ${GOOD_MEALS-meals} more meal${GOOD_MEALS-meals>1?'s':''}`:miss[0]||'keep your limits';
+  return `${need} more check${need>1?'s':''} for a good day. Easiest next step: ${tail}.`}
 function renderQuest(){
   const el=$('#quest');if(!el)return;
   const tk=todayKey(),wk=[];for(let i=6;i>=0;i--)wk.push(shift(tk,-i));
-  const good=wk.filter(goodDay).length;
-  let streak=0;for(let i=goodDay(tk)?0:1;i<400;i++){if(goodDay(shift(tk,-i)))streak++;else break}
-  const c=dayChecks(tk),L=S.log[tk]||[],meals=L.length;
+  const good=wk.filter(goodDay).length,st=streakCalc(),best=Math.max(bestStreak(),st.count);
+  const c=dayChecks(tk),L=S.log[tk]||[],meals=L.length,dayN=Math.floor(Date.now()/864e5);
   const earned=good>=BLOOM_AT&&(!S.rw.last||daysBetween(S.rw.last,tk)>=7);
-  const g=S.goal,l=latest('egfr');
-  const sub=good>=BLOOM_AT?'In full bloom this week':good>0?`${BLOOM_AT-good} more good day${BLOOM_AT-good>1?'s':''} to bloom`:'Log 3 meals with all checks on track for a good day';
-  const chip=(lab,ok)=>`<div class="qchip ${meals?(ok?'ok':'no'):''}"><b>${meals?(ok?'✓':'•'):'·'}</b>${lab}</div>`;
-  const mealsChip=`<div class="qchip ${meals>=GOOD_MEALS?'ok':''}"><b>${Math.min(meals,GOOD_MEALS)}/${GOOD_MEALS}</b>meals</div>`;
-  const rw=S.rw.text||'',bo=bonusOf(tk);
+  const g=S.goal,l=latest('egfr'),rw=S.rw.text||'',bo=bonusOf(tk);
+  const dchip=x=>`<div class="qchip ${meals?(x.ok?'ok':'no'):''}"><b>${meals?(x.ok?'✓':'•'):'·'}</b>${x.name}</div>`;
+  const hchip=x=>x.auto?`<div class="qchip ${x.ok&&c.medNeed?'ok':''}"><b>${x.ok&&c.medNeed?'✓':'•'}</b>${x.name}<small>${x.txt.replace(' taken','')}</small></div>`:`<button class="qchip tap ${x.ok?'ok':''}" data-habit="${x.id}"><b>${x.ok?'✓':'○'}</b>${x.name}</button>`;
   el.innerHTML=`<div class="qs">${plantSVG(good)}
-    <div class="qstat"><span class="qk">Streak</span><span class="qn num">${streak}</span><span class="qu">day${streak===1?'':'s'}</span></div>
+    <div class="qstat"><span class="qk">Streak</span><span class="qn num">${st.count}</span><span class="qu">day${st.count===1?'':'s'}${best>st.count?` · best ${best}`:''}</span></div>
     <div class="qstat"><span class="qk">Week</span><span class="qn num">${good}<small>/${BLOOM_AT}</small></span><span class="qu">good days</span></div>
-    <div class="qstat"><span class="qk">Today</span><span class="qn num">${Math.min(meals,GOOD_MEALS)}<small>/${GOOD_MEALS}</small></span><span class="qu">meals</span></div></div>
+    <div class="qstat"><span class="qk">Today</span><span class="qn num">${c.score}<small>/8</small></span><span class="qu">checks</span></div></div>
     <div class="qdots" aria-label="${good} of 7 good days">${wk.map(k=>`<i class="${bonusDay(k)?'on star':goodDay(k)?'on':k===tk&&meals?'t':''}"></i>`).join('')}</div>
-    <div class="qmis"><span class="qmk">Mission</span>Hold eGFR at ${g.target}+${l?` · now <b class="num">${l.v}</b>`:''} <span class="note">· ${sub}</span></div>
-    ${earned?`<div class="qrw earned"><div><b>Reward unlocked</b><div>${rw?esc(rw):'Choose a treat below, then claim it.'}</div></div><button class="btn primary sm" id="qClaim">Claim</button></div>`:''}
-    <div class="qchips">${mealsChip}${chip('Acid',c.checks[0][1])}${chip('Protein',c.checks[1][1])}${chip('Sodium',c.checks[2][1])}${chip('Potassium',c.checks[3][1])}</div>
+    <div class="qmis"><span class="qmk">Mission</span>Hold eGFR at ${g.target}+${l?` · now <b class="num">${l.v}</b>`:''}</div>
+    <div class="qcoach">${esc(coachLine(c,st,meals))}</div>
+    <div class="qgrp"><div class="qgl">Food</div><div class="qchips">${c.diet.map(dchip).join('')}</div></div>
+    <div class="qgrp"><div class="qgl">Care habits</div><div class="qchips three">${c.habits.map(hchip).join('')}</div></div>
     <div class="qbonus ${bo.ok?'ok':''}"><span class="qstar">★</span><span>Bonus star: fiber <b class="num">${Math.round(bo.fi)}/${bo.fiT} g</b> · calories <b class="num">${Math.round(bo.kc).toLocaleString()}/${Math.round(bo.kcT*0.9).toLocaleString()}+</b></span></div>
-    <details class="qmore"><summary>${rw?'Reward: '+esc(rw):'Set a reward'}</summary><input id="qRw" type="text" maxlength="60" placeholder="e.g. a movie night, a new book" value="${esc(rw)}" style="width:100%"><div class="note">A good day is 3 or more meals logged with all four checks on track. Five good days in a week earns the reward. A gold dot is a bonus star: fiber target plus at least 90% of calories.</div></details>`;
+    ${earned?`<div class="qrw earned"><div><b>Reward unlocked</b><div>${rw?esc(rw):'Choose a treat below, then claim it.'}</div></div><button class="btn primary sm" id="qClaim">Claim</button></div>`:''}
+    <div class="note qtip">${esc(COACH_TIPS[dayN%COACH_TIPS.length])}${st.used?' You have used this week’s rest day.':''}</div>
+    <details class="qmore"><summary>${rw?'Reward: '+esc(rw):'Set a reward'} · badges</summary><input id="qRw" type="text" maxlength="60" placeholder="e.g. a movie night, a new book" value="${esc(rw)}" style="width:100%"><div class="note">A good day is 3 meals logged, potassium in range and at least 6 of 8 checks. Five good days in a week earns the reward. One rest day in any seven doesn't reset your streak. A gold dot is a bonus star: fiber target plus at least 90% of calories.</div><div class="qbadges">${[3,7,14,30,60,100].map(n=>`<span class="qbadge ${(S.badges||[]).includes(n)?'on':''}">${n}<small>days</small></span>`).join('')}</div></details>`;
+  // milestones
+  S.badges=S.badges||[];const hit=[3,7,14,30,60,100].filter(n=>st.count>=n&&!S.badges.includes(n));
+  if(hit.length){S.badges.push(...hit);save();confetti(el);toast(`Milestone: ${Math.max(...hit)}-day streak. Keep going`)}
   // today's celebration, once per day
   if(bonusDay(tk)&&S.celb!==tk){S.celb=tk;S.cel=tk;save();confetti(el);toast('Bonus star earned. You ate enough, too')}
   else if(goodDay(tk)&&S.cel!==tk){S.cel=tk;save();confetti(el);toast('Great day. All four checks on track')}
 }
 document.addEventListener('click',e=>{
+  const hb=e.target.closest('[data-habit]');if(hb){const k=todayKey(),id=hb.dataset.habit;S.habits[k]={...(S.habits[k]||{}),[id]:!(S.habits[k]||{})[id]};save();try{renderQuest()}catch(_){}try{renderGoal()}catch(_){}return}
   if(e.target.id==='qClaim'){S.rw.last=todayKey();save();renderQuest();confetti($('#quest'));toast('Enjoy your reward. You earned it')}});
 document.addEventListener('change',e=>{if(e.target.id==='qRw'){S.rw.text=e.target.value.trim().slice(0,60);save();renderQuest()}});
 function renderGoal(){
   const g=S.goal,l=latest('egfr'),slope=egfrSlope(),left=daysBetween(todayKey(),g.date),today=dayChecks(todayKey()),wk=weekDots(),good=wk.filter(x=>x.cls==='s').length;
   const gap=l?g.target-l.v:null;
   // Today strip
-  $('#goalStrip').innerHTML=`<div class="row" style="justify-content:space-between"><div><span class="eyebrow">eGFR goal ${g.target}${l&&g.target<=l.v?'+ (hold)':''}${l?' · now '+l.v:''}</span><div style="font-weight:700;font-size:14px">${today.n?today.pass+' of 4 on track today':'Log a meal to start today'}${bpLast()?` · BP ${bpLast().s}/${bpLast().di}`:''}</div></div><span class="note num">${good}/7 days ›</span></div>`;
+  $('#goalStrip').innerHTML=`<div class="row" style="justify-content:space-between"><div><span class="eyebrow">eGFR goal ${g.target}${l&&g.target<=l.v?'+ (hold)':''}${l?' · now '+l.v:''}</span><div style="font-weight:700;font-size:14px">${today.n||today.hpass?today.score+' of 8 checks today':'Log a meal to start today'}${bpLast()?` · BP ${bpLast().s}/${bpLast().di}`:''}</div></div><span class="note num">${good}/7 days ›</span></div>`;
   // Health card
   const hab=(S.habits&&S.habits[todayKey()])||{};
   $('#goalCard').innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Your goal</div><h2>${l&&g.target<=l.v?`Hold eGFR at ${g.target} or higher`:`eGFR ${g.target} by ${fmtLong(g.date)}`}</h2></div><button id="goalEdit" class="btn sm">Edit</button></div>
     <div id="goalForm" hidden><div class="grid2"><label class="f">Target eGFR<input id="g_t" type="number" step="any" inputmode="decimal" value="${g.target}"></label><label class="f">By date<input id="g_d" type="date" value="${g.date}"></label></div><div class="row"><button id="goalSave" class="btn primary sm">Save goal</button></div></div>
     <div class="grid2 num"><div class="lc"><div class="note" style="font-weight:700">Latest eGFR</div><div class="v">${l?l.v:'–'}</div><div class="d">${l?fmtD(l.d):'add a lab result'}</div></div><div class="lc"><div class="note" style="font-weight:700">${gap==null?'To go':gap<0?'Above goal by':gap===0?'Right at goal':'To go'}</div><div class="v">${gap==null?'–':gap<0?(-gap):gap===0?'✓':'+'+gap}</div><div class="d">${left>0?'recheck within '+left+' days':'date passed'}</div></div></div>
     <div class="callout">${slope==null?'Add two or more eGFR results to see your trend.':`Your trend over your recorded labs is about ${slope>0?'+':''}${slope.toFixed(1)} eGFR per month. ${gap!=null&&gap>0&&left>0?`Reaching ${g.target} needs about +${(gap/(left/30.4)).toFixed(1)} per month.`:(gap!=null&&gap<=0&&slope<0?`Holding at ${g.target} means flattening that slope: blood pressure, low acid load, no NSAIDs and your medicines on time.`:'')} A single lab can move 1–2 points on its own, so judge it over two or three draws.`}</div>
-    <div><h3 style="margin-bottom:8px">Today's checks</h3><div class="col" style="gap:8px">${today.checks.map(c=>`<div class="chk"><span class="m ${today.n?(c[1]?'y':'x'):'o'}">${today.n?(c[1]?'✓':'✕'):'–'}</span><span class="grow">${c[0]}</span><span class="note num">${today.n?c[2]:''}</span></div>`).join('')}<label class="chk"><input type="checkbox" id="nsaid" ${hab.nsaid?'checked':''}> <span class="grow">No ibuprofen or naproxen today</span></label></div></div>
-    <div><h3 style="margin-bottom:8px">Last 7 days</h3><div class="gdots">${wk.map(x=>`<i class="${x.cls}" title="${x.k}: ${x.n?x.pass+' of 4':'nothing logged'}"></i>`).join('')}</div><div class="note" style="margin-top:6px">${good} of 7 days fully on track. Green = all four checks, amber = three, red = fewer, grey = not logged. Aim for at least 5 of 7.</div></div>
-    <div class="note">This tracks the things diet and habits can control: acid load, protein, sodium and potassium. Food can't promise an eGFR number. Ask your nephrologist whether a cystatin C test and your BP target fit your goal, and avoid cooked meat the day before a blood draw so creatinine isn't inflated.</div>`;
+    <div><h3 style="margin-bottom:8px">Today's checks</h3><div class="col" style="gap:8px">${today.checks.map(c=>`<div class="chk"><span class="m ${today.n?(c[1]?'y':'x'):'o'}">${today.n?(c[1]?'✓':'✕'):'–'}</span><span class="grow">${c[0]}</span><span class="note num">${today.n?c[2]:''}</span></div>`).join('')}<div class="chk"><span class="m ${today.habits[0].ok&&today.medNeed?'y':'o'}">${today.habits[0].ok&&today.medNeed?'✓':'–'}</span><span class="grow">Medicines taken</span><span class="note num">${today.habits[0].txt}</span></div><label class="chk"><input type="checkbox" id="move" ${hab.move?'checked':''}> <span class="grow">Moved 30+ minutes (walk, gym)</span></label><label class="chk"><input type="checkbox" id="nsaid" ${hab.nsaid?'checked':''}> <span class="grow">No ibuprofen or naproxen today</span></label></div></div>
+    <div><h3 style="margin-bottom:8px">Last 7 days</h3><div class="gdots">${wk.map(x=>`<i class="${x.cls}" title="${x.k}: ${x.n?x.pass+' of 8':'nothing logged'}"></i>`).join('')}</div><div class="note" style="margin-top:6px">${good} of 7 days fully on track. Green = 6 or more of 8 checks, amber = 4 or 5, red = fewer, grey = not logged. Aim for at least 5 of 7 good days.</div></div>
+    <div class="note">This tracks what food and daily habits can control: potassium, phosphorus, protein, sodium, acid load, your medicines, movement and avoiding NSAIDs. Food can't promise an eGFR number. Ask your nephrologist whether a cystatin C test and your BP target fit your goal, and avoid cooked meat the day before a blood draw so creatinine isn't inflated.</div>`;
 }
 document.addEventListener('click',e=>{const g=e.target.closest('[data-goto]');if(g){e.preventDefault();const b=document.querySelector(`nav.tabs button[data-tab="${g.dataset.goto}"]`);b&&b.click()}});
 $('#goalStrip').addEventListener('click',()=>{const b=document.querySelector('nav.tabs button[data-tab="targets"]');b&&b.click()});
@@ -1562,6 +1741,7 @@ document.addEventListener('click',e=>{
   if(e.target.id==='goalEdit'){const f=$('#goalForm');f.hidden=!f.hidden}
   else if(e.target.id==='goalSave'){const t=parseFloat($('#g_t').value),d=$('#g_d').value;if(!isFinite(t)||!/^\d{4}-\d{2}-\d{2}$/.test(d)){toast('Enter a target and a date');return}S.goal={target:t,date:d};save();renderGoal();toast('Goal saved')}
 });
+document.addEventListener('change',e=>{if(e.target.id==='move'){S.habits[todayKey()]={...(S.habits[todayKey()]||{}),move:e.target.checked};save();renderGoal();try{renderQuest()}catch(_){}}});
 document.addEventListener('change',e=>{if(e.target.id==='nsaid'){S.habits[todayKey()]={...(S.habits[todayKey()]||{}),nsaid:e.target.checked};save();renderGoal()}});
 
 
