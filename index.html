@@ -273,14 +273,14 @@ details>summary::after{content:"›";float:right;color:var(--muted);font-size:20
 .fold{gap:14px}.fold>summary{display:flex;justify-content:space-between;align-items:center}.fold>summary::after{float:none}
 .entry>summary{display:flex;justify-content:space-between;align-items:center;gap:10px}.entry>summary::after{float:none}
 .entry[open]>summary{margin-bottom:8px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:700;font-size:13px;z-index:6}
+.toast{white-space:nowrap;max-width:92vw;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:700;font-size:13px;z-index:6}
 @media (prefers-reduced-motion:no-preference){.fill,.ring{transition:stroke-dasharray .4s ease,width .3s ease}}
 
 /* v57: compact top, 4x2 markers, meal rows */
 :root:not([data-theme="dark"]) .quest{background:linear-gradient(160deg,#fff 30%,#E3ECFC 230%)}
 :root:not([data-theme="dark"]) .meals{background:linear-gradient(180deg,#fff,#EAF7F1 260%)}
 .quest{padding:14px 16px;gap:10px}
-.qs{display:grid;grid-template-columns:44px 1fr 1fr 1fr;gap:10px;align-items:center}
+.qs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:center}
 .qs .qplant{width:44px;height:52px}
 .qstat{display:flex;flex-direction:column;min-width:0;gap:1px}
 .qk{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
@@ -306,11 +306,11 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
 .mk-s{font-size:10px;font-weight:700;color:var(--accent);white-space:nowrap}.mk-s.bad{color:var(--avoid)}
 .mk-det{text-align:center;min-height:16px}
 .meals{padding:10px;gap:10px}
-.mtabs{display:flex;gap:6px}
-.mtab{flex:1;min-width:0;border:0;border-radius:12px;background:var(--bg);color:var(--fg);padding:9px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font:inherit;-webkit-tap-highlight-color:transparent}
-.mtn{font-size:11.5px;font-weight:700;white-space:nowrap}.mtm{font-size:10.5px;color:var(--muted)}
+.mtabs{display:flex;flex-direction:column;gap:6px}
+.mtab{width:100%;min-width:0;border:0;border-radius:12px;background:var(--bg);color:var(--fg);padding:12px 14px;display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left;cursor:pointer;font:inherit;-webkit-tap-highlight-color:transparent}
+.mtn{font-size:15px;font-weight:700;white-space:nowrap}.mtm{font-size:12px;color:var(--muted);white-space:nowrap}.mtp{flex:1;min-width:0;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mtab.on .mtp{visibility:hidden}
 .mtab.has .mtm{color:var(--safe);font-weight:700}
-.mtab{border-bottom:3px solid var(--mc,transparent)}
+.mtab{border-bottom:0;border-left:5px solid var(--mc,transparent)}
 .mcmp{display:flex;flex-direction:column;gap:7px;background:var(--bg);border-radius:14px;padding:10px 12px}
 .mcr{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:8px}
 .mcn{font-size:11.5px;font-weight:700;color:var(--muted)}
@@ -329,11 +329,19 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
 .mseg{display:block;height:100%;flex:none;cursor:pointer}.mseg.dim{opacity:.4}.mseg.base{background:color-mix(in srgb,var(--fg) 25%,transparent);cursor:default}
 .mcv{font-size:12px;font-weight:700;min-width:78px;text-align:right;white-space:nowrap}.mcv small{font-weight:500;color:var(--muted);font-size:10.5px}.mcv.bad{color:var(--avoid)}
 .mcnote{margin-top:2px;font-size:11px}
-.mtab.on{background:var(--accent);color:var(--accent-fg)}.mtab.on .mtm{color:inherit;opacity:.85}
-.mpanel{padding:4px 6px 6px;display:flex;flex-direction:column;gap:10px}
+.mtab.on{background:var(--sunk);color:var(--fg)}.mtab.on .mtm{color:var(--safe)}
+.mpanel .mt b{display:none}.mpanel{padding:4px 6px 8px;display:flex;flex-direction:column;gap:10px}
 .mh{display:flex;align-items:center;gap:8px}
 .mt{flex:1;min-width:0}.mt b{display:block;font-size:17px;font-family:var(--display);font-weight:400}.ms{display:block;font-size:12px;color:var(--muted);margin-top:1px}
-.macts{display:grid!important;grid-template-columns:1fr 1.6fr;gap:8px}.macts[hidden]{display:none!important}
+.macts{display:flex!important;flex-direction:column;gap:8px}.macts[hidden]{display:none!important}
+.macts>*{min-width:0;max-width:100%}.qrow{display:flex;gap:8px;align-items:center;width:100%;box-sizing:border-box}.qrow input{flex:1 1 0;width:0;min-width:0;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--surface);padding:0 14px;font-size:16px;color:var(--fg)}
+.qrow .mcam{width:46px;padding:0;flex:none}.qrow .madd{padding:0 18px;flex:none}
+.mchips{display:flex;gap:6px;flex-wrap:wrap;padding:0 4px 2px}.mchips:empty{display:none}.mchips .chip-btn{background:var(--surface)}
+.qlab{font-size:12.5px;color:var(--muted);font-weight:700}.qlab select{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:3px 4px;font:inherit;font-weight:700}.emv{font-size:12px;color:var(--muted)}.emv select{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);padding:3px;font:inherit}
+.qsub{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;min-height:18px}.linkb{border:0;background:none;color:var(--muted);font-weight:700;font-size:12.5px;text-decoration:underline;padding:2px 0}
+.progbtn{display:flex;align-items:center;gap:10px;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 12px;font-size:13px;font-weight:700;color:var(--fg);text-align:left}
+.progbtn .pgo{color:var(--muted);font-weight:700;white-space:nowrap}.progbtn[aria-expanded="true"] .pgo b{display:inline-block;transform:rotate(180deg)}
+#progPanel[hidden]{display:none}
 .mcam,.madd{height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;border:0;padding:0 12px}
 .mcam{background:var(--sunk);color:var(--fg)}.mcam svg{width:20px;height:20px}
 #kpBlocks.card{padding:14px 16px}.kpcard{padding:10px 14px}
@@ -341,6 +349,179 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
 .ml:empty,.mm:empty{display:none}.ml{display:flex;flex-direction:column;gap:10px}
 .ml .entry+.entry{border-top:1px solid var(--line);padding-top:10px}
 .logger{display:flex;flex-direction:column;gap:12px}
+
+/* v80 iOS: grouped lists, large title, system colours, SF type */
+:root{--sf:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Inter,system-ui,sans-serif;--display:var(--sf);--body:var(--sf);--bg:#F2F2F7;--surface:#FFFFFF;--sunk:rgba(118,118,128,.12);--fg:#000;--muted:#6C6C70;--line:rgba(60,60,67,.18);--band:transparent;--band-fg:#000;--band-muted:#6C6C70;--accent:#007AFF;--accent-fg:#fff;--r-k:#FF2D55;--r-p:#30B0C7;--r-na:#5E5CE6;--r-pr:#FF9500;--safe:#248A3D;--safe-bg:rgba(52,199,89,.16);--limit:#A15C00;--limit-bg:rgba(255,149,0,.16);--avoid:#D70015;--avoid-bg:rgba(255,59,48,.14);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#000;--surface:#1C1C1E;--sunk:rgba(118,118,128,.24);--fg:#fff;--muted:#98989D;--line:rgba(84,84,88,.6);--band:transparent;--band-fg:#fff;--band-muted:#98989D;--accent:#0A84FF;--accent-fg:#fff;--r-k:#FF375F;--r-p:#40CBE0;--r-na:#7D7AFF;--r-pr:#FF9F0A;--safe:#30D158;--safe-bg:rgba(48,209,88,.18);--limit:#FFB340;--limit-bg:rgba(255,159,10,.2);--avoid:#FF6961;--avoid-bg:rgba(255,69,58,.2);color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#000;--surface:#1C1C1E;--sunk:rgba(118,118,128,.24);--fg:#fff;--muted:#98989D;--line:rgba(84,84,88,.6);--band:transparent;--band-fg:#fff;--band-muted:#98989D;--accent:#0A84FF;--accent-fg:#fff;--r-k:#FF375F;--r-p:#40CBE0;--r-na:#7D7AFF;--r-pr:#FF9F0A;--safe:#30D158;--safe-bg:rgba(48,209,88,.18);--limit:#FFB340;--limit-bg:rgba(255,159,10,.2);--avoid:#FF6961;--avoid-bg:rgba(255,69,58,.2);color-scheme:dark;}
+body{font-family:var(--sf);font-size:16px;-webkit-font-smoothing:antialiased}
+main.gut>section{gap:20px}
+header.band{background:transparent!important;color:var(--fg);padding-block:max(10px,env(safe-area-inset-top)) 0}
+header.band h1{font-family:var(--sf);font-weight:700;font-size:34px;letter-spacing:-.02em;color:var(--fg)}
+header.band h1 i{font-style:normal;color:var(--fg)}
+.card{background:var(--surface);border:0;border-radius:14px;padding:16px;box-shadow:none}
+.card h2,.card h3{font-family:var(--sf);letter-spacing:-.01em}
+.card h2{font-weight:700;font-size:22px;line-height:1.15}
+.eyebrow{font-size:12.5px;letter-spacing:.04em;font-weight:600;color:var(--muted);text-transform:uppercase}
+.btn{border:0;border-radius:12px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font-weight:600;font-size:15px;padding:11px 16px}
+.btn.primary{background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.4}
+input,select,textarea{font-family:var(--sf)}
+textarea,#fluidCard input,#fluidCard select,#medCard input{border:0;background:var(--sunk);border-radius:10px;padding:10px 12px;font-size:16px;color:var(--fg)}
+.card.rows{padding:0 16px!important}.card.rows>*{padding:12px 0!important}
+.card.rows>details>summary,.card.rows>summary{display:flex!important;align-items:center;gap:12px;min-height:30px;padding:0!important}
+.card.rows>details>summary>*,.card.rows>summary>*{margin:0}
+#medCard summary::before,#menuCard summary::before{content:"";flex:none;width:30px;height:30px;border-radius:8px;background-position:center;background-size:18px;background-repeat:no-repeat}
+#medCard summary::before{background-color:#FF3B30;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.5 20.5l-6-6a4.2 4.2 0 016-6l6 6a4.2 4.2 0 01-6 6zM8 11l5 5'/%3E%3C/svg%3E")}
+#menuCard summary::before{background-color:#AF52DE;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h3l2-3h6l2 3h3v11H4z'/%3E%3Ccircle cx='12' cy='13' r='3.5'/%3E%3C/svg%3E")}
+.card.rows h3{font-size:17px;font-weight:500}
+/* header card: banner + date + progress */
+#kpCard{background:transparent;padding:0;gap:10px}
+.bloombar{display:flex;gap:12px;align-items:center;position:relative;overflow:hidden;background:var(--surface);border-radius:14px;padding:14px;margin:0;cursor:pointer}
+.bloombar .qplant{width:70px;height:82px;flex:none}
+.bloombar .bb-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.bb-h{font-size:20px;font-weight:700;letter-spacing:-.02em}.bb-h small{font-size:13px;font-weight:400;color:var(--muted)}
+.bb-s{display:flex;gap:12px;font-size:13px;color:var(--muted)}.bb-s b{color:var(--fg)}
+.bb-c{font-size:14px;line-height:1.35}
+.bb-rw{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;padding:8px 10px;background:var(--sunk);border-radius:10px;font-size:14px}
+.bloombar .qdots{margin:2px 0}
+#kpCard .daynav{padding:2px 2px}
+#kpCard .daynav button{background:none;border:0;color:var(--accent);font-size:28px;width:44px;height:44px;border-radius:50%}
+#kpCard .daynav button:disabled{color:var(--muted);opacity:.4}
+#kpCard h2{font-size:20px;font-weight:600}
+#kpCard .progbtn{background:var(--surface);border:0;border-radius:12px;padding:13px 16px;font-size:16px;font-weight:400;color:var(--fg)}
+#kpCard .progbtn .grow{font-weight:600}
+#kpCard .progbtn .pgo{color:var(--muted);font-weight:400}
+:root:not([data-theme="dark"]) .quest,:root:not([data-theme="dark"]) .meals{background:var(--surface)}
+/* meals: one grouped list, Settings-style rows */
+#mrows{background:var(--surface)!important;border-radius:14px;padding:0 0 0 16px!important;gap:0;box-shadow:none!important;overflow:hidden;border:0}
+#mrows .mtabs{gap:0}
+#mrows .mgrp{background:transparent!important;border:0!important;border-radius:0;padding:0!important;display:block;overflow:visible}
+#mrows .mgrp+.mgrp{border-top:.5px solid var(--line)!important}
+#mrows .mgrp[hidden]{display:none}
+#mrows .mtab{width:100%;background:none!important;border:0!important;border-radius:0;padding:10px 16px 10px 0;gap:12px;min-height:54px;color:var(--fg);flex-direction:row;align-items:center}
+#mrows .mtab::before{content:"";flex:none;width:30px;height:30px;border-radius:8px;background-color:var(--mc);background-position:center;background-size:18px;background-repeat:no-repeat;background-image:var(--ic)}
+#mrows .mtab::after{content:"\203A";color:#C7C7CC;font-size:24px;line-height:1;margin-left:2px;transition:transform .2s}
+#mrows .mtab.on::after{transform:rotate(90deg)}
+#mrows .mtn{font-size:17px;font-weight:500;letter-spacing:-.01em}
+#mrows .mtm,#mrows .mtab.has .mtm,#mrows .mtab.on .mtm{font-size:16px;color:var(--muted);font-weight:400;opacity:1}
+#mrows .mtp{flex:1;min-width:0;font-size:15px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mrows .mtab.on .mtp{visibility:hidden}
+#mrows .mtab[data-tab=breakfast]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v2M4.9 9.9l1.4 1.4M19.1 9.9l-1.4 1.4M3 17h18M7 17a5 5 0 0110 0'/%3E%3C/svg%3E")}#mrows .mtab[data-tab=mid]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9h11v5a4 4 0 01-4 4H9a4 4 0 01-4-4zM16 10h1.5a2.5 2.5 0 010 5H16M8 3v2M12 3v2'/%3E%3C/svg%3E")}#mrows .mtab[data-tab=lunch]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4'/%3E%3C/svg%3E")}#mrows .mtab[data-tab=dinner]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z'/%3E%3C/svg%3E")}#mrows .mtab[data-tab=snack]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='12' r='1.2'/%3E%3Ccircle cx='12' cy='12' r='1.2'/%3E%3Ccircle cx='18' cy='12' r='1.2'/%3E%3C/svg%3E")}
+#mrows .mgrp[data-sl=breakfast]{--mc:#FF9500!important}#mrows .mtab[data-tab=breakfast]{--mc:#FF9500!important}#mrows .mgrp[data-sl=mid]{--mc:#32ADE6!important}#mrows .mtab[data-tab=mid]{--mc:#32ADE6!important}#mrows .mgrp[data-sl=lunch]{--mc:#34C759!important}#mrows .mtab[data-tab=lunch]{--mc:#34C759!important}#mrows .mgrp[data-sl=dinner]{--mc:#5E5CE6!important}#mrows .mtab[data-tab=dinner]{--mc:#5E5CE6!important}#mrows .mgrp[data-sl=snack]{--mc:#8E8E93!important}#mrows .mtab[data-tab=snack]{--mc:#8E8E93!important}
+#mrows .mpanel{padding:0 16px 12px 0;gap:10px;border:0!important}
+#mrows .mpanel .mt{display:block;flex:1 1 100%;width:100%}#mrows .mpanel .mt *{display:inline}#mrows .mpanel .mt b{display:none}
+#mrows .ms{font-size:13px;margin:0;color:var(--muted)}
+#mrows .macts{gap:6px}#mrows .qsub{min-height:0}#mrows .qsub:has(#qst:empty){display:none}
+#mrows .qrow{background:var(--sunk);border-radius:10px;padding:0 4px 0 10px;gap:6px;height:38px;align-items:center}
+#mrows .qrow::before{content:"+";color:var(--muted);font-size:22px;font-weight:300;line-height:1;margin-top:-2px}
+#mrows .qrow input{border:0;background:transparent;height:38px;padding:0;font-size:17px;border-radius:0;outline:none;color:var(--fg)}
+#mrows .qrow .mcam{background:none;width:34px;height:34px;padding:0;color:var(--accent);border-radius:50%}
+#mrows .qrow .madd{height:30px;border-radius:15px;padding:0 14px;font-size:15px;font-weight:600;background:var(--accent);color:#fff}
+#mrows .qrow input:placeholder-shown~.madd{display:none}
+#mrows .mchips{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin:0 -16px 0 0;padding:2px 16px 10px 0;scrollbar-width:none}
+#mrows .mchips::-webkit-scrollbar{display:none}#mrows .mchips:empty{display:none}#mrows .mchips.wrap{flex-wrap:wrap;overflow:visible}
+#mrows .chip-btn{flex:none;border:0;background:var(--sunk);color:var(--accent);font-weight:500;font-size:14px;padding:6px 12px;border-radius:999px;max-width:none}
+/* fluids */
+#fluidCard h2.num{font-size:34px;font-weight:700;letter-spacing:-.02em}
+#fluidCard .flbar{height:8px;border-radius:99px;background:var(--sunk)}
+#fluidCard .flrow{gap:8px}
+/* tab bar */
+nav.tabs{background:color-mix(in srgb,var(--surface) 78%,transparent);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border-top:.5px solid var(--line)}
+nav.tabs button{font-weight:500;font-size:10px;background:none!important;color:var(--muted)}
+nav.tabs button[aria-selected=true]{color:var(--accent);font-weight:600}
+nav.tabs svg{width:25px;height:25px}
+
+.gmeds{margin:0 16px 8px 42px}.gmeds[hidden]{display:none}
+.gmdots{display:flex;flex-wrap:wrap;gap:6px 14px}
+.gmd{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:44px;color:var(--muted)}
+.gmk{width:28px;height:28px;border-radius:50%;border:1.5px solid #C7C7CC;position:relative;transition:background .15s}
+.gmd.on .gmk{background:#34C759;border-color:#34C759}
+.gmd.on .gmk::after{content:"";position:absolute;left:8.5px;top:4px;width:7px;height:12px;border:solid #fff;border-width:0 2.2px 2.2px 0;transform:rotate(45deg)}
+.gml{font-size:11px;font-weight:500;max-width:76px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gmd.on .gml{color:var(--fg)}
+
+/* v85 focus: only the open meal is highlighted, more room */
+main.gut>section{gap:24px}
+#mrows{padding:6px 8px!important}
+#mrows .mgrp{padding:0 8px!important;border-radius:14px}
+#mrows .mgrp+.mgrp{border-top:.5px solid color-mix(in srgb,var(--fg) 9%,transparent)!important}
+#mrows .mgrp.on,#mrows .mgrp.on+.mgrp{border-top-color:transparent!important}
+#mrows .mgrp.on{background:color-mix(in srgb,var(--mc) 8%,var(--surface))!important;padding-bottom:14px!important;margin:2px 0}
+#mrows .mtab{min-height:60px;padding:12px 4px 12px 0}
+#mrows .mgrp:not(.on) .mtn{font-weight:400}
+#mrows .mgrp.on .mtn{font-weight:700}
+#mrows .mgrp:not(.on) .gmeds{display:none}
+#mrows .mpanel{padding:2px 0 8px;gap:14px}
+#mrows .ms{display:none}
+#mrows .qrow{background:var(--surface);box-shadow:0 0 0 .5px color-mix(in srgb,var(--fg) 14%,transparent);height:44px}
+#mrows .qrow input{height:44px}
+#mrows .ml{gap:0}
+#mrows .ml details.entry{border:0;border-top:.5px solid color-mix(in srgb,var(--fg) 9%,transparent);padding:2px 0}
+#mrows .ml details.entry:first-child{border-top:0}
+#mrows .ml .entry>summary .t{font-size:16px;font-weight:500}
+#mrows .ml .entry>summary .note{font-size:12.5px}
+#mrows .ml .pill{font-size:10px;padding:2px 8px}
+#mrows .gmeds{margin:6px 0 0 0;padding-top:12px;border-top:.5px solid color-mix(in srgb,var(--fg) 9%,transparent)}
+#mrows .gmdots{gap:8px 18px}
+#mrows .mchips{padding:2px 8px 12px 0;margin:0 -8px 0 0}
+#mrows .mgrp:not(.on){border-radius:0!important}#mrows .mgrp.on{border-radius:16px!important}
+
+/* v85 separate meal cards + borderless add line */
+#mrows{background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important}
+#mrows .mtabs{display:flex;flex-direction:column;gap:12px}
+#mrows .mgrp,#mrows .mgrp:not(.on){background:var(--surface)!important;border:0!important;border-radius:18px!important;margin:0!important;padding:4px 14px!important;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+#mrows .mgrp+.mgrp{border-top:0!important}
+#mrows .mgrp.on{background:color-mix(in srgb,var(--mc) 9%,var(--surface))!important;border-radius:18px!important;padding:4px 14px 16px!important;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--mc) 35%,transparent)}
+#mrows .mtab{min-height:64px}
+#mrows .qrow{background:transparent!important;box-shadow:none!important;border:0!important;border-bottom:1px solid color-mix(in srgb,var(--fg) 14%,transparent)!important;border-radius:0!important;height:48px;padding:0;gap:6px}
+#mrows .qrow input{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0 2px;font-size:17px}
+#mrows .qrow .mcam{background:transparent!important;border:0!important;box-shadow:none!important;width:40px}
+#mrows .mpanel{gap:10px;padding-top:6px}
+
+.gwat{display:flex;align-items:center;gap:10px;margin:10px 0 0;padding-top:12px;border-top:.5px solid color-mix(in srgb,var(--fg) 9%,transparent)}
+.gwat[hidden]{display:none}.gwi{font-size:18px}.gwt{font-size:15px;font-weight:500;flex:1}.gwt b{color:var(--muted);font-weight:500}
+.gwb{display:flex;gap:6px}.gwb button{border:0;background:color-mix(in srgb,#32ADE6 14%,transparent);color:#1a87b8;font-weight:600;font-size:13px;border-radius:999px;padding:7px 11px;min-height:34px}
+.gwt{white-space:nowrap}.gwb{flex:none}.gwb button{padding:7px 9px}#mrows .gmeds{border-top:0;padding-top:6px}
+.gwat{gap:8px}.gwt{flex:1 1 auto;font-size:14.5px}.gwb{gap:4px}.gwb button{padding:7px 8px;font-size:12.5px}.gwi{font-size:16px;margin-right:-2px}
+.gwat{flex-wrap:wrap}.gwu{display:inline-flex;background:color-mix(in srgb,var(--fg) 8%,transparent);border-radius:999px;padding:2px}.gwu b{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;color:var(--muted);min-width:34px;text-align:center}.gwu b.on{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12)}.gwb{flex:1 1 100%;gap:8px}.gwb button{flex:1;font-size:13.5px}.gwb button[data-gw=undo]{flex:none;padding:7px 14px}
+
+/* v88 back to simple iOS grouped list */
+#mrows{background:var(--surface)!important;border-radius:18px!important;padding:4px 16px!important;box-shadow:0 1px 2px rgba(0,0,0,.04)!important}
+#mrows .mtabs{gap:0}
+#mrows .mgrp,#mrows .mgrp:not(.on),#mrows .mgrp.on{background:transparent!important;box-shadow:none!important;border-radius:0!important;padding:0!important;margin:0!important;border-top:.5px solid color-mix(in srgb,var(--fg) 12%,transparent)!important}
+#mrows .mgrp:first-child,#mrows .mgrp[hidden]+.mgrp:not([hidden]):first-of-type{border-top:0!important}
+#mrows .mgrp.on{padding-bottom:18px!important}
+#mrows .mtab{min-height:72px;padding:14px 0!important}
+#mrows .mgrp.on .mtn{font-weight:600}
+#mrows .gmeds,#mrows .gwat{margin-top:4px;padding-top:12px;border-top:0}
+#mrows .gwat{margin-top:14px}
+#mrows .mgrp.on+.mgrp{border-top:.5px solid color-mix(in srgb,var(--fg) 12%,transparent)!important}
+
+/* v89 colour differentiator for the open part of the day */
+#mrows .mgrp.on{background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 12%,var(--surface)),color-mix(in srgb,var(--mc) 4%,var(--surface)) 70%)!important;margin:6px -16px!important;padding:0 16px 18px 20px!important;border-top:0!important;border-radius:14px!important;position:relative}
+#mrows .mgrp.on::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--mc)}
+#mrows .mgrp.on+.mgrp,#mrows .mgrp.on{border-top:0!important}
+#mrows .mgrp.on .mtn{color:var(--mc);filter:brightness(.82)}
+#mrows .mgrp.on .gwb button{background:color-mix(in srgb,var(--mc) 16%,transparent);color:color-mix(in srgb,var(--mc) 70%,#000)}
+#mrows .mgrp.on .qrow{border-bottom-color:color-mix(in srgb,var(--mc) 45%,transparent)!important}
+
+/* v90 nothing open by default; separate white cards */
+.mpanel[hidden]{display:none!important}
+#mrows{background:transparent!important;box-shadow:none!important;border-radius:0!important;padding:0!important}
+#mrows .mtabs{display:flex;flex-direction:column;gap:14px}
+#mrows .mgrp,#mrows .mgrp:not(.on){background:var(--surface)!important;border-radius:18px!important;border:0!important;padding:0 16px!important;margin:0!important;box-shadow:0 1px 2px rgba(0,0,0,.05)!important}
+#mrows .mgrp.on{background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 12%,var(--surface)),color-mix(in srgb,var(--mc) 4%,var(--surface)) 70%)!important;padding:0 16px 18px 20px!important;margin:0!important;border-radius:18px!important;overflow:hidden}
+#mrows .mgrp.on::before{top:0;bottom:0;border-radius:0}
+#mrows .mgrp.on+.mgrp{border-top:0!important}
+
+/* v91 compact: fits one screen; fluids card hidden (water lives in meals) */
+#fluidCard{display:none!important}
+#mrows .mtabs{gap:8px}
+#mrows .mtab{min-height:58px!important;padding:8px 0!important}
+#mrows .mtab::before{transform:scale(.88)}
+main.gut>section{gap:12px}
 </style>
 
 <header class="band gut">
@@ -356,16 +537,21 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
   <!-- TODAY -->
   <section id="tab-today" class="col">
     <div id="kAlert" class="alert" hidden></div>
-    <div class="card quest" id="quest"></div>
     <div class="card kpcard" id="kpCard">
+      <div id="bloomBar" class="bloombar" role="button" tabindex="0" aria-label="Open progress and details"></div>
       <div class="daynav"><button id="dPrev" aria-label="Previous day">‹</button><div style="text-align:center"><div class="eyebrow" id="dEyebrow">Today</div><h2 id="dTitle">—</h2></div><button id="dNext" aria-label="Next day">›</button></div>
+      <button id="progBtn" class="progbtn" aria-expanded="false" aria-controls="progPanel"><span id="progSum" class="grow">Progress</span><span class="pgo">Progress &amp; details <b>▾</b></span></button>
     </div>
+    <div id="progPanel" class="col" hidden>
+      <div class="card quest" id="quest"></div>
+      <div class="card"><div class="mcmp" id="mcmp"></div></div>
+      <div class="card" id="kpBlocks"></div>
+    </div>
+    <div class="card rows"><details id="medCard"></details></div>
     <div class="card meals" id="mrows">
       <div class="mtabs"><button class="mtab" data-tab="breakfast"><span class="mtn">Breakfast</span><span class="mtm"></span></button><button class="mtab" data-tab="mid"><span class="mtn">Mid-morning</span><span class="mtm"></span></button><button class="mtab" data-tab="lunch"><span class="mtn">Lunch</span><span class="mtm"></span></button><button class="mtab" data-tab="dinner"><span class="mtn">Dinner</span><span class="mtm"></span></button><button class="mtab" data-tab="snack" hidden><span class="mtn">Other</span><span class="mtm"></span></button></div>
-      <div class="mcmp" id="mcmp"></div>
-      <div class="mpanel"><div class="mh"><div class="mt"><b class="mtitle"></b><span class="ms"></span></div></div><div class="macts mh"><button class="btn mcam" data-mact="cam" aria-label="Take a photo of this meal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Photo</span></button><button class="btn primary madd" data-mact="add">Check meal</button></div><div class="ml"></div><div class="mm"></div></div>
+      <div class="mpanel"><div class="mh"><div class="mt"><b class="mtitle"></b><span class="ms"></span></div></div><div class="macts mh"><div class="qrow"><input id="qname" type="text" enterkeyhint="done" autocomplete="off" autocapitalize="sentences" placeholder="Add what you ate…"><button class="btn mcam" data-mact="cam" aria-label="Take a photo of this meal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button><button class="btn primary madd" id="qadd">Add</button></div><div class="qsub"><span id="qst" class="note"></span></div></div><div class="ml"></div><div class="mm"></div></div>
     </div>
-    <div class="card" id="kpBlocks"></div>
     <div class="card" id="fluidCard"></div>
     <div id="lfiles" hidden>
         <input id="lpick" class="hidden-file" type="file" accept="image/*" multiple>
@@ -385,20 +571,7 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
       <div id="draft" hidden></div>
     </div>
     </div>
-    <details class="card rows" id="menuCard"><summary class="sumrow"><h3 style="margin:0">Eating out? Scan a menu</h3></summary><div class="herobody" style="display:flex;flex-direction:column;gap:12px">
-      <div class="note">Photograph the menu. You get what to order, what to ask the kitchen for, and what to skip, based on today's totals.</div>
-      <div class="addrow">
-        <input id="mnote" type="text" class="grow" placeholder="Cuisine or notes (optional)" maxlength="120" style="flex:1;min-width:0">
-        <label class="iconbtn" for="mcam" aria-label="Photograph the menu" title="Photograph the menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></label>
-        <label class="iconbtn alt" for="mpick" aria-label="Choose menu photos" title="Choose menu photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></label>
-        <input id="mpick" class="hidden-file" type="file" accept="image/*" multiple>
-        <input id="mcam" class="hidden-file" type="file" accept="image/*" capture="environment">
-      </div>
-      <div class="thumbs" id="mthumbs" hidden></div>
-      <div class="row"><button id="mgo" class="btn primary">Find what I can order</button><button id="mclear" class="btn ghost">Clear</button><span id="mstatus" class="note grow"></span></div>
-      <div id="mout"></div>
-    </div></details>
-    <div class="card rows"><details id="medCard"></details></div>
+    
     
     <details class="card fold" id="more" hidden>
       <summary><h3>More</h3></summary>
@@ -429,6 +602,19 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
 
   <!-- FOODS -->
   <section id="tab-foods" class="col" hidden>
+    <details class="card rows" id="menuCard"><summary class="sumrow"><h3 style="margin:0">Eating out? Scan a menu</h3></summary><div class="herobody" style="display:flex;flex-direction:column;gap:12px">
+      <div class="note">Photograph the menu. You get what to order, what to ask the kitchen for, and what to skip, based on today's totals.</div>
+      <div class="addrow">
+        <input id="mnote" type="text" class="grow" placeholder="Cuisine or notes (optional)" maxlength="120" style="flex:1;min-width:0">
+        <label class="iconbtn" for="mcam" aria-label="Photograph the menu" title="Photograph the menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></label>
+        <label class="iconbtn alt" for="mpick" aria-label="Choose menu photos" title="Choose menu photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></label>
+        <input id="mpick" class="hidden-file" type="file" accept="image/*" multiple>
+        <input id="mcam" class="hidden-file" type="file" accept="image/*" capture="environment">
+      </div>
+      <div class="thumbs" id="mthumbs" hidden></div>
+      <div class="row"><button id="mgo" class="btn primary">Find what I can order</button><button id="mclear" class="btn ghost">Clear</button><span id="mstatus" class="note grow"></span></div>
+      <div id="mout"></div>
+    </div></details>
     <div class="card">
       <div><div class="eyebrow">Shopping or cooking?</div><h2>Which of these can I eat?</h2></div>
       <textarea id="flist" placeholder="Type a list: apple, banana, guava, lauki, bhindi, palak, paneer, toor dal"></textarea>
@@ -566,7 +752,7 @@ button.qchip{border:0;font:inherit;font-size:11.5px;font-weight:700;cursor:point
       <div class="callout"><b>Never:</b> star fruit, coconut water, low-sodium or "lite" salt (potassium chloride), fruit juice, banana, mango, dry fruits, and packaged food with "phosphate" or E338–E343 / E450–E452 on the label.</div>
       <div class="callout"><b>Double-boil vegetables and dal:</b> cut small, boil in plenty of water, drain, boil again in fresh water, then do the tadka. Pressure-cooking and steaming don't remove potassium. Soaking alone barely does.</div>
     </details>
-    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 67 · Nov 2</div></div>
+    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 91 · Nov 7</div></div>
     <p class="note">For education only, not a prescription. Potassium can change quickly at eGFR 13, so recheck labs as your nephrologist advises. Numbers are approximate Indian food values (IFCT 2017 style).</p>
   </section>
 </main>
@@ -1065,8 +1251,8 @@ function entryHTML(en,ei){let h='';const st=sumItems(en.items);let lv='s';en.ite
       (en.ph&&en.ph.length?`<div class="entry-ph">${en.ph.map(u=>`<img src="${u}" alt="">`).join('')}</div>`:'')+
       en.items.map((it,i)=>{const f=getF(it);if(!f)return'';const r=rate(f,it.q);
         return `<div class="item"><span class="dot ${r.lv}" title="${LABEL[r.lv]}"></span><div style="min-width:0"><div class="name">${esc(f.name)}</div><div class="meta num">${fmtQ(it.q)} × ${esc(f.serving)}${servNote(f,it.q)} · K ${Math.round(f.k*it.q)} · P ${Math.round(f.p*it.q)} · ${(f.pr*it.q).toFixed(1)} g</div></div><div class="row" style="gap:2px;flex-wrap:nowrap"><div class="stepper"><button data-eact="dec" data-e="${ei}" data-i="${i}" aria-label="Less">−</button><span class="q num">${fmtQ(it.q)}</span><button data-eact="inc" data-e="${ei}" data-i="${i}" aria-label="More">+</button></div><button class="x" data-eact="del" data-e="${ei}" data-i="${i}" aria-label="Remove">×</button></div></div>`}).join('')+
-      `<div class="note num">K ${Math.round(st.k)} · P ${Math.round(st.p)} · Na ${Math.round(st.na)} mg · ${st.pr.toFixed(1)} g protein · ${st.fi.toFixed(1)} g fiber · ${Math.round(st.kcal)} kcal</div><div class="row" style="justify-content:flex-end;gap:6px"><button class="btn ghost sm star ${isFav?'on':''}" data-eact="fav" data-e="${ei}">${isFav?'★ Saved':'☆ Save as favourite'}</button><button class="btn ghost sm" data-eact="delmeal" data-e="${ei}" style="color:var(--avoid)">Remove meal</button></div></details>`;return h}
-const MCOL={breakfast:'var(--r-k)',mid:'var(--r-p)',lunch:'var(--r-na)',dinner:'var(--r-pr)',snack:'var(--muted)'};
+      `<div class="note num">K ${Math.round(st.k)} · P ${Math.round(st.p)} · Na ${Math.round(st.na)} mg · ${st.pr.toFixed(1)} g protein · ${st.fi.toFixed(1)} g fiber · ${Math.round(st.kcal)} kcal</div><div class="row" style="justify-content:flex-end;gap:6px"><label class="emv">Move to <select data-emove="${ei}">${[['breakfast','Breakfast'],['mid','Mid-morning'],['lunch','Lunch'],['snack','Snack / other'],['dinner','Dinner']].map(([k,n])=>`<option value="${k}" ${MSLOT(en.slot)===k?'selected':''}>${n}</option>`).join('')}</select></label><button class="btn ghost sm star ${isFav?'on':''}" data-eact="fav" data-e="${ei}">${isFav?'★ Saved':'☆ Save as favourite'}</button><button class="btn ghost sm" data-eact="delmeal" data-e="${ei}" style="color:var(--avoid)">Remove meal</button></div></details>`;return h}
+const MCOL={breakfast:'#FF9500',mid:'#32ADE6',lunch:'#34C759',dinner:'#5E5CE6',snack:'#8E8E93'};
 const MTABS=["breakfast","mid","lunch","dinner","snack"],MTNAME={breakfast:'Breakfast',mid:'Mid-morning',lunch:'Lunch',dinner:'Dinner',snack:'Other meals'};
 let mTab=null;
 function sevInfo(day,P){
@@ -1080,7 +1266,6 @@ function sevNote(day,P){
   return v.n?`<div class="note mcnote mcsev"><b>Sevelamer:</b> ${v.c} dose${v.c>1?'s':''} ticked (${v.n} tablet${v.n>1?'s':''}). It may bind roughly ${f(v.mid)} mg of the phosphorus eaten (rough range ${f(v.lo)}–${f(v.hi)} mg), so the “after binder” line is intake minus that estimate. Your ${S.t.p} mg limit still applies to what you eat.</div>`
    :`<div class="note mcnote mcsev"><b>Sevelamer:</b> tick it in Medicines with each meal. It binds roughly 40 mg phosphorus per 800 mg tablet (a rough estimate; range 20–65). It does not clear phosphorus already in your blood.</div>`}
 function mealsUI(){
-  if(!mTab){const x=MSLOT(slotNow());mTab=x==='snack'?'dinner':x}
   const isToday=viewDay===todayKey(),L=S.log[viewDay]||[],bySlot={};
   L.forEach((en,ei)=>{const k=MSLOT(en.slot);(bySlot[k]||(bySlot[k]=[])).push([en,ei])});
   const arrOf=sl=>(bySlot[sl]||[]).sort((x,y)=>String(x[0].t).localeCompare(String(y[0].t)));
@@ -1088,7 +1273,23 @@ function mealsUI(){
     const sl=b.dataset.tab,arr=arrOf(sl),st=sumItems(arr.flatMap(x=>x[0].items||[]));
     b.style.setProperty('--mc',MCOL[sl]);b.classList.toggle('on',sl===mTab);b.classList.toggle('has',!!arr.length);
     b.querySelector('.mtm').textContent=arr.length?`${Math.round(st.k)} K`:'—';
-    b.hidden=sl==='snack'&&!arr.length&&mTab!=='snack';});
+    let pv=b.querySelector('.mtp');if(!pv){pv=document.createElement('span');pv.className='mtp';b.querySelector('.mtn').after(pv)}
+    {const _m=isToday?medsForGroup(sl):[];{const _w=waterMl(viewDay,sl);pv.dataset.w=_w}pv.textContent=arr.map(x=>x[0].name).join(' · ')+(pv.dataset.w>0?`${arr.length?' · ':''}💧 ${ozs(+pv.dataset.w)}`:'')+(_m.length?`${(arr.length||pv.dataset.w>0)?' · ':''}${_m.filter(x=>x.on).length}/${_m.length} meds`:'')}
+    let gw=b.parentElement;if(!gw.classList.contains('mgrp')){gw=document.createElement('div');gw.className='mgrp';b.before(gw);gw.append(b)}
+    gw.dataset.sl=sl;gw.style.setProperty('--mc',MCOL[sl]);gw.classList.toggle('on',sl===mTab);
+    const ms=isToday?medsForGroup(sl):[];
+    let gm=gw.querySelector(':scope>.gmeds');if(!gm){gm=document.createElement('div');gm.className='gmeds';b.after(gm)}
+    gm.hidden=!ms.length;gm.innerHTML=ms.length?medRowHTML(sl,ms):'';
+    let gt=gw.querySelector(':scope>.gwat');if(!gt){gt=document.createElement('div');gt.className='gwat'}
+    {const wm=waterMl(viewDay,sl);gt.hidden=!(sl===mTab);gt.innerHTML=`<span class="gwi">💧</span><span class="gwt">Water<b>${wm?' · '+ozs(wm):''}</b></span>${isToday?`<span class="gwu" data-gwu><b class="${flUnit==='oz'?'on':''}" data-u="oz">oz</b><b class="${flUnit==='ml'?'on':''}" data-u="ml">mL</b></span><span class="gwb">${flUnit==='ml'?`<button data-gw="120" data-sl="${sl}">+120 mL</button><button data-gw="250" data-sl="${sl}">+250 mL</button><button data-gw="500" data-sl="${sl}">+500 mL</button>`:`<button data-gw="118" data-sl="${sl}">+4 oz</button><button data-gw="237" data-sl="${sl}">+8 oz</button><button data-gw="473" data-sl="${sl}">+16 oz</button>`}${wm?`<button data-gw="undo" data-sl="${sl}" aria-label="Undo last water">↶</button>`:''}</span>`:''}`;
+     gt.dataset.w=wm}
+    let cd=gw.querySelector(':scope>.mchips');if(!cd){cd=document.createElement('div');cd.className='mchips';gm.after(cd)}
+    cd.dataset.sl=sl;cd.classList.toggle('wrap',qMoreSl===sl);
+    {const hv=new Set(arr.map(x=>normN(x[0].name))),cl=isToday&&!b.hidden&&sl===mTab?usualFor(sl).filter(n=>!hv.has(normN(n))):[],lm=qMoreSl===sl?30:4;
+     cd.innerHTML=cl.slice(0,lm).map(n=>`<button class="chip-btn" data-qn="${esc(n)}" data-sl="${sl}">+ ${esc(n)}</button>`).join('')+(cl.length>4?`<button class="chip-btn" data-qmore="${sl}">${qMoreSl===sl?'Less ▴':'More ▾ ('+(cl.length-4)+')'}</button>`:'')}
+    if(sl===mTab){const pn=document.querySelector('#mrows .mpanel');if(pn&&cd.nextElementSibling!==pn)cd.after(pn);if(pn&&pn.nextElementSibling!==gm)pn.after(gm)}else if(gm.previousElementSibling!==b)b.after(gm);
+    if(gm.nextElementSibling!==gt)gm.after(gt);
+    b.hidden=sl==='snack'&&!arr.length&&mTab!=='snack'&&!ms.length;gw.hidden=b.hidden;});
   // comparison: how each meal uses the day's limits
   {const T=S.t,tot={};MTABS.forEach(sl=>tot[sl]=sumItems(arrOf(sl).flatMap(x=>x[0].items||[])));
    MTABS.forEach(sl=>{const its=arrOf(sl).flatMap(x=>x[0].items||[]);tot[sl].pral=sumPral(its);tot[sl].cr=crLevel(its)});
@@ -1116,16 +1317,20 @@ function mealsUI(){
      const fmt=n=>key==='pral'||key==='fi'?(Math.round(n*10)/10).toString():Math.round(n).toLocaleString();
      return `<div class="mcr"><span class="mcn">${nm}</span><div class="mcb${over?' over':''}">${segs}</div><span class="mcv num${over?' bad':''}">${fmt(sum)}<small>/${fmt(lim)}</small></span></div>`}).join('')+
      `<div class="note mcnote">Each colour is a meal; tap one to open it. Bars fill your daily limit. Acid load runs from base (left, like fruit) through 0 to acid (right, dotted line = +10 limit). Grey in Sodium = bicarbonate doses you ticked in Medicines (${fmtMg(medNa(viewDay))} mg so far; each dose adds ${fmtMg(T.med/Math.max(1,((S.meds||[]).find(x=>x.id==='m2')||{}).per||1))} mg). Creatinine can't be measured from food: it flags cooked meat or fish, which can raise the blood-test reading for 3–6 hours.</div>`+sevNote(viewDay,MTABS.reduce((a,sl)=>a+tot[sl].p,0))}
-  const arr=arrOf(mTab),st=sumItems(arr.flatMap(x=>x[0].items||[])),p=$('#mrows .mpanel');
+  const p=$('#mrows .mpanel');p.hidden=!mTab;if(!mTab){document.querySelectorAll('#mrows .macts').forEach(x=>x.hidden=true);return}
+  const arr=arrOf(mTab),st=sumItems(arr.flatMap(x=>x[0].items||[]));
   p.querySelector('.mtitle').textContent=MTNAME[mTab];
   p.querySelector('.ms').textContent=arr.length?`${arr.length} meal${arr.length>1?'s':''} · K ${Math.round(st.k)} · P ${Math.round(st.p)} mg`:(isToday?'Nothing logged yet':'Nothing logged');
   p.querySelector('.ml').innerHTML=arr.map(([en,ei])=>entryHTML(en,ei)).join('');
-  p.querySelectorAll('.macts').forEach(x=>x.hidden=!isToday);
-  p.querySelector('.madd').textContent=loggerSlot&&loggerSlot===mTab?'Close':'Check meal';
+  document.querySelectorAll('#mrows .macts').forEach(x=>x.hidden=!isToday);
 }
 // ---------- Fluids ----------
 const FL_KINDS=[['water','Water'],['tea','Tea or coffee'],['milk','Milk or chaas'],['juice','Juice'],['soup','Soup'],['other','Other']];
-let flKind='water';
+let flUnit=(S&&S.flUnit)||'oz';let flKind='water';
+function fluidSlot(e){if(e.s)return MSLOT(e.s);const d=new Date(e.t),h=d.getHours()+d.getMinutes()/60;return h<10.5?'breakfast':h<12?'mid':h<15.5?'lunch':h<18.5?'snack':'dinner'}
+function waterMl(k,sl){return (S.fluid&&S.fluid[k]||[]).filter(e=>fluidSlot(e)===sl).reduce((a,e)=>a+e.ml,0)}
+const ozs=ml=>flUnit==='ml'?Math.round(ml)+' mL':(Math.round(ml/29.5735*10)/10).toString()+' oz';
+function addWater(ml,sl){ml=Math.round(ml);if(!isFinite(ml)||ml<=0||ml>3000){toast('Enter an amount up to about 100 oz (3000 mL)');return}try{if(!S.fluid)S.fluid={};const d=todayKey();(S.fluid[d]=S.fluid[d]||[]).push({ml,kind:'water',s:sl||MSLOT(slotNow()),t:new Date().toISOString()});try{save()}catch(_){}renderFluid();mealsUI();toast('Added '+ozs(ml)+' of water')}catch(err){toast('Could not add: '+err.message)}}
 function renderFluid(){
   const el=$('#fluidCard');if(!el)return;
   const k=viewDay,isToday=k===todayKey(),L=(S.fluid[k]||[]),tot=L.reduce((a,e)=>a+e.ml,0),T=S.fluidT||{},mx=+T.max||0,mn=+T.min||0;
@@ -1141,24 +1346,24 @@ function renderFluid(){
   const brk=Object.keys(by).map(x=>`${(FL_KINDS.find(y=>y[0]===x)||[0,'Other'])[1]} ${f(by[x])}`).join(' · ');
   const ur=+T.urine||0,w=S.wt||{},wk=w[k],prev=Object.keys(w).filter(d=>d<k).sort().pop();
   const dw=(wk!=null&&prev!=null)?(wk-w[prev]):null;
-  el.innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Fluids${isToday?'':' · this day'}</div><h2 class="num" style="margin:0">${f(tot)} <small style="font:600 14px var(--body);color:var(--muted)">mL${mx?` of ${f(mx)}`:''}</small></h2></div><div class="note" style="text-align:right">${mn||mx?`Range ${mn?f(mn):'0'}–${mx?f(mx):'no limit'} mL`:''}</div></div>
+  el.innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Fluids${isToday?'':' · this day'}</div><h2 class="num" style="margin:0">${f(tot)} <small style="font:600 14px var(--body);color:var(--muted)">mL${mx?` of ${f(mx)}`:''}</small> <small style="font:500 13px var(--body);color:var(--muted)">≈ ${Math.round(tot/29.5735)} oz</small></h2></div><div class="note" style="text-align:right">${mn||mx?`Range ${mn?f(mn):'0'}–${mx?f(mx):'no limit'} mL`:''}</div></div>
     <div class="flbar"><i class="${cls}" style="width:${tot/scale*100}%"></i>${mn?`<u style="left:${mn/scale*100}%"></u>`:''}${mx?`<u class="mx" style="left:${mx/scale*100}%"></u>`:''}</div>
     <div class="note fl-msg">${msg}</div>
-    ${brk?`<div class="note">${esc(brk)} mL</div>`:''}
-    ${isToday?`<div class="flk">${FL_KINDS.map(([id,n])=>`<button class="flkb ${flKind===id?'on':''}" data-flk="${id}">${n}</button>`).join('')}</div>
-    <div class="flrow"><button class="btn sm" data-fl="150">+150</button><button class="btn sm" data-fl="250">+250</button><button class="btn sm" data-fl="500">+500</button><input id="flc" type="number" inputmode="numeric" placeholder="mL" aria-label="Custom amount in mL"><button class="btn sm primary" id="flAdd">Add</button><button class="btn sm ghost" id="flUndo" ${L.length?'':'disabled'}>Undo</button></div>`:''}
+    ${isToday?`<div class="flrow"><input id="flc" type="number" inputmode="decimal" min="1" placeholder="Amt" aria-label="Custom amount"><select id="flu" aria-label="Unit"><option value="oz" ${flUnit==='oz'?'selected':''}>oz</option><option value="ml" ${flUnit==='ml'?'selected':''}>mL</option></select><button class="btn sm primary" id="flAdd">Add water</button><button class="btn sm ghost" id="flUndo" ${L.length?'':'disabled'}>Undo</button></div>`:''}
     <details class="qmore"><summary>Morning weight · safety</summary>
       ${isToday?`<div class="flrow"><input id="wtv" type="number" step="0.1" inputmode="decimal" placeholder="kg" value="${wk??''}" aria-label="Morning weight in kg"><button class="btn sm" id="wtSave">Save weight</button></div>`:''}
       <div class="note">${wk!=null?`${wk} kg${dw!=null?` · ${dw>0?'+':''}${dw.toFixed(1)} kg vs your last entry`:''}. `:''}Weigh at the same time on the same scale. A quick rise with swelling or breathlessness can mean extra fluid.</div>
       ${ur?`<div class="note">Rule of thumb in NKF guidance for advanced kidney disease: fluid about equal to the urine you pass (yours was about ${f(ur)} mL). Your nephrologist may set it differently.</div>`:''}
-      <div class="note">Soups, tea, chaas and juice count. Their potassium and phosphorus still go in your meals. Vomiting, diarrhoea or fever: ask your care team about pausing Farxiga and other sick-day medicines.</div>
+      <div class="note">Anything liquid counts toward your total, including soups and tea. Vomiting, diarrhoea or fever: ask your care team about pausing Farxiga and other sick-day medicines.</div>
     </details>`}
 document.addEventListener('click',e=>{
   const kb=e.target.closest('[data-flk]');if(kb){flKind=kb.dataset.flk;renderFluid();return}
-  const add=(ml)=>{ml=Math.round(ml);if(!isFinite(ml)||ml<=0||ml>3000){toast('Enter an amount between 1 and 3000 mL');return}const d=todayKey();(S.fluid[d]=S.fluid[d]||[]).push({ml,kind:flKind,t:new Date().toISOString()});save();renderFluid()};
+  const add=(ml)=>addWater(ml,mTab||MSLOT(slotNow()));
   const b=e.target.closest('[data-fl]');if(b){add(+b.dataset.fl);return}
-  if(e.target.id==='flAdd'){add(parseFloat($('#flc').value));return}
-  if(e.target.id==='flUndo'){const d=todayKey();(S.fluid[d]||[]).pop();save();renderFluid();return}
+  if(e.target.id==='flAdd'){const v=parseFloat($('#flc').value),u=$('#flu').value;flUnit=u;S.flUnit=u;add(u==='oz'?v*29.5735:v);return}
+  if(e.target.id==='flUndo'){const d=todayKey();(S.fluid[d]||[]).pop();save();renderFluid();mealsUI();return}
+  const gu=e.target.closest('[data-gwu] [data-u]');if(gu){flUnit=gu.dataset.u;S.flUnit=flUnit;try{save()}catch(_){}renderFluid();mealsUI();return}
+  const gw=e.target.closest('[data-gw]');if(gw){if(gw.dataset.gw==='undo'){const d=todayKey(),a=S.fluid&&S.fluid[d]||[];for(let i=a.length-1;i>=0;i--)if(fluidSlot(a[i])===gw.dataset.sl){a.splice(i,1);break}save();renderFluid();mealsUI()}else addWater(+gw.dataset.gw,gw.dataset.sl);return}
   if(e.target.id==='wtSave'){const v=parseFloat($('#wtv').value);if(!isFinite(v)||v<20||v>250){toast('Enter your weight in kg');return}S.wt[todayKey()]=Math.round(v*10)/10;save();renderFluid();toast('Weight saved')}});
 function renderToday(){
   const T=S.t, t=eatenTotals(viewDay), isToday=viewDay===todayKey();
@@ -1171,6 +1376,7 @@ function renderToday(){
   renderKP();
   const L=S.log[viewDay]||[];
   try{renderQuest()}catch(err){}
+  try{const c=dayChecks(viewDay),st=streakCalc();$('#progSum').innerHTML=`${st.count?`🔥 ${st.count}-day streak · `:''}${c.score}/8 checks${(()=>{const w=(S.fluid&&S.fluid[viewDay]||[]).reduce((x,e)=>x+e.ml,0);return w?` · 💧 ${ozs(w)}`:''})()}`}catch(err){}
   // entries
   if(!isToday&&loggerSlot)closeLogger();
   mealsUI();
@@ -1201,7 +1407,7 @@ $('#mrows').addEventListener('click',e=>{const b=e.target.closest('[data-eact]')
 let lPhotos=[], draft=null, lctl=null, loggerSlot=null;
 const MSLOT=x=>['breakfast','mid','lunch','dinner'].includes(x)?x:'snack';
 const curSlot=()=>loggerSlot||slotNow();
-const SLOTPH={breakfast:'What did you have for breakfast?',mid:'What did you have mid-morning?',lunch:'What did you have for lunch?',dinner:'What did you have for dinner?',snack:'What did you have?'};
+const SLOTPH={breakfast:'Describe what you ate',mid:'Describe what you ate',lunch:'Describe what you ate',dinner:'Describe what you ate',snack:'Describe what you ate'};
 function openLogger(slot,keep){
   if(loggerSlot!==slot&&!keep)resetLogger();
   loggerSlot=slot;mTab=slot;mealsUI();
@@ -1209,12 +1415,16 @@ function openLogger(slot,keep){
   $('#ldesc').placeholder=SLOTPH[slot]||'What did you eat?';}
 function closeLogger(){
   resetLogger();$('#lpark').appendChild($('#logger'));$('#logger').hidden=true;loggerSlot=null;mealsUI();}
+$('#mcmp').addEventListener('click',e=>{const t=e.target.closest('.mseg[data-tab]');if(!t)return;if(loggerSlot&&loggerSlot!==t.dataset.tab)closeLogger();mTab=t.dataset.tab;mealsUI()});
+$('#mrows').addEventListener('change',e=>{const m=e.target.closest('[data-emove]');if(!m)return;const en=(S.log[viewDay]||[])[+m.dataset.emove];if(!en)return;en.slot=m.value;mTab=MSLOT(m.value);save();renderToday();toast('Moved to '+m.options[m.selectedIndex].text)});
+$('#bloomBar').addEventListener('click',e=>{if(e.target.closest('button'))return;$('#progBtn').click()});
+$('#progBtn').addEventListener('click',()=>{const o=$('#progPanel').hidden;$('#progPanel').hidden=!o;$('#progBtn').setAttribute('aria-expanded',String(o));if(o)try{$('#progPanel').scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}});
 $('#mrows').addEventListener('click',e=>{
-  const t=e.target.closest('.mtab,.mseg[data-tab]');if(t){if(loggerSlot&&loggerSlot!==t.dataset.tab)closeLogger();mTab=t.dataset.tab;mealsUI();return}
+  const t=e.target.closest('.mtab,.mseg[data-tab]');if(t){if(t.classList.contains('mtab')&&mTab===t.dataset.tab){if(loggerSlot)closeLogger();mTab=null;mealsUI();return}if(loggerSlot&&loggerSlot!==t.dataset.tab)closeLogger();mTab=t.dataset.tab;mealsUI();return}
   const b=e.target.closest('[data-mact]');if(!b)return;
-  if(b.dataset.mact==='cam'){openLogger(mTab);$('#lcam').click()}
-  else if(loggerSlot===mTab)closeLogger();
-  else{openLogger(mTab);try{$('#ldesc').focus({preventScroll:true})}catch(_){}}});
+  if(b.dataset.mact==='cam'){openLogger(entrySlot());$('#lcam').click()}
+  else if(loggerSlot===entrySlot())closeLogger();
+  else{openLogger(entrySlot());const v=($('#qname').value||'').trim();if(v){$('#ldesc').value=v;$('#lgo').click()}else{try{$('#ldesc').focus({preventScroll:true})}catch(_){}}}});
 function renderThumbs(){const box=$('#thumbs');box.hidden=!lPhotos.length;box.innerHTML=lPhotos.map((p,i)=>`<div class="thumb"><img src="${p.url}" alt="Meal photo ${i+1}"><button data-rm="${i}" aria-label="Remove photo">×</button></div>`).join('')}
 function addPhotos(files){for(const f of files){if(lPhotos.length>=5)break;let url='';try{url=URL.createObjectURL(f)}catch(e){}lPhotos.push({file:f,url})}renderThumbs();$('#lnoai').hidden=!!(sample&&canImg)||!lPhotos.length;
   if(lPhotos.length){if(sample&&canImg){$('#lgo').click()}else{$('#lstatus').textContent=`${lPhotos.length} photo${lPhotos.length>1?'s':''} added. Describe the meal too, then tap Work it out.`}}}
@@ -1255,6 +1465,7 @@ $('#draft').addEventListener('click',async e=>{
   renderDraft();
 });
 $('#lgo').addEventListener('click',async()=>{
+  const auto=autoLog; autoLog=false;
   const text=$('#ldesc').value.trim(); const st=$('#lstatus');
   if(!text&&!lPhotos.length){st.textContent='Take or add a photo, or describe the meal.';return}
   const keepName=draft&&draft.name&&draft.touched?draft.name:'';
@@ -1272,10 +1483,41 @@ $('#lgo').addEventListener('click',async()=>{
     if(!items.length){st.textContent=draft?'':'No food found. Try a clearer photo or describe it.';return}
     draft={name:keepName||String(j.dish||'').slice(0,60),slot:(draft&&draft.slot)||curSlot(),items,swaps:(Array.isArray(j.swaps)?j.swaps:[]).slice(0,3).map(String),advice:String(j.advice||''),verdict:(hardHit(text)?'a':''),unknown:[]};
     renderDraft(); st.textContent='';
+    if(auto&&text&&draft.items.length){const nm=text.slice(0,60),sl=draft.slot,its=draft.items;quickDone({name:nm,slot:sl,items:its,ph:[]},`Logged ${nm.slice(0,40)}`);closeLogger();const q=$('#qname');if(q)q.value='';return}
   }catch(e){if(e&&e.code==='cancelled')return;st.textContent=errText(e);if(e&&(e.code==='not_granted'||e.code==='sampling_disabled')){sample=null}}
   finally{go.disabled=false}
 });
 $('#draft').addEventListener('keydown',e=>{if(e.target.id==='dname'&&draft)draft.touched=true});
+
+// ---------- Quick log: type a name, it logs ----------
+let autoLog=false;
+function normN(s){return String(s||'').trim().toLowerCase().replace(/\s+/g,' ')}
+function toastUndo(msg,fn){const t=$('#toast');t.textContent=msg+' ';const b=document.createElement('button');b.textContent='Undo';b.style.cssText='margin-left:8px;background:none;border:0;color:inherit;font-weight:800;text-decoration:underline;font-size:13px';b.onclick=()=>{fn();t.hidden=true};t.appendChild(b);t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,6000)}
+function quickDone(entry,msg){mTab=MSLOT(entry.slot);qSlotUser=null;logMeal(entry);const L=dayLog(todayKey()),en=L[L.length-1];toastUndo(msg,()=>{const i=L.indexOf(en);if(i>=0){L.splice(i,1);save();renderToday()}})}
+function findPast(name){const n=normN(name);const f=S.favs.find(x=>normN(x.name)===n&&(x.items||[]).length);if(f)return f;
+  for(const d of Object.keys(S.log).sort().reverse()){const e=(S.log[d]||[]).slice().reverse().find(x=>normN(x.name)===n&&(x.items||[]).length);if(e)return e}return null}
+function usualFor(slot){const here=new Map(),other=new Map(),today=todayKey();
+  for(let i=0;i<180;i++)for(const e of (S.log[shift(today,-i)]||[])){if(!(e.items||[]).length)continue;const m=MSLOT(e.slot)===slot?here:other,k=normN(e.name),o=m.get(k)||{name:e.name,n:0};o.n++;m.set(k,o)}
+  const rank=m=>[...m.values()].sort((a,b)=>b.n-a.n).map(o=>o.name);
+  const arr=rank(here),has=n=>arr.some(x=>normN(x)===normN(n));
+  (S.favs||[]).forEach(f=>{if(!has(f.name))arr.push(f.name)});
+  rank(other).forEach(n=>{if(!has(n))arr.push(n)});
+  return arr.slice(0,30)}
+let qMoreSl=null,qSlotUser=null;
+function entrySlot(){return mTab||MSLOT(slotNow())}
+function quickLog(text,slot){
+  text=(text||'').trim();if(!text)return false;
+  const past=findPast(text);
+  if(past){quickDone({name:past.name,slot,items:past.items.map(i=>({...i})),ph:[]},`Logged ${past.name.slice(0,40)}`);return true}
+  const m=matchText(text),items=m.filter(x=>x.f).map(x=>({id:x.f.id,q:x.q})),unk=m.filter(x=>x.unknown);
+  if(items.length&&!unk.length){quickDone({name:text.slice(0,60),slot,items,ph:[]},`Logged ${text.slice(0,40)}`);return true}
+  openLogger(slot);$('#ldesc').value=text;
+  if(sample){autoLog=true;$('#qst').textContent='Working it out…'}
+  $('#lgo').click();return false}
+function qAdd(){const q=$('#qname'),ok=quickLog(q.value,entrySlot());if(ok){q.value='';$('#qst').textContent=''}}
+$('#qadd').addEventListener('click',qAdd);
+$('#qname').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();qAdd()}});
+$('#mrows').addEventListener('click',e=>{const mo=e.target.closest('[data-qmore]');if(mo){qMoreSl=qMoreSl===mo.dataset.qmore?null:mo.dataset.qmore;mealsUI();return}const b=e.target.closest('[data-qn]');if(b)quickLog(b.dataset.qn,b.dataset.sl||entrySlot())});
 
 // ---------- MENU SCAN ----------
 let mPhotos=[],mRes=null,mctl=null;
@@ -1696,7 +1938,7 @@ function renderQuest(){
   const g=S.goal,l=latest('egfr'),rw=S.rw.text||'',bo=bonusOf(tk);
   const dchip=x=>`<div class="qchip ${meals?(x.ok?'ok':'no'):''}"><b>${meals?(x.ok?'✓':'•'):'·'}</b>${x.name}</div>`;
   const hchip=x=>x.auto?`<div class="qchip ${x.ok&&c.medNeed?'ok':''}"><b>${x.ok&&c.medNeed?'✓':'•'}</b>${x.name}<small>${x.txt.replace(' taken','')}</small></div>`:`<button class="qchip tap ${x.ok?'ok':''}" data-habit="${x.id}"><b>${x.ok?'✓':'○'}</b>${x.name}</button>`;
-  el.innerHTML=`<div class="qs">${plantSVG(good)}
+  el.innerHTML=`<div class="qs">
     <div class="qstat"><span class="qk">Streak</span><span class="qn num">${st.count}</span><span class="qu">day${st.count===1?'':'s'}${best>st.count?` · best ${best}`:''}</span></div>
     <div class="qstat"><span class="qk">Week</span><span class="qn num">${good}<small>/${BLOOM_AT}</small></span><span class="qu">good days</span></div>
     <div class="qstat"><span class="qk">Today</span><span class="qn num">${c.score}<small>/8</small></span><span class="qu">checks</span></div></div>
@@ -1706,19 +1948,26 @@ function renderQuest(){
     <div class="qgrp"><div class="qgl">Food</div><div class="qchips">${c.diet.map(dchip).join('')}</div></div>
     <div class="qgrp"><div class="qgl">Care habits</div><div class="qchips three">${c.habits.map(hchip).join('')}</div></div>
     <div class="qbonus ${bo.ok?'ok':''}"><span class="qstar">★</span><span>Bonus star: fiber <b class="num">${Math.round(bo.fi)}/${bo.fiT} g</b> · calories <b class="num">${Math.round(bo.kc).toLocaleString()}/${Math.round(bo.kcT*0.9).toLocaleString()}+</b></span></div>
-    ${earned?`<div class="qrw earned"><div><b>Reward unlocked</b><div>${rw?esc(rw):'Choose a treat below, then claim it.'}</div></div><button class="btn primary sm" id="qClaim">Claim</button></div>`:''}
     <div class="note qtip">${esc(COACH_TIPS[dayN%COACH_TIPS.length])}${st.used?' You have used this week’s rest day.':''}</div>
     <details class="qmore"><summary>${rw?'Reward: '+esc(rw):'Set a reward'} · badges</summary><input id="qRw" type="text" maxlength="60" placeholder="e.g. a movie night, a new book" value="${esc(rw)}" style="width:100%"><div class="note">A good day is 3 meals logged, potassium in range and at least 6 of 8 checks. Five good days in a week earns the reward. One rest day in any seven doesn't reset your streak. A gold dot is a bonus star: fiber target plus at least 90% of calories.</div><div class="qbadges">${[3,7,14,30,60,100].map(n=>`<span class="qbadge ${(S.badges||[]).includes(n)?'on':''}">${n}<small>days</small></span>`).join('')}</div></details>`;
+  const bb=$('#bloomBar');
+  if(bb){const sl=st.count?`${st.count}-day streak`:'Start your streak today';
+    bb.innerHTML=`${plantSVG(good)}<div class="bb-t"><div class="bb-h">${sl}${best>st.count?`<small> · best ${best}</small>`:''}</div>
+      <div class="bb-s"><span>Week <b class="num">${good}/${BLOOM_AT}</b> good days</span><span>Today <b class="num">${c.score}/8</b></span></div>
+      <div class="qdots" aria-hidden="true">${wk.map(k=>`<i class="${bonusDay(k)?'on star':goodDay(k)?'on':k===tk&&meals?'t':''}"></i>`).join('')}</div>
+      <div class="bb-c">${esc(coachLine(c,st,meals))}</div>
+      ${earned?`<div class="bb-rw"><span><b>Reward unlocked</b>${rw?': '+esc(rw):''}</span><button class="btn primary sm" id="qClaim">Claim</button></div>`:''}</div>`;
+    bb.classList.toggle('bloomed',good>=BLOOM_AT)}
   // milestones
   S.badges=S.badges||[];const hit=[3,7,14,30,60,100].filter(n=>st.count>=n&&!S.badges.includes(n));
-  if(hit.length){S.badges.push(...hit);save();confetti(el);toast(`Milestone: ${Math.max(...hit)}-day streak. Keep going`)}
+  if(hit.length){S.badges.push(...hit);save();confetti($('#bloomBar')||el);toast(`Milestone: ${Math.max(...hit)}-day streak. Keep going`)}
   // today's celebration, once per day
-  if(bonusDay(tk)&&S.celb!==tk){S.celb=tk;S.cel=tk;save();confetti(el);toast('Bonus star earned. You ate enough, too')}
-  else if(goodDay(tk)&&S.cel!==tk){S.cel=tk;save();confetti(el);toast('Great day. All four checks on track')}
+  if(bonusDay(tk)&&S.celb!==tk){S.celb=tk;S.cel=tk;save();confetti($('#bloomBar')||el);toast('Bonus star earned. You ate enough, too')}
+  else if(goodDay(tk)&&S.cel!==tk){S.cel=tk;save();confetti($('#bloomBar')||el);toast('Great day. All four checks on track')}
 }
 document.addEventListener('click',e=>{
   const hb=e.target.closest('[data-habit]');if(hb){const k=todayKey(),id=hb.dataset.habit;S.habits[k]={...(S.habits[k]||{}),[id]:!(S.habits[k]||{})[id]};save();try{renderQuest()}catch(_){}try{renderGoal()}catch(_){}return}
-  if(e.target.id==='qClaim'){S.rw.last=todayKey();save();renderQuest();confetti($('#quest'));toast('Enjoy your reward. You earned it')}});
+  if(e.target.id==='qClaim'){S.rw.last=todayKey();save();renderQuest();confetti($('#bloomBar'));toast('Enjoy your reward. You earned it')}});
 document.addEventListener('change',e=>{if(e.target.id==='qRw'){S.rw.text=e.target.value.trim().slice(0,60);save();renderQuest()}});
 function renderGoal(){
   const g=S.goal,l=latest('egfr'),slope=egfrSlope(),left=daysBetween(todayKey(),g.date),today=dayChecks(todayKey()),wk=weekDots(),good=wk.filter(x=>x.cls==='s').length;
@@ -1758,14 +2007,22 @@ const MORDER=MSLOTS.map(x=>x[0]),MNAME=Object.fromEntries(MSLOTS);
 const MDEF={m1:['bf'],m2:['bf','snack'],m3:['lunch','dinner'],m4:['bf'],m5:['bed'],m6:['bf'],m7:['bed'],m8:['bf']};
 function slotFromTime(t){const h=+String(t||'8').split(':')[0];return h<7?'wake':h<10?'bf':h<12?'mid':h<15?'lunch':h<18?'snack':h<21?'dinner':'bed'}
 function medTimes(m){const n=m.monthly||m.every>1?1:m.per;let t=Array.isArray(m.slots)?m.slots.slice(0,n):[];while(t.length<n)t.push('bf');return t.sort((x,y)=>MORDER.indexOf(x)-MORDER.indexOf(y))}
-function renderMeds(){
-  const log=S.medlog[todayKey()]||{},pg=medProgress(),slots={};
+const MGROUP={wake:'breakfast',bf:'breakfast',mid:'mid',lunch:'lunch',snack:'snack',dinner:'dinner'};
+let medOpen=null;
+function medSlots(){const log=S.medlog[todayKey()]||{},slots={};
   S.meds.forEach(m=>{const c=log[m.id]||0;if(isSched(m)){const d=medDue(m);if(!d.due&&!c)return}
-    medTimes(m).forEach((t,i)=>{(slots[t]=slots[t]||[]).push({m,i,on:c>i})})});
-  const keys=Object.keys(slots).sort((x,y)=>MORDER.indexOf(x)-MORDER.indexOf(y));
-  const nextK=keys.find(k=>slots[k].some(x=>!x.on));
-  $('#medCard').innerHTML=`<summary class="sumrow"><h3 style="margin:0">Medicines</h3><span class="note num" style="margin-left:auto">${pg.need?(nextK?`${pg.done} of ${pg.need} · next ${MNAME[nextK]}`:`all ${pg.need} taken ✓`):'none due'}</span></summary><div class="medbody">`+
-   (keys.length?keys.map(t=>`<div class="mgrp"><span class="mt">${MNAME[t]||t}</span><div class="mchips">${slots[t].map(x=>`<button class="mchip ${x.on?'on':''}" data-md="${x.m.id}" data-i="${x.i}" title="${esc(x.m.dose||'')}">${x.on?'✓ ':''}${esc(x.m.name||'Medicine')}</button>`).join('')}</div></div>`).join(''):'<div class="note">No medicines yet. Add them in Health.</div>')+`<div class="note"><a href="#" data-goto="targets" style="color:inherit">Edit medicines</a></div></div>`;
+    medTimes(m).forEach((t,i)=>{(slots[t]=slots[t]||[]).push({m,i,on:c>i,t})})});return slots}
+function medsForGroup(sl){const sd=medSlots();return Object.keys(sd).filter(t=>MGROUP[t]===sl).sort((x,y)=>MORDER.indexOf(x)-MORDER.indexOf(y)).flatMap(t=>sd[t])}
+function setMedDose(id,i,want){const L=S.medlog[todayKey()]=S.medlog[todayKey()]||{},c=L[id]||0,nc=want?Math.max(c,i+1):Math.min(c,i);if(nc)L[id]=nc;else delete L[id];
+  const mm=S.meds.find(x=>x.id===id);if(mm&&mm.monthly){if(L[id]&&!c){mm.prev=mm.next;mm.next=addMonth(todayKey())}else if(!L[id]&&c&&mm.prev){mm.next=mm.prev}}}
+function medShort(n){n=String(n||'Medicine');if(/bicarb/i.test(n))return 'Bicarb';const w=n.split(/\s+/);return (w[1]&&w[1].length<=2?w[0]+' '+w[1]:w[0]).slice(0,12)}
+function medRowHTML(sl,ms){return `<div class="gmdots">${ms.map(x=>`<button class="gmd ${x.on?'on':''}" data-md="${x.m.id}" data-i="${x.i}" title="${esc((x.m.name||'')+(x.m.dose?' · '+x.m.dose:''))}" aria-label="${esc(x.m.name||'Medicine')} ${x.on?'taken':'not taken'}"><span class="gmk"></span><span class="gml">${esc(medShort(x.m.name))}</span></button>`).join('')}</div>`}
+function renderMeds(){
+  const bed=medSlots().bed||[],el=$('#medCard'),wrap=el.parentElement;
+  if($('#mrows').nextElementSibling!==wrap)$('#mrows').after(wrap);
+  wrap.hidden=!bed.length;if(!bed.length){el.innerHTML='';return}
+  const done=bed.filter(x=>x.on).length;
+  el.innerHTML=`<summary class="sumrow"><h3 style="margin:0">Bedtime medicines</h3><span class="note num" style="margin-left:auto">${done===bed.length?'taken ✓':`${done} of ${bed.length} · tonight`}</span></summary><div class="medbody"><div class="mchips">${bed.map(x=>`<button class="mchip ${x.on?'on':''}" data-md="${x.m.id}" data-i="${x.i}" title="${esc(x.m.dose||'')}">${x.on?'✓ ':''}${esc(x.m.name||'Medicine')}</button>`).join('')}</div><div class="note"><a href="#" data-goto="targets" style="color:inherit">Edit medicines</a></div></div>`;
 }
 function renderMedCfg(){
   S.meds.forEach(m=>{if(!Array.isArray(m.slots)||m.slots.some(x=>!MNAME[x])){m.slots=MDEF[m.id]?MDEF[m.id].slice():(Array.isArray(m.times)?m.times.map(slotFromTime):['bf']);save()}});
@@ -1778,9 +2035,10 @@ function renderMedCfg(){
    ${S.meds.map(m=>`<div class="medit"><label class="f">Name<input data-mf="name" data-id="${m.id}" value="${esc(m.name)}"></label><label class="f">Dose / notes<input data-mf="dose" data-id="${m.id}" value="${esc(m.dose)}" placeholder="e.g. 5 mg"></label><label class="f">Times a day<select data-mf="per" data-id="${m.id}">${[1,2,3,4].map(n=>`<option ${m.per===n&&m.every<=1?'selected':''} value="${n}">${n}</option>`).join('')}</select></label>${medTimes(m).map((t,i)=>`<label class="f">${m.monthly||m.every>1?'Taken at':'Dose '+(i+1)+' at'}<select data-mf="slot" data-i="${i}" data-id="${m.id}">${MSLOTS.map(([k,n])=>`<option value="${k}" ${k===t?'selected':''}>${n}</option>`).join('')}</select></label>`).join('')}${m.monthly?`<label class="f">Next dose (repeats monthly)<input data-mf="next" data-id="${m.id}" type="date" value="${m.next||''}"></label>`:`<label class="f">Every how many days<input data-mf="every" data-id="${m.id}" type="number" min="1" inputmode="numeric" value="${m.every||1}"></label>`}<button class="btn sm ghost" data-mdel="${m.id}" style="grid-column:1 / -1;color:var(--avoid)">Remove ${esc(m.name||'medicine')}</button></div>`).join('')}`;
 }
 document.addEventListener('click',e=>{
+  const gmb=e.target.closest('[data-gm]');if(gmb){medOpen=medOpen===gmb.dataset.gm?null:gmb.dataset.gm;mealsUI();return}
+  const gtb=e.target.closest('[data-gt]');if(gtb){const ms=medsForGroup(gtb.dataset.gt),all=ms.every(x=>x.on);ms.forEach(x=>setMedDose(x.m.id,x.i,!all));save();try{renderToday()}catch(_){}renderMeds();renderMedCfg();toast(all?'Medicines unticked':'Medicines taken ✓');return}
   const b=e.target.closest('[data-md]');
-  if(b){const id=b.dataset.md,i=+b.dataset.i,L=S.medlog[todayKey()]=S.medlog[todayKey()]||{},c=L[id]||0;L[id]=(i>=c)?i+1:i;if(!L[id])delete L[id];try{renderToday()}catch(_){}
-    const mm=S.meds.find(x=>x.id===id);if(mm&&mm.monthly){if(L[id]){mm.prev=mm.next;mm.next=addMonth(todayKey())}else if(mm.prev){mm.next=mm.prev}}
+  if(b){const id=b.dataset.md,i=+b.dataset.i,L=S.medlog[todayKey()]=S.medlog[todayKey()]||{},c=L[id]||0;setMedDose(id,i,i>=c);try{renderToday()}catch(_){}
     save();renderMeds();renderMedCfg();return}
   const dl=e.target.closest('[data-mdel]');
   if(dl){if(!dl.dataset.armed){dl.dataset.armed='1';dl.textContent='Tap again to remove';return}S.meds=S.meds.filter(m=>m.id!==dl.dataset.mdel);save();renderMedCfg();renderMeds();return}
