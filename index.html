@@ -926,7 +926,7 @@ main.gut>section{gap:12px}
       <div class="callout"><b>Never:</b> star fruit, coconut water, low-sodium or "lite" salt (potassium chloride), fruit juice, banana, mango, dry fruits, and packaged food with "phosphate" or E338–E343 / E450–E452 on the label.</div>
       <div class="callout"><b>Double-boil vegetables and dal:</b> cut small, boil in plenty of water, drain, boil again in fresh water, then do the tadka. Pressure-cooking and steaming don't remove potassium. Soaking alone barely does.</div>
     </details>
-    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 95 · Nov 7</div></div>
+    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 96 · Nov 7</div></div>
     <p class="note">For education only, not a prescription. Potassium can change quickly at eGFR 13, so recheck labs as your nephrologist advises. Numbers are approximate Indian food values (IFCT 2017 style).</p>
   </section>
 </main>
@@ -1654,17 +1654,18 @@ $('#lgo').addEventListener('click',async()=>{
     const prompt=checkPrompt(text,!!useImg).replace('Look at the photo (a meal, a food, or a food label).',`Look at the ${useImg&&lPhotos.length>1?lPhotos.length+' photos; together they show ONE meal (different angles or dishes; do not double count)':'photo of a meal'}.`)+'\nFor "dish", give a short specific name for this meal based on what is actually in it (e.g. "Phulka with bhindi and curd"), never a generic word like Breakfast or Lunch.';
     const j=await sample.json(prompt,opts);
     const items=(Array.isArray(j&&j.items)?j.items:[]).map(claudeItem);
-    if(!items.length){st.textContent=draft?'':'No food found. Try a clearer photo or describe it.';return}
+    if(!items.length){if(auto&&text){quickFallback(text,autoSlot||curSlot());return}st.textContent=draft?'':'No food found. Try a clearer photo or describe it.';return}
     draft={name:keepName||String(j.dish||'').slice(0,60),slot:(draft&&draft.slot)||curSlot(),items,swaps:(Array.isArray(j.swaps)?j.swaps:[]).slice(0,3).map(String),advice:String(j.advice||''),verdict:(hardHit(text)?'a':''),unknown:[]};
     renderDraft(); st.textContent='';
     if(auto&&text&&draft.items.length){const nm=text.slice(0,60),sl=draft.slot,its=draft.items;quickDone({name:nm,slot:sl,items:its,ph:[]},`Logged ${nm.slice(0,40)}`);closeLogger();const q=$('#qname');if(q)q.value='';return}
-  }catch(e){if(e&&e.code==='cancelled')return;st.textContent=errText(e);if(e&&(e.code==='not_granted'||e.code==='sampling_disabled')){sample=null}}
+  }catch(e){if(e&&e.code==='cancelled')return;st.textContent=errText(e);if(e&&(e.code==='not_granted'||e.code==='sampling_disabled')){sample=null}if(auto&&text){quickFallback(text,autoSlot||curSlot())}}
   finally{go.disabled=false}
 });
 $('#draft').addEventListener('keydown',e=>{if(e.target.id==='dname'&&draft)draft.touched=true});
 
 // ---------- Quick log: type a name, it logs ----------
-let autoLog=false;
+let autoLog=false,autoSlot=null;
+function quickFallback(text,slot){const m=matchText(text),items=m.filter(x=>x.f).map(x=>({id:x.f.id,q:x.q}));quickDone({name:text.slice(0,60),slot,items,ph:[]},`Logged ${text.slice(0,40)}${items.length?'':' (no nutrients yet)'}`);try{closeLogger()}catch(_){}const q=$('#qname');if(q)q.value='';const t=$('#qst');if(t)t.textContent=''}
 function normN(s){return String(s||'').trim().toLowerCase().replace(/\s+/g,' ')}
 function toastUndo(msg,fn){const t=$('#toast');t.textContent=msg+' ';const b=document.createElement('button');b.textContent='Undo';b.style.cssText='margin-left:8px;background:none;border:0;color:inherit;font-weight:800;text-decoration:underline;font-size:13px';b.onclick=()=>{fn();t.hidden=true};t.appendChild(b);t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,6000)}
 function quickDone(entry,msg){mTab=MSLOT(entry.slot);qSlotUser=null;logMeal(entry);const L=dayLog(todayKey()),en=L[L.length-1];toastUndo(msg,()=>{const i=L.indexOf(en);if(i>=0){L.splice(i,1);save();renderToday()}})}
@@ -1685,8 +1686,8 @@ function quickLog(text,slot){
   if(past){quickDone({name:past.name,slot,items:past.items.map(i=>({...i})),ph:[]},`Logged ${past.name.slice(0,40)}`);return true}
   const m=matchText(text),items=m.filter(x=>x.f).map(x=>({id:x.f.id,q:x.q})),unk=m.filter(x=>x.unknown);
   if(items.length&&!unk.length){quickDone({name:text.slice(0,60),slot,items,ph:[]},`Logged ${text.slice(0,40)}`);return true}
-  openLogger(slot);$('#ldesc').value=text;
-  if(sample){autoLog=true;$('#qst').textContent='Working it out…'}
+  if(!sample){quickFallback(text,slot);return true}
+  openLogger(slot);$('#ldesc').value=text;autoLog=true;autoSlot=slot;$('#qst').textContent='Working it out…';
   $('#lgo').click();return false}
 function qAdd(){const q=$('#qname'),ok=quickLog(q.value,entrySlot());if(ok){q.value='';$('#qst').textContent=''}}
 $('#qadd').addEventListener('click',qAdd);
