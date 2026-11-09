@@ -857,6 +857,84 @@ html body #tab-today #mrows .mnav.dn{margin-top:auto!important}
 html body .btn.star,html body [data-eact]{width:auto!important;height:auto!important;min-height:36px;padding:6px 12px!important;font-size:13px!important;font-weight:500!important;white-space:nowrap;flex:0 0 auto}
 html body .btn.star.on{color:#B07A12!important}
 html body details.entry .item>.row,html body details.entry>div>.row{flex-wrap:wrap;gap:6px 10px!important;align-items:center}
+
+/* v120: one pill style for every toggle, quiet pages */
+html body label:has(>input[type=checkbox]){display:inline-flex!important;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:#F3F4F3;color:#111615;font-size:14px;font-weight:500;cursor:pointer;width:auto;align-self:flex-start;position:relative;line-height:1.3;text-align:left}
+html body label:has(>input[type=checkbox])>input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+html body label:has(>input[type=checkbox])::before{content:'';width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #9AA4A0;flex:none;box-sizing:border-box}
+html body label:has(>input[type=checkbox]:checked){background:#0F5C4B;color:#fff}
+html body label:has(>input[type=checkbox]:checked)::before{content:'\2713';background:#fff;color:#0F5C4B;box-shadow:none;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+html body label:has(>input[type=checkbox]:focus-visible){outline:2px solid #0F5C4B;outline-offset:2px}
+html body #tab-foods .eyebrow,html body #tab-plan .eyebrow,html body #tab-targets .eyebrow{display:none!important}
+html body #tab-targets #daily{display:none!important}
+html body #tab-foods{display:flex}
+html body #tab-foods>.card:not(.rows){order:-2}
+html body #tab-foods>#fout{order:-1}
+html body #bars:not(.all) .bar:nth-child(n+5){display:none}
+html body #labGrid:not(.all) .lc:not(.key){display:none}
+html body #tab-plan>.card:first-child .bar .top{font-size:14px}
+html body details.card.fold>summary,html body details.card.rows>summary{display:flex;align-items:center;justify-content:space-between;gap:10px}
+html body details.hist>summary{font-size:15px;font-weight:500;color:#0F5C4B;padding:10px 0;cursor:pointer}
+html body details.card.fold>summary h2,html body details.card.fold>summary h3,html body details.card.rows>summary h3{font-size:17px!important;font-weight:500!important;margin:0!important}
+html body #tab-targets .card>div>h2,html body #tab-plan .card>div>h2,html body #tab-foods .card>div>h2{font-size:22px!important;font-weight:600!important}
+html body label:has(>input[type=checkbox]){flex-direction:row!important;flex-wrap:nowrap!important;border-radius:18px!important;max-width:100%;box-sizing:border-box}
+html body label:has(>input[type=checkbox])>span{flex:1 1 auto;min-width:0}
+
+html body .hero .hs2{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;font-size:13px;color:#7B8581}
+html body .hero .hs2 .warn{color:#B07A12}html body .hero .hs2 .over{color:#C2453D}
+html body .qpills{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 18px}
+html body .qpill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:999px;background:#F3F4F3;color:#111615;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+html body .qpill i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #9AA4A0;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11px}
+html body .qpill.on{background:#0F5C4B;color:#fff}
+html body .qpill.on i{background:#fff;box-shadow:none;color:#0F5C4B}html body .qpill.on i::before{content:'\2713';font-weight:700}
+html body .qbpf{display:flex;gap:8px;align-items:center;width:100%;flex-wrap:wrap}
+html body .qbpf input{width:92px;border:0;background:#F3F4F3;border-radius:12px;padding:10px 12px;font:inherit;font-size:16px}
+html body .qcirc{gap:8px 22px;margin:2px 0 20px}html body .qcirc .gml{max-width:96px;font-size:12px}
+html body .qpills .qbpf{margin-top:4px}
+html body .qbpf{gap:6px 18px;align-items:flex-start;margin-top:0}
+html body .qbc{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;padding:0;color:var(--muted,#7B8581)}
+html body .qbc input{width:56px!important;height:56px;border-radius:50%!important;border:1.5px solid #C7C7CC!important;background:none!important;text-align:center;padding:0!important;font-size:17px;font-weight:500;color:#111615;-moz-appearance:textfield}
+html body .qbc input::-webkit-outer-spin-button,html body .qbc input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+html body .qbc input:focus{outline:none;border-color:#0F5C4B!important}
+html body .qbc input::placeholder{color:#C3CAC7}
+html body .qbs b{width:56px;height:56px;border-radius:50%;background:#0F5C4B;color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center}
+html body .qbpf .note{flex-basis:100%;text-align:left}
+
+/* v124: one form style */
+html body :is(#tab-targets,#mineCard,#menuCard) :is(input:not([type=checkbox]):not([type=file]):not([type=radio]),select,textarea){background-color:#F3F4F3!important;border:0!important;border-radius:12px!important;padding:12px 14px!important;font:inherit!important;font-size:16px!important;font-weight:400!important;color:#111615!important;min-height:46px;box-sizing:border-box;width:100%;max-width:100%;box-shadow:none!important;outline:none}
+html body :is(#tab-targets,#mineCard,#menuCard) :is(input,select,textarea):focus{box-shadow:inset 0 0 0 1.5px #0F5C4B!important}
+html body :is(#tab-targets,#mineCard) select{-webkit-appearance:none;appearance:none;padding-right:38px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%237B8581' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+html body :is(#tab-targets,#mineCard) input::placeholder{color:#A4ADA9}
+html body :is(#tab-targets,#mineCard) input[type=date]{min-height:46px}
+html body :is(#tab-targets,#mineCard) label.f,html body :is(#tab-targets,#mineCard) .f{font-size:12.5px!important;font-weight:500!important;color:#7B8581!important;display:flex;flex-direction:column;gap:6px}
+html body #tab-targets .grid2{gap:14px 12px}
+html body .medit,html body .labform{background:none!important;border:0!important;border-top:1px solid #E9ECEA!important;border-radius:0!important;padding:16px 0!important}
+html body .medit .btn.ghost,html body .medit .btn.sm.ghost{align-self:flex-start;background:none!important;color:#C2453D!important;padding:6px 0!important;min-height:0;font-weight:500}
+html body #tab-targets .btn.sm:not(.primary):not(.ghost){background:#F3F4F3!important;color:#111615!important;border:0!important;border-radius:999px!important;padding:10px 16px!important;font-weight:500!important}
+html body #tab-targets .btn.primary{border-radius:999px!important}
+html body #tab-targets .note{color:#7B8581}
+html body .medit .btn.ghost,html body .medit .btn.sm.ghost{width:auto!important;display:inline-flex!important;justify-content:flex-start;margin:0!important;text-align:left}
+html body .medit>.row{justify-content:flex-start}
+html body #tab-targets .grid2{align-items:end}
+html body #tab-targets select.sel{width:auto;min-width:150px}
+
+html body #tab-foods{gap:18px}
+html body .fsearch{display:flex;flex-direction:column;gap:14px;padding:4px 0 0;background:none;border:0}
+html body .sbox{position:relative;display:flex;align-items:center}
+html body .sbox svg{position:absolute;left:14px;width:19px;height:19px;color:#7B8581;pointer-events:none}
+html body .sbox textarea{padding:13px 14px 13px 42px!important;min-height:48px;resize:none;overflow:hidden;border-radius:14px!important;background:#F3F4F3!important;border:0!important;font-size:16px;line-height:1.35}
+html body .fact{gap:8px 26px;margin-top:2px}
+html body .gmk.ic{width:46px;height:46px;border:0;background:#F3F4F3;display:flex;align-items:center;justify-content:center;color:#0F5C4B}
+html body .gmk.ic svg{width:21px;height:21px}
+html body .gmk.ic::after{display:none}
+html body .fact .gml{max-width:96px;font-size:12px}
+html body #cats{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding:2px 0 4px;scrollbar-width:none}
+html body #cats[hidden]{display:none}
+html body #cats .btn{flex:0 0 auto;white-space:nowrap}
+html body #menuCard:not([open]),html body #mineCard:not([open]){display:none}
+html body #fout h2{font-size:17px;font-weight:600;margin:0 0 -8px}
+html body #fout .grp:first-of-type{margin-top:12px!important}
+html body .fsearch{order:-3}
 </style>
 
 <header class="band gut">
@@ -884,6 +962,7 @@ html body details.entry .item>.row,html body details.entry>div>.row{flex-wrap:wr
     </div>
     <div class="card rows"><details id="medCard"></details></div>
     <button id="hero" class="hero" type="button" aria-label="Show daily totals"></button>
+    <div id="qpills" class="qpills"></div>
     <div class="card meals" id="mrows">
       <div class="mtabs"><button class="mtab" data-tab="breakfast"><span class="mtn">Breakfast</span><span class="mtm"></span></button><button class="mtab" data-tab="mid"><span class="mtn">Mid-morning</span><span class="mtm"></span></button><button class="mtab" data-tab="lunch"><span class="mtn">Lunch</span><span class="mtm"></span></button><button class="mtab" data-tab="dinner"><span class="mtn">Dinner</span><span class="mtm"></span></button></div>
       <div class="mpanel"><div class="mh"><div class="mt"><b class="mtitle"></b><span class="ms"></span></div><button class="mico" data-mact2="add" aria-label="Add food">+</button><button class="mico" data-mact2="water" aria-label="Water">💧</button></div><div class="macts mh"><div class="qrow"><input id="qname" aria-label="What did you eat" type="text" enterkeyhint="done" autocomplete="off" autocapitalize="sentences" placeholder="Add what you ate…"><button class="btn mcam" data-mact="cam" aria-label="Take a photo of this meal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button><button class="btn primary madd" id="qadd">Add</button></div><div class="qsub"><span id="qst" class="note"></span></div></div><div class="ml"></div><div class="mm"></div></div>
@@ -974,11 +1053,15 @@ html body details.entry .item>.row,html body details.entry>div>.row{flex-wrap:wr
       <div class="row"><button id="m_save" class="btn primary">Save this food</button><button id="m_clear" class="btn ghost">Clear</button></div>
       <div id="mineList"></div>
     </div></details>
-    <div class="card">
-      <div><div class="eyebrow">Shopping or cooking?</div><h2>Which of these can I eat?</h2></div>
-      <textarea id="flist" aria-label="Menu photo or text" placeholder="Type a list: apple, banana, guava, lauki, bhindi, palak, paneer, toor dal"></textarea>
-      <div class="row"><button id="fgo" class="btn primary">Sort my list</button><button id="fclear" class="btn ghost">Clear</button><span id="fstatus" class="note grow"></span></div>
-      <div><div class="note" style="margin-bottom:6px">Or see a whole group</div><div class="cats" id="cats"></div></div>
+    <div class="fsearch">
+      <div class="sbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><textarea id="flist" rows="1" aria-label="Search a food or type a list" placeholder="Search a food, or type a list" enterkeyhint="search"></textarea></div>
+      <div id="fbtns" class="row" hidden><button id="fgo" class="btn primary sm">Sort my list</button><button id="fclear" class="btn ghost sm">Clear</button><span id="fstatus" class="note grow"></span></div>
+      <div class="gmdots fact">
+        <button type="button" class="gmd" data-fopen="menuCard"><span class="gmk ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="gml">Scan a menu</span></button>
+        <button type="button" class="gmd" data-fopen="mineCard"><span class="gmk ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 16h4"/></svg></span><span class="gml">From a label</span></button>
+        <button type="button" class="gmd" id="fgroups"><span class="gmk ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg></span><span class="gml">Food groups</span></button>
+      </div>
+      <div class="cats" id="cats" hidden></div>
     </div>
     <div id="fout" class="groups" hidden></div>
   </section>
@@ -988,21 +1071,22 @@ html body details.entry .item>.row,html body details.entry>div>.row{flex-wrap:wr
     <div class="card">
       <div class="row" style="justify-content:space-between"><div><div class="eyebrow">Planning</div><h2>Suggested day</h2></div><span id="dayVerdict"></span></div>
       <div id="bars" class="bars"></div>
+      <button id="barsMore" class="btn ghost sm" type="button" style="align-self:flex-start">Show fiber and calories</button>
       <div id="hint" class="note"></div>
     </div>
     <div id="meals" class="col" style="gap:12px"></div>
-    <div class="card">
-      <div class="row" style="justify-content:space-between"><h3>Ask Claude about this plan</h3><button id="review" class="btn sm">Review my day</button></div>
+    <details class="card fold" id="askFold">
+      <summary><h3>Ask Claude about this plan</h3></summary>
       <div id="reviewOut" class="stream note">Get a short review of the plan above, with fixes that keep you inside your limits.</div>
-    </div>
-    <div class="row"><button id="resetAll" class="btn ghost sm">Reset to suggested day</button><span id="resetConfirm"></span></div>
+      <div class="row"><button id="review" class="btn sm">Review my day</button><button id="resetAll" class="btn ghost sm">Reset to suggested day</button><span id="resetConfirm"></span></div>
+    </details>
   </section>
 
   <!-- HEALTH -->
   <section id="tab-targets" class="col" hidden>
     <div class="card rows" id="daily"><div id="goalStrip" role="button" tabindex="0" style="cursor:pointer"></div></div>
     <div class="card" id="goalCard"></div>
-    <div class="card" id="bpCard"></div>
+    <details class="card fold" id="bpFold"><summary><h2>Blood pressure</h2><span class="note num" id="bpSum"></span></summary><div id="bpCard"></div></details>
     <div class="card">
       <div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Bloodwork</div><h2>Your labs</h2></div><button id="labAdd" class="btn sm">Add a result</button></div>
       <div id="labFormWrap" hidden>
@@ -1013,6 +1097,7 @@ html body details.entry .item>.row,html body details.entry>div>.row{flex-wrap:wr
         </div>
       </div>
       <div class="labgrid num" id="labGrid"></div>
+      <button id="labMore" class="btn ghost sm" type="button" style="align-self:flex-start">Show all labs</button>
       <div class="note">Shaded band = normal range. Red = outside it.</div>
       <details class="hist"><summary>All results</summary><div class="tbl" id="labTable"></div></details>
     </div>
@@ -1113,7 +1198,7 @@ html body details.entry .item>.row,html body details.entry>div>.row{flex-wrap:wr
       <div class="callout"><b>Never:</b> star fruit, coconut water, low-sodium or "lite" salt (potassium chloride), fruit juice, banana, mango, dry fruits, and packaged food with "phosphate" or E338–E343 / E450–E452 on the label.</div>
       <div class="callout"><b>Double-boil vegetables and dal:</b> cut small, boil in plenty of water, drain, boil again in fresh water, then do the tadka. Pressure-cooking and steaming don't remove potassium. Soaking alone barely does.</div>
     </details>
-    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 119 · Nov 9</div></div>
+    <div class="card"><h3>Your data</h3><div id="syncNote" class="note">Saved on this device.</div><div class="note">App version 125 · Nov 9</div></div>
     <p class="note">For education only, not a prescription. Potassium can change quickly at eGFR 13, so recheck labs as your nephrologist advises. Numbers are approximate Indian food values (IFCT 2017 style).</p>
   </section>
 </main>
@@ -1211,7 +1296,7 @@ const RAW = [
 ['banana','Banana','banana,kela,arati','1 medium',1,422,26,1,1.3,105,'p','h','Very high potassium. Checked: USDA SR28.'],
 ['mango','Mango','mango,aam,mamidi,mambazham','1 cup',1,277,23,2,1.4,99,'p','h','Very high potassium. Checked: USDA SR28.'],
 ['chikoo','Chikoo (sapota)','chikoo,chiku,sapota,sapodilla','1 fruit',1,328,20,20,0.7,141,'p','h','Checked: USDA SR28.'],
-['custardapple','Custard apple, jackfruit or kiwi','custard apple,sitaphal,seetaphal,jackfruit,kathal,panasa,kiwi,jack fruit,panasa pandu,raw jackfruit,jackfruit curry,chakka,halasu,kathal sabzi,kiwifruit,kiwi fruit','½ cup',1,348,51,4,2,124,'p','h',', raw). Checked: IFCT 2017.'],
+['custardapple','Custard apple, jackfruit or kiwi','custard apple,sitaphal,seetaphal,jackfruit,kathal,panasa,kiwi,jack fruit,panasa pandu,raw jackfruit,jackfruit curry,chakka,halasu,kathal sabzi,kiwifruit,kiwi fruit','½ cup',1,348,51,4,2,124,'p','h','Checked: IFCT 2017 (raw fruit).'],
 ['starfruit','Star fruit','star fruit,starfruit,kamrakh,carambola','1 fruit',1,121,11,2,0.9,28,'p','h','Toxic in kidney failure, even half a fruit. Checked: USDA SR28.'],
 ['coconutwater','Coconut water','coconut water,nariyal pani,tender coconut,elaneer,kobbari neellu','1 glass',1,600,48,252,1.7,46,'p','h','About 600 mg potassium per glass. Checked: USDA SR28.'],
 ['juice','Fruit juice','juice,fruit juice,orange juice','1 glass',1,496,42,2,1.7,112,'p','h','Juice concentrates potassium. Close match, not exact (Orange juice, raw).'],
@@ -1797,7 +1882,7 @@ function dayChecks(k){const d=dayEffect(k),T=S.t,h=(S.habits&&S.habits[k])||{},f
   const habits=[
     {id:'meds',name:'Medicines',ok:md.need>0?md.done>=md.need:true,txt:`${md.done} of ${md.need} taken`,auto:true},
     {id:'move',name:'Move 30+ min',ok:!!h.move,txt:h.move?'done':'not yet'},
-    {id:'nsaid',name:'No NSAIDs',ok:!!h.nsaid,txt:h.nsaid?'confirmed':'tap to confirm'}];
+    {id:'nsaid',name:h.nsaid?'Took an NSAID':'No NSAIDs',ok:!h.nsaid,txt:h.nsaid?'flagged':'none today'}];
   const dpass=diet.filter(x=>x.ok).length,hpass=habits.filter(x=>x.ok).length;
   const c=diet.map(x=>[x.name,x.ok,x.txt]);
   return {n:d.n,diet,habits,checks:c,dpass,hpass,pass:dpass,score:(d.n?dpass:0)+hpass,kOk:diet[0].ok,medNeed:md.need}}
@@ -1983,7 +2068,16 @@ function renderHero(){const h=document.querySelector('#hero');if(!h)return;
   const r=c.t-c.v,pc=Math.min(100,c.v/c.t*100),f=x=>Math.round(x).toLocaleString();
   h.className='hero'+(c.v>c.t?' over':c.v>c.t*.85?' warn':'');
   const rest=N.filter(x=>x!==c).map(x=>`${x.n[0].toUpperCase()+x.n.slice(1)} ${f(Math.max(0,x.t-x.v))}`).join(' · ')+' left';
-  h.innerHTML=`<div class="hn">${f(Math.max(0,r))}</div><div class="hu">${c.u} ${c.n} left${c.v>c.t?' (over by '+f(c.v-c.t)+')':''}</div><div class="hb"><i style="width:${pc}%"></i></div><div class="hs">${rest}</div>${habitLine()}`;}
+  h.innerHTML=`<div class="hn">${f(Math.max(0,r))}</div><div class="hu">${c.u} ${c.n} left${c.v>c.t?' (over by '+f(c.v-c.t)+')':''}</div><div class="hb"><i style="width:${pc}%"></i></div><div class="hs">${rest}</div>${statLine()}${habitLine()}`;try{renderQuickRow()}catch(_){}}
+function statLine(){try{const e=eatenTotals(viewDay),d=dayEffect(viewDay),T=S.t,fT=T.fi??DEFAULT_T.fi,pr=d.pral,sg=pr>0?'+':pr<-0.05?'−':'',cl=pr>PRAL_MAX?'over':pr>PRAL_MAX*.7?'warn':'';
+  return `<div class="hs2"><span class="${cl}">Acid ${sg}${Math.abs(pr).toFixed(0)} of +${PRAL_MAX}</span><span>Fiber ${Math.round(e.fi)} of ${fT} g</span><span>Calories ${Math.round(e.kcal).toLocaleString()} of ${Math.round(T.kcal).toLocaleString()}</span></div>`}catch(_){return''}}
+function renderQuickRow(){const q=document.querySelector('#qpills');if(!q)return;const tk=todayKey(),h=(S.habits&&S.habits[tk])||{},b=bpLast(),open=q.dataset.bp==='1';
+  q.innerHTML=`<div class="gmdots qcirc"><button type="button" class="gmd ${h.move?'on':''}" data-habit="move" aria-label="Walked 30 minutes ${h.move?'done':'not yet'}"><span class="gmk"></span><span class="gml">Walked 30 min</span></button><button type="button" class="gmd ${b&&b.d===tk?'on':''}" id="qBp" aria-label="Blood pressure ${b&&b.d===tk?'logged':'not logged'}"><span class="gmk"></span><span class="gml">${b&&b.d===tk?'BP '+b.s+'/'+b.di:'Blood pressure'}</span></button></div>`
+  +(open?`<div class="qbpf"><label class="qbc"><input id="qbp_s" type="number" inputmode="numeric" placeholder="120" aria-label="Top number"><span class="gml">Top</span></label><label class="qbc"><input id="qbp_d" type="number" inputmode="numeric" placeholder="80" aria-label="Bottom number"><span class="gml">Bottom</span></label><button type="button" class="qbc qbs" id="qbpSave" aria-label="Save reading"><b>&#10003;</b><span class="gml">Save</span></button><span id="qbpMsg" class="note"></span></div>`:'')}
+document.addEventListener('click',e=>{
+  if(e.target.closest('#qBp')){const q=$('#qpills');q.dataset.bp=q.dataset.bp==='1'?'':'1';renderQuickRow();return}
+  if(e.target.closest('#qbpSave')){const sv=Math.round(+$('#qbp_s').value),dv=Math.round(+$('#qbp_d').value);if(!(sv>=60&&sv<=260&&dv>=30&&dv<=160&&sv>dv)){$('#qbpMsg').textContent='Enter top, then bottom, for example 124 and 78.';return}
+    const n=new Date();S.bp.push({d:todayKey(),t:pad(n.getHours())+':'+pad(n.getMinutes()),s:sv,di:dv});save();$('#qpills').dataset.bp='';try{renderBP()}catch(_){}try{renderGoal()}catch(_){}renderQuickRow();toast('Reading saved')}});
 function habitLine(){try{const tk=todayKey(),c=dayChecks(tk),st=streakCalc(),meals=(S.log[tk]||[]).length,wk=[];for(let i=6;i>=0;i--)wk.push(shift(tk,-i));
   const done=goodDay(tk),txt=done?'Day complete':`${c.score} of 8 checks today`,sk=st.count?` · ${st.count}-day streak`:'';
   return `<div class="hh"><span>${txt}${sk}</span><span class="hd2" aria-hidden="true">${wk.map(k=>`<i class="${goodDay(k)?'on':k===tk?'t':''}"></i>`).join('')}</span></div>`}catch(_){return''}}
@@ -2492,7 +2586,7 @@ function mealHTML(key,name,opts){
   </div>`;
 }
 let planOpen=null;
-function renderPlan(){$('#meals').innerHTML=MEALS.map(M=>mealHTML(M.key,M.name,M.opts)).join('')+mealHTML('extras','Other',null);renderBars()}
+function renderPlan(){$('#meals').innerHTML=MEALS.map(M=>mealHTML(M.key,M.name,M.opts)).join('')+(S.plan.extras&&S.plan.extras.items.length?mealHTML('extras','Other',null):'');renderBars()}
 $('#meals').addEventListener('click',e=>{
   const card=e.target.closest('[data-meal]'); if(!card)return; const key=card.dataset.meal, m=S.plan[key];
   if(e.target.closest('[data-ptoggle]')){planOpen=planOpen===key?null:key;renderPlan();return}
@@ -2572,7 +2666,18 @@ function renderGroups(rows,title){
   $('#fout').hidden=false;
 }
 $('#cats').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;const c=CATS.find(x=>x[0]===b.dataset.cat);renderGroups(catFoods(c[2],c[3]).map(foodRow),c[1]);$('#fstatus').textContent='';try{$('#fout').scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}});
-$('#fclear').addEventListener('click',()=>{$('#flist').value='';$('#fout').hidden=true;$('#fstatus').textContent=''});
+$('#fclear').addEventListener('click',()=>{$('#flist').value='';$('#fstatus').textContent='';$('#fbtns').hidden=true;fAuto();foodsHome()});
+function fAuto(){const t=$('#flist');t.style.height='auto';t.style.height=Math.min(140,t.scrollHeight)+'px'}
+function foodsHome(){const seen=new Set(),rows=[];Object.keys(S.log).sort().reverse().slice(0,14).forEach(d=>(S.log[d]||[]).forEach(en=>(en.items||[]).forEach(it=>{const f=it.id&&BYID[it.id];if(f&&!seen.has(f.id)&&rows.length<8){seen.add(f.id);rows.push(foodRow(f))}})));
+  if(rows.length)renderGroups(rows,'Recently eaten');else $('#fout').hidden=true}
+let fT;$('#flist').addEventListener('input',()=>{fAuto();clearTimeout(fT);fT=setTimeout(()=>{const q=$('#flist').value.trim(),isList=/[,;\n]|\band\b/i.test(q);$('#fbtns').hidden=!isList;$('#fstatus').textContent='';
+  if(!q){foodsHome();return}if(isList)return;
+  const hits=searchFoods(q);if(hits.length)renderGroups(hits.map(foodRow));else{$('#fout').innerHTML='<div class="note" style="padding:12px 0">Not in the list yet. Press Enter'+(sample?' and Claude will estimate it.':'. Try a common name, like bhindi or dosa.')+'</div>';$('#fout').hidden=false}},160)});
+$('#flist').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#fbtns').hidden=false;$('#fgo').click()}});
+document.addEventListener('click',e=>{const o=e.target.closest('[data-fopen]');if(o){const id=o.dataset.fopen,el=$('#'+id),was=el.open;['menuCard','mineCard'].forEach(x=>$('#'+x).open=false);el.open=!was;if(!was)try{el.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}return}
+  if(e.target.closest('#fgroups')){const c=$('#cats');c.hidden=!c.hidden}});
+document.querySelector('nav.tabs [data-tab="foods"]').addEventListener('click',()=>{if(!$('#flist').value.trim())foodsHome()});
+foodsHome();
 let fctl=null;
 $('#fgo').addEventListener('click',async()=>{
   const terms=[...new Set($('#flist').value.split(/,|\n|;|\band\b|\//i).map(t=>t.trim()).filter(Boolean))];
@@ -2620,10 +2725,11 @@ function spark(k,pts){
   const last=pts[pts.length-1];
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="${b1}" width="${W}" height="${Math.max(0,b0-b1)}" fill="var(--safe-bg)"/>${pts.length>1?`<polyline points="${pts.map((p,i)=>x(i)+','+y(p.v)).join(' ')}" fill="none" stroke="var(--muted)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`:''}${pts.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="${i===pts.length-1?3.4:2}" fill="${i===pts.length-1?(isOut(k,p.v)?'var(--avoid)':'var(--safe)'):'var(--muted)'}"/>`).join('')}</svg>`;
 }
+document.addEventListener('click',e=>{if(e.target.id==='labMore'){const g=$('#labGrid');g.classList.toggle('all');e.target.textContent=g.classList.contains('all')?'Show fewer':'Show all labs'}if(e.target.id==='barsMore'){const g=$('#bars');g.classList.toggle('all');e.target.textContent=g.classList.contains('all')?'Hide fiber and calories':'Show fiber and calories'}});
 function renderLabs(){
   $('#labGrid').innerHTML=MARKERS.map(([k,n,u])=>{const pts=series(k);if(!pts.length)return'';const l=pts[pts.length-1],pv=pts[pts.length-2];
     const ch=pv?l.v-pv.v:0;const dec=Math.abs(l.v)<20?(Math.abs(l.v)<10?2:1):0;
-    return `<div class="lc ${isOut(k,l.v)?'hi':''}"><div class="note" style="font-weight:700">${n}</div><div class="v">${l.v}</div><div class="d">${u} · ${fmtD(l.d)}</div>${pv?`<div class="ch" style="color:var(--muted)">${ch>0?'↑':ch<0?'↓':'→'} ${parseFloat(Math.abs(ch).toFixed(dec))} since ${fmtD(pv.d)}</div>`:''}${spark(k,pts.slice(-8))}</div>`}).join('');
+    return `<div class="lc ${isOut(k,l.v)?'hi':''} ${['k','egfr','phos','cr'].includes(k)?'key':''}"><div class="note" style="font-weight:700">${n}</div><div class="v">${l.v}</div><div class="d">${u} · ${fmtD(l.d)}</div>${pv?`<div class="ch" style="color:var(--muted)">${ch>0?'↑':ch<0?'↓':'→'} ${parseFloat(Math.abs(ch).toFixed(dec))} since ${fmtD(pv.d)}</div>`:''}${spark(k,pts.slice(-8))}</div>`}).join('');
   const L=labsSorted().reverse();
   $('#labTable').innerHTML=`<table class="num"><thead><tr><th>Date</th>${MARKERS.map(m=>`<th>${m[1]}</th>`).join('')}<th></th></tr></thead><tbody>${L.map(r=>`<tr><td>${fmtD(r.d)} ${r.d.slice(0,4)}</td>${MARKERS.map(([k])=>`<td style="${typeof r[k]==='number'&&isOut(k,r[k])?'color:var(--avoid);font-weight:700':''}">${r[k]??''}</td>`).join('')}<td><button class="x" data-labdel="${r.d}" aria-label="Delete result">×</button></td></tr>`).join('')}</tbody></table>`;
 }
@@ -2728,7 +2834,7 @@ function renderQuest(){
   else if(goodDay(tk)&&S.cel!==tk){S.cel=tk;save();confetti($('#bloomBar')||el);toast('Great day. All four checks on track')}
 }
 document.addEventListener('click',e=>{
-  const hb=e.target.closest('[data-habit]');if(hb){const k=todayKey(),id=hb.dataset.habit;S.habits[k]={...(S.habits[k]||{}),[id]:!(S.habits[k]||{})[id]};save();try{renderQuest()}catch(_){}try{renderGoal()}catch(_){}return}
+  const hb=e.target.closest('[data-habit]');if(hb){const k=todayKey(),id=hb.dataset.habit;S.habits[k]={...(S.habits[k]||{}),[id]:!(S.habits[k]||{})[id]};save();try{renderQuest()}catch(_){}try{renderGoal()}catch(_){}try{renderQuickRow()}catch(_){}return}
   if(e.target.id==='qClaim'){S.rw.last=todayKey();save();renderQuest();confetti($('#bloomBar'));toast('Enjoy your reward. You earned it')}});
 document.addEventListener('change',e=>{if(e.target.id==='qRw'){S.rw.text=e.target.value.trim().slice(0,60);save();renderQuest()}});
 function renderGoal(){
@@ -2741,10 +2847,10 @@ function renderGoal(){
   $('#goalCard').innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Your goal</div><h2>${l&&g.target<=l.v?`Hold eGFR at ${g.target} or higher`:`eGFR ${g.target} by ${fmtLong(g.date)}`}</h2></div><button id="goalEdit" class="btn sm">Edit</button></div>
     <div id="goalForm" hidden><div class="grid2"><label class="f">Target eGFR<input id="g_t" type="number" step="any" inputmode="decimal" value="${g.target}"></label><label class="f">By date<input id="g_d" type="date" value="${g.date}"></label></div><div class="row"><button id="goalSave" class="btn primary sm">Save goal</button></div></div>
     <div class="grid2 num"><div class="lc"><div class="note" style="font-weight:700">Latest eGFR</div><div class="v">${l?l.v:'–'}</div><div class="d">${l?fmtD(l.d):'add a lab result'}</div></div><div class="lc"><div class="note" style="font-weight:700">${gap==null?'To go':gap<0?'Above goal by':gap===0?'Right at goal':'To go'}</div><div class="v">${gap==null?'–':gap<0?(-gap):gap===0?'✓':'+'+gap}</div><div class="d">${left>0?'recheck within '+left+' days':'date passed'}</div></div></div>
-    <div class="callout">${slope==null?'Add two or more eGFR results to see your trend.':`Your trend over your recorded labs is about ${slope>0?'+':''}${slope.toFixed(1)} eGFR per month. ${gap!=null&&gap>0&&left>0?`Reaching ${g.target} needs about +${(gap/(left/30.4)).toFixed(1)} per month.`:(gap!=null&&gap<=0&&slope<0?`Holding at ${g.target} means flattening that slope: blood pressure, low acid load, no NSAIDs and your medicines on time.`:'')} A single lab can move 1–2 points on its own, so judge it over two or three draws.`}</div>
-    <div><h3 style="margin-bottom:8px">Today's checks</h3><div class="col" style="gap:8px">${today.checks.map(c=>`<div class="chk"><span class="m ${today.n?(c[1]?'y':'x'):'o'}">${today.n?(c[1]?'✓':'✕'):'–'}</span><span class="grow">${c[0]}</span><span class="note num">${today.n?c[2]:''}</span></div>`).join('')}<div class="chk"><span class="m ${today.habits[0].ok&&today.medNeed?'y':'o'}">${today.habits[0].ok&&today.medNeed?'✓':'–'}</span><span class="grow">Medicines taken</span><span class="note num">${today.habits[0].txt}</span></div><label class="chk"><input type="checkbox" id="move" ${hab.move?'checked':''}> <span class="grow">Moved 30+ minutes (walk, gym)</span></label><label class="chk"><input type="checkbox" id="nsaid" ${hab.nsaid?'checked':''}> <span class="grow">No ibuprofen or naproxen today</span></label></div></div>
+    <details class="hist"><summary>Trend, today's checks and last 7 days</summary><div class="col" style="gap:16px;padding-top:12px"><div class="callout">${slope==null?'Add two or more eGFR results to see your trend.':`Your trend over your recorded labs is about ${slope>0?'+':''}${slope.toFixed(1)} eGFR per month. ${gap!=null&&gap>0&&left>0?`Reaching ${g.target} needs about +${(gap/(left/30.4)).toFixed(1)} per month.`:(gap!=null&&gap<=0&&slope<0?`Holding at ${g.target} means flattening that slope: blood pressure, low acid load, no NSAIDs and your medicines on time.`:'')} A single lab can move 1–2 points on its own, so judge it over two or three draws.`}</div>
+    <div><h3 style="margin-bottom:8px">Today's checks</h3><div class="col" style="gap:8px">${today.checks.map(c=>`<div class="chk"><span class="m ${today.n?(c[1]?'y':'x'):'o'}">${today.n?(c[1]?'✓':'✕'):'–'}</span><span class="grow">${c[0]}</span><span class="note num">${today.n?c[2]:''}</span></div>`).join('')}<div class="chk"><span class="m ${today.habits[0].ok&&today.medNeed?'y':'o'}">${today.habits[0].ok&&today.medNeed?'✓':'–'}</span><span class="grow">Medicines taken</span><span class="note num">${today.habits[0].txt}</span></div><label class="chk"><input type="checkbox" id="move" ${hab.move?'checked':''}> <span class="grow">Moved 30+ minutes (walk, gym)</span></label><label class="chk"><input type="checkbox" id="nsaid" ${hab.nsaid?'':'checked'}> <span class="grow">No ibuprofen or naproxen today</span></label></div></div>
     <div><h3 style="margin-bottom:8px">Last 7 days</h3><div class="gdots">${wk.map(x=>`<i class="${x.cls}" title="${x.k}: ${x.n?x.pass+' of 8':'nothing logged'}"></i>`).join('')}</div><div class="note" style="margin-top:6px">${good} of 7 days fully on track. Green = 6 or more of 8 checks, amber = 4 or 5, red = fewer, grey = not logged. Aim for at least 5 of 7 good days.</div></div>
-    <div class="note">This tracks what food and daily habits can control: potassium, phosphorus, protein, sodium, acid load, your medicines, movement and avoiding NSAIDs. Food can't promise an eGFR number. Ask your nephrologist whether a cystatin C test and your BP target fit your goal, and avoid cooked meat the day before a blood draw so creatinine isn't inflated.</div>`;
+    <div class="note">This tracks what food and daily habits can control: potassium, phosphorus, protein, sodium, acid load, your medicines, movement and avoiding NSAIDs. Food can't promise an eGFR number. Ask your nephrologist whether a cystatin C test and your BP target fit your goal, and avoid cooked meat the day before a blood draw so creatinine isn't inflated.</div></div></details>`;
 }
 document.addEventListener('click',e=>{const g=e.target.closest('[data-goto]');if(g){e.preventDefault();const b=document.querySelector(`nav.tabs button[data-tab="${g.dataset.goto}"]`);b&&b.click()}});
 $('#goalStrip').addEventListener('click',()=>{const b=document.querySelector('nav.tabs button[data-tab="targets"]');b&&b.click()});
@@ -2753,7 +2859,7 @@ document.addEventListener('click',e=>{
   else if(e.target.id==='goalSave'){const t=parseFloat($('#g_t').value),d=$('#g_d').value;if(!isFinite(t)||!/^\d{4}-\d{2}-\d{2}$/.test(d)){toast('Enter a target and a date');return}S.goal={target:t,date:d};save();renderGoal();toast('Goal saved')}
 });
 document.addEventListener('change',e=>{if(e.target.id==='move'){S.habits[todayKey()]={...(S.habits[todayKey()]||{}),move:e.target.checked};save();renderGoal();try{renderQuest()}catch(_){}}});
-document.addEventListener('change',e=>{if(e.target.id==='nsaid'){S.habits[todayKey()]={...(S.habits[todayKey()]||{}),nsaid:e.target.checked};save();renderGoal()}});
+document.addEventListener('change',e=>{if(e.target.id==='nsaid'){S.habits[todayKey()]={...(S.habits[todayKey()]||{}),nsaid:!e.target.checked};save();renderGoal();try{renderQuest()}catch(_){}}});
 
 
 // ---------- Medicines: daily taken check ----------
@@ -2824,6 +2930,8 @@ function renderBP(){
   if(wk.length){if(as>=140||ad>=90){cls='a';msg=`Average ${as}/${ad} is high. Tell your nephrologist or family doctor this week.`}else if(as>T.s||ad>T.d){cls='l';msg=`Average ${as}/${ad} is a little above your ${T.s}/${T.d} target.`}else if(as<100){cls='l';msg=`Average ${as}/${ad} is low. If you feel dizzy or faint, call your doctor.`}else{cls='s';msg=`Average ${as}/${ad} is at or under your ${T.s}/${T.d} target.`}}
   let alertTxt='';if(last&&(last.s>=180||last.di>=120))alertTxt=`<div class="alert a"><b>${last.s}/${last.di} is very high.</b> Rest 5 minutes and recheck. If it's still this high, call your doctor today. With chest pain, trouble breathing, vision change, weakness or confusion, call emergency services.</div>`;
   else if(last&&last.s<90)alertTxt=`<div class="alert l"><b>${last.s}/${last.di} is low.</b> Sit or lie down. If you feel faint or dizzy, call your doctor.</div>`;
+  {const bs=$('#bpSum');if(bs)bs.textContent=as!=null?as+'/'+ad:''}
+  try{renderQuickRow()}catch(_){}
   $('#bpCard').innerHTML=`<div><div class="eyebrow">Blood pressure</div><h2>${as!=null?`${as}/${ad} · 7-day average`:'Your readings'}</h2></div>${alertTxt}
    <div class="callout">${msg}</div>${bpChart(all.slice(-14))}${all.length>1?'<div class="note">Solid line: top number. Grey line: bottom number. Dashed: your target.</div>':''}
    <div class="grid2"><label class="f">Top number<input id="bp_s" type="number" inputmode="numeric" placeholder="120"></label><label class="f">Bottom number<input id="bp_d" type="number" inputmode="numeric" placeholder="80"></label></div>
