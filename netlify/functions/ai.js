@@ -2,7 +2,7 @@
 // Setup (once): Netlify > Site configuration > Environment variables:
 //   ANTHROPIC_API_KEY = your key from console.anthropic.com
 //   SITE_ORIGIN       = https://your-site.netlify.app   (blocks other websites from using your key)
-const MODEL = process.env.CLAUDE_MODEL || 'claude-sonnet-5-5';
+const MODEL = process.env.CLAUDE_MODEL || 'claude-haiku-5-5';
 const json = (code, obj) => ({ statusCode: code, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' }, body: JSON.stringify(obj) });
 exports.handler = async (event) => {
   if (event.httpMethod === 'GET') return json(process.env.ANTHROPIC_API_KEY ? 200 : 503, { ok: !!process.env.ANTHROPIC_API_KEY });
@@ -22,15 +22,18 @@ exports.handler = async (event) => {
     if (m) content.push({ type: 'image', source: { type: 'base64', media_type: m[1], data: m[2] } });
   }
   content.push({ type: 'text', text: prompt });
+  const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 9000);
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
+      signal: ctl.signal,
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: MODEL, max_tokens: 1500, messages: [{ role: 'user', content }] })
+      body: JSON.stringify({ model: MODEL, max_tokens: 900, messages: [{ role: 'user', content }] })
     });
     const d = await r.json();
     if (!r.ok) return json(502, { error: (d.error && d.error.message) || ('AI error ' + r.status) });
     const text = (d.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
     return json(200, { text });
-  } catch (e) { return json(502, { error: 'Could not reach the AI service.' }); }
+  } catch (e) { return json(504, { error: e && e.name === 'AbortError' ? 'Claude took longer than Netlify allows (10 seconds). Try a closer, sharper photo of just the label.' : 'Could not reach the AI service.' }); }
+  finally { clearTimeout(timer); }
 };
